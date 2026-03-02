@@ -4,8 +4,12 @@ import { useState, useEffect } from 'react';
 function App() {
   const [email, setEmail] = useState('');
   const [scrolled, setScrolled] = useState(false);
+  const [showEditorial, setShowEditorial] = useState(false);
+  const [showArchive, setShowArchive] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [showAccessModal, setShowAccessModal] = useState(false);
+  const [accessSubmitted, setAccessSubmitted] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -13,37 +17,109 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Smooth scroll function
-  const scrollToSection = (id) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Handle search
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      setShowSearchResults(true);
-      alert(`Searching for: ${searchQuery}`);
-      // Actual search logic yahan implement karein
-    }
-  };
-
-  // Handle request access
-  const handleRequestAccess = (e) => {
-    e.preventDefault();
+  const handleRequestAccess = () => {
     if (email.trim()) {
-      alert(`Access requested for: ${email}\n\nThank you! We will send you an email shortly.`);
+      setAccessSubmitted(true);
+      setTimeout(() => setAccessSubmitted(false), 3000);
       setEmail('');
-    } else {
-      alert('Please enter a valid email address.');
     }
+  };
+
+  const scrollToSection = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <div className="min-h-screen bg-white">
+
+      {/* ── MODALS ── */}
+      {showEditorial && (
+        <div className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-6" onClick={() => setShowEditorial(false)}>
+          <div className="bg-white max-w-lg w-full p-10 relative" onClick={e => e.stopPropagation()}>
+            <button className="absolute top-4 right-4 text-xs tracking-widest uppercase" onClick={() => setShowEditorial(false)}>✕ Close</button>
+            <p className="text-xs tracking-widest uppercase text-gray-400 mb-3">Editorial</p>
+            <h2 className="text-3xl font-serif italic mb-4" style={{ color: '#c9a84c' }}>Season 0: Seafoam Birth</h2>
+            <p className="text-sm text-gray-600 leading-relaxed mb-6">
+              Our first digital editorial — 84 pages of ocean couture, environmental storytelling, and fashion as ecological document. Available for private archive access.
+            </p>
+            <button className="px-8 py-4 bg-black text-white text-xs tracking-widest uppercase hover:bg-gray-800 transition-colors w-full" onClick={() => { setShowEditorial(false); setShowAccessModal(true); }}>
+              Access The Editorial — $48
+            </button>
+          </div>
+        </div>
+      )}
+
+      {showArchive && (
+        <div className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-6" onClick={() => setShowArchive(false)}>
+          <div className="bg-white max-w-2xl w-full p-10 relative" onClick={e => e.stopPropagation()}>
+            <button className="absolute top-4 right-4 text-xs tracking-widest uppercase" onClick={() => setShowArchive(false)}>✕ Close</button>
+            <p className="text-xs tracking-widest uppercase text-gray-400 mb-3">The Archive</p>
+            <h2 className="text-3xl font-serif italic mb-6 text-black">Selected Works</h2>
+            <div className="space-y-4">
+              {['Minimal Luxury', 'Regenerative Craft', 'Couture as Ritual', 'Water As Structure', 'Ocean Couture Manifesto'].map((title, i) => (
+                <div key={i} className="flex justify-between items-center border-b border-gray-100 pb-4">
+                  <div>
+                    <p className="text-xs tracking-widest uppercase text-gray-400 mb-1">Essay {String(i + 1).padStart(2, '0')}</p>
+                    <p className="font-serif italic text-base" style={{ color: '#9a8a6a' }}>{title}</p>
+                  </div>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(190,158,80,0.88)' }}>
+                    <svg width="8" height="10" viewBox="0 0 13 15" fill="none">
+                      <rect x="0.5" y="6.5" width="12" height="8" rx="1.5" fill="white"/>
+                      <path d="M3.5 6.5V4.5C3.5 2.84 4.84 1.5 6.5 1.5C8.16 1.5 9.5 2.84 9.5 4.5V6.5" stroke="white" strokeWidth="1.4" fill="none"/>
+                    </svg>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <p className="text-xs text-gray-400 italic mt-6">Archive access requires editorial purchase.</p>
+          </div>
+        </div>
+      )}
+
+      {showSearch && (
+        <div className="fixed inset-0 z-[100] bg-black/90 flex items-start justify-center pt-32 p-6" onClick={() => setShowSearch(false)}>
+          <div className="w-full max-w-xl" onClick={e => e.stopPropagation()}>
+            <div className="flex items-center gap-4 border-b border-white/40 pb-4 mb-8">
+              <input
+                autoFocus
+                type="text"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                placeholder="SEARCH THE ARCHIVE"
+                className="flex-1 text-white text-lg tracking-widest uppercase bg-transparent focus:outline-none placeholder-white/40"
+              />
+              <button onClick={() => setShowSearch(false)} className="text-white/60 text-xs tracking-widest uppercase">✕</button>
+            </div>
+            {searchQuery && (
+              <div className="space-y-3">
+                {['Minimal Luxury', 'Regenerative Craft', 'Couture as Ritual'].filter(t => t.toLowerCase().includes(searchQuery.toLowerCase())).map((r, i) => (
+                  <div key={i} className="text-white/70 text-sm tracking-widest uppercase cursor-pointer hover:text-white transition-colors">{r}</div>
+                ))}
+                {!['Minimal Luxury', 'Regenerative Craft', 'Couture as Ritual'].some(t => t.toLowerCase().includes(searchQuery.toLowerCase())) && (
+                  <p className="text-white/40 text-xs tracking-widest uppercase italic">No results found in archive.</p>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {showAccessModal && (
+        <div className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-6" onClick={() => setShowAccessModal(false)}>
+          <div className="bg-white max-w-md w-full p-10 relative" onClick={e => e.stopPropagation()}>
+            <button className="absolute top-4 right-4 text-xs tracking-widest uppercase" onClick={() => setShowAccessModal(false)}>✕ Close</button>
+            <p className="text-xs tracking-widest uppercase text-gray-400 mb-3">Request Access</p>
+            <h2 className="text-2xl font-serif italic mb-6 text-black">Enter The Archive</h2>
+            <div className="border-b border-gray-300 pb-2 mb-4">
+              <input type="email" placeholder="Email Address" className="w-full text-xs tracking-widest uppercase bg-transparent focus:outline-none text-gray-600 placeholder-gray-400" />
+            </div>
+            <button className="w-full py-4 bg-black text-white text-xs tracking-widest uppercase hover:bg-gray-800 transition-colors">
+              Request Access
+            </button>
+            <p className="text-xs text-gray-400 italic text-center mt-4">"We send beauty, not clutter."</p>
+          </div>
+        </div>
+      )}
 
       {/* ── NAVBAR ── */}
       <nav
@@ -62,43 +138,33 @@ function App() {
         </div>
 
         <div className="flex items-center gap-8">
-          {/* Search box */}
-          <form 
-            onSubmit={handleSearch}
-            className="flex items-center gap-2 px-3 py-1.5 transition-all duration-300"
+          <div
+            className="flex items-center gap-2 px-3 py-1.5 transition-all duration-300 cursor-pointer"
             style={{ border: `1px solid ${scrolled ? '#cccccc' : 'rgba(255,255,255,0.55)'}` }}
+            onClick={() => setShowSearch(true)}
           >
             <input
               type="text"
               placeholder="SEARCH"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="text-xs tracking-widest uppercase bg-transparent focus:outline-none w-20 placeholder-current"
+              className="text-xs tracking-widest uppercase bg-transparent focus:outline-none w-20 placeholder-current cursor-pointer"
               style={{ color: scrolled ? '#666' : 'rgba(255,255,255,0.85)' }}
+              readOnly
             />
-            <button type="submit">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-                stroke={scrolled ? '#666' : 'rgba(255,255,255,0.85)'} strokeWidth="2">
-                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-              </svg>
-            </button>
-          </form>
-          
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+              stroke={scrolled ? '#666' : 'rgba(255,255,255,0.85)'} strokeWidth="2">
+              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+            </svg>
+          </div>
           <button
-            onClick={() => scrollToSection('editorial')}
             className="text-xs tracking-widest uppercase transition-colors duration-300 hover:opacity-70"
             style={{ color: scrolled ? '#111' : '#ffffff' }}
-          >
-            Editorial
-          </button>
-          
+            onClick={() => setShowEditorial(true)}
+          >Editorial</button>
           <button
-            onClick={() => scrollToSection('archive')}
             className="text-xs tracking-widest uppercase transition-colors duration-300 hover:opacity-70"
             style={{ color: scrolled ? '#111' : '#ffffff' }}
-          >
-            Archive
-          </button>
+            onClick={() => setShowArchive(true)}
+          >Archive</button>
         </div>
       </nav>
 
@@ -123,15 +189,15 @@ function App() {
             <span className="border-l border-white/50 pl-3">A Limited Digital Editorial Archive.</span>
           </p>
           <div className="flex gap-6">
-            <button 
-              onClick={() => scrollToSection('product')}
+            <button
               className="text-white text-xs tracking-widest uppercase underline underline-offset-4 hover:text-white/70 transition-colors"
+              onClick={() => setShowEditorial(true)}
             >
               View The First Edition
             </button>
-            <button 
-              onClick={() => scrollToSection('archive')}
+            <button
               className="text-white text-xs tracking-widest uppercase underline underline-offset-4 hover:text-white/70 transition-colors"
+              onClick={() => setShowArchive(true)}
             >
               Enter The Archive
             </button>
@@ -140,7 +206,7 @@ function App() {
       </section>
 
       {/* ── PRODUCT SECTION ── */}
-      <section id="product" className="bg-white">
+      <section className="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="relative overflow-hidden" style={{ minHeight: '580px' }}>
             <video
@@ -182,9 +248,9 @@ function App() {
 
             <div className="flex items-center justify-between pt-2">
               <span className="text-4xl font-serif">$48</span>
-              <button 
-                onClick={() => alert('Redirecting to payment gateway...')}
+              <button
                 className="px-8 py-4 bg-black text-white text-xs tracking-widest uppercase hover:bg-gray-800 transition-colors"
+                onClick={() => setShowAccessModal(true)}
               >
                 Access The Editorial
               </button>
@@ -223,7 +289,7 @@ function App() {
       </section>
 
       {/* ── STUDIES SECTION ── */}
-      <section id="editorial" className="py-20 px-6 md:px-16 lg:px-24 bg-white">
+      <section className="py-20 px-6 md:px-16 lg:px-24 bg-white">
         <div className="text-center mb-12">
           <p className="text-xs tracking-widest uppercase text-gray-400 mb-4">Seagloré Studies</p>
           <h3 className="text-2xl md:text-3xl font-serif italic text-black">
@@ -261,70 +327,57 @@ function App() {
           Not Trend Education.<br />
           Perception Training.
         </p>
-        <button 
-          onClick={() => alert('Academy section coming soon!')}
+        <button
           className="text-xs tracking-widest uppercase border-b border-black pb-1 hover:opacity-60 transition-opacity"
+          onClick={() => setShowAccessModal(true)}
         >
           Enter Academy
         </button>
       </section>
 
-      {/* ── ARCHIVE SECTION ── EXACT MATCH TO IMAGE ── */}
+      {/* ── ARCHIVE SECTION ── */}
       <section id="archive" className="py-20 px-6 md:px-16 lg:px-24 bg-white">
         <div className="flex justify-between items-start mb-12">
-          <h3 className="text-3xl font-serif italic text-black">From the Archive</h3>
+          <h3 className="text-3xl font-serif italic">From the Archive</h3>
           <p className="text-xs text-gray-500 max-w-xs text-right tracking-widest uppercase leading-relaxed">
             Selected essays are available inside the<br />Editorial Archive.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             { title: 'Minimal Luxury', img: '/images/archive1.jpg' },
             { title: 'Regenerative Craft', img: '/images/archive3.jpg' },
             { title: 'Couture as Ritual', img: '/images/archive2.jpg' }
           ].map((item, index) => (
-            <div 
-              key={index} 
-              className="group cursor-pointer"
-              onClick={() => alert(`Opening ${item.title}...`)}
-            >
-              <div className="aspect-[3/4] overflow-hidden bg-gray-100 mb-4 relative">
-                {/* Image: grayscale + blur as in design */}
+            <div key={index} className="group cursor-pointer" onClick={() => setShowAccessModal(true)}>
+              {/* Image container — wider aspect ratio matching the PDF screenshot */}
+              <div className="overflow-hidden bg-gray-200 mb-4 relative" style={{ aspectRatio: '4/3.5' }}>
                 <img
                   src={item.img}
                   alt={item.title}
-                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                  style={{ 
-                    filter: 'grayscale(100%) blur(2px)', 
-                    transform: 'scale(1.05)'
-                  }}
+                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
+                  style={{ filter: 'grayscale(100%) blur(2px)', transform: 'scale(1.06)' }}
                 />
-                {/* Subtle dark overlay */}
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-500"></div>
-                
-                {/* Golden lock circle - EXACT MATCH */}
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-black/15"></div>
+                {/* Golden lock circle — centered, subtle */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
-                    style={{ backgroundColor: '#c9a86c' }}
+                    className="w-9 h-9 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                    style={{ backgroundColor: 'rgba(190,158,80,0.82)' }}
                   >
-                    <svg width="16" height="18" viewBox="0 0 13 15" fill="none">
+                    <svg width="11" height="13" viewBox="0 0 13 15" fill="none">
                       <rect x="0.5" y="6.5" width="12" height="8" rx="1.5" fill="white"/>
                       <path d="M3.5 6.5V4.5C3.5 2.84 4.84 1.5 6.5 1.5C8.16 1.5 9.5 2.84 9.5 4.5V6.5"
-                        stroke="white" strokeWidth="1.5" fill="none"/>
+                        stroke="white" strokeWidth="1.4" fill="none"/>
                     </svg>
                   </div>
                 </div>
               </div>
-              
-              {/* Text styling - EXACT MATCH */}
-              <p className="text-xs tracking-widest uppercase font-bold text-black mb-1">
-                Archive Only
-              </p>
-              <p className="font-serif italic text-lg text-gray-600 group-hover:text-black transition-colors">
-                {item.title}
-              </p>
+              {/* Text below image */}
+              <p className="text-xs tracking-widest uppercase font-bold text-black mb-1">Archive Only</p>
+              <p className="font-serif italic text-base" style={{ color: '#9a8a6a' }}>{item.title}</p>
             </div>
           ))}
         </div>
@@ -387,7 +440,7 @@ function App() {
         <div className="border-t-2 border-black"></div>
       </section>
 
-      {/* ── FOOTER / REQUEST ACCESS ── */}
+      {/* ── FOOTER ── */}
       <footer className="py-10 px-6 md:px-16 lg:px-24 bg-white">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8">
           <div className="pt-2">
@@ -396,7 +449,7 @@ function App() {
 
           <div className="w-full md:w-1/2 space-y-3">
             <h4 className="text-sm font-black uppercase tracking-widest text-black">Request Access</h4>
-            <form onSubmit={handleRequestAccess} className="flex items-end gap-4 border-b border-gray-400 pb-2">
+            <div className="flex items-end gap-4 border-b border-gray-400 pb-2">
               <input
                 type="email"
                 placeholder="Email Address"
@@ -404,13 +457,13 @@ function App() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 text-xs tracking-widest uppercase bg-transparent focus:outline-none text-gray-500 placeholder-gray-400"
               />
-              <button 
-                type="submit"
+              <button
                 className="text-xs tracking-widest uppercase text-black hover:text-gray-600 transition-colors whitespace-nowrap"
+                onClick={handleRequestAccess}
               >
-                [ Request Access ]
+                {accessSubmitted ? '[ Submitted ✓ ]' : '[ Request Access ]'}
               </button>
-            </form>
+            </div>
             <p className="text-xs text-gray-400 italic text-right">"We send beauty, not clutter."</p>
           </div>
         </div>
