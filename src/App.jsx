@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 function App() {
   const [email, setEmail] = useState('');
   const [scrolled, setScrolled] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSearchResults, setShowSearchResults] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -11,10 +13,39 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Smooth scroll function
+  const scrollToSection = (id) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  // Handle search
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      setShowSearchResults(true);
+      alert(`Searching for: ${searchQuery}`);
+      // Actual search logic yahan implement karein
+    }
+  };
+
+  // Handle request access
+  const handleRequestAccess = (e) => {
+    e.preventDefault();
+    if (email.trim()) {
+      alert(`Access requested for: ${email}\n\nThank you! We will send you an email shortly.`);
+      setEmail('');
+    } else {
+      alert('Please enter a valid email address.');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white">
 
-      {/* ── NAVBAR ── transparent on hero, white after scroll ── */}
+      {/* ── NAVBAR ── */}
       <nav
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-8 md:px-16 py-5 transition-all duration-300"
         style={{
@@ -22,39 +53,52 @@ function App() {
           backdropFilter: scrolled ? 'blur(8px)' : 'none',
         }}
       >
-        {/* SEAGLORÉ — white on hero, dark after scroll */}
         <div
-          className="text-xl font-serif tracking-wider transition-colors duration-300"
+          className="text-xl font-serif tracking-wider transition-colors duration-300 cursor-pointer"
           style={{ color: scrolled ? '#111111' : '#ffffff' }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           SEAGLORÉ
         </div>
 
         <div className="flex items-center gap-8">
           {/* Search box */}
-          <div
+          <form 
+            onSubmit={handleSearch}
             className="flex items-center gap-2 px-3 py-1.5 transition-all duration-300"
             style={{ border: `1px solid ${scrolled ? '#cccccc' : 'rgba(255,255,255,0.55)'}` }}
           >
             <input
               type="text"
               placeholder="SEARCH"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="text-xs tracking-widest uppercase bg-transparent focus:outline-none w-20 placeholder-current"
               style={{ color: scrolled ? '#666' : 'rgba(255,255,255,0.85)' }}
             />
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-              stroke={scrolled ? '#666' : 'rgba(255,255,255,0.85)'} strokeWidth="2">
-              <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-            </svg>
-          </div>
+            <button type="submit">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
+                stroke={scrolled ? '#666' : 'rgba(255,255,255,0.85)'} strokeWidth="2">
+                <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+              </svg>
+            </button>
+          </form>
+          
           <button
+            onClick={() => scrollToSection('editorial')}
             className="text-xs tracking-widest uppercase transition-colors duration-300 hover:opacity-70"
             style={{ color: scrolled ? '#111' : '#ffffff' }}
-          >Editorial</button>
+          >
+            Editorial
+          </button>
+          
           <button
+            onClick={() => scrollToSection('archive')}
             className="text-xs tracking-widest uppercase transition-colors duration-300 hover:opacity-70"
             style={{ color: scrolled ? '#111' : '#ffffff' }}
-          >Archive</button>
+          >
+            Archive
+          </button>
         </div>
       </nav>
 
@@ -79,20 +123,25 @@ function App() {
             <span className="border-l border-white/50 pl-3">A Limited Digital Editorial Archive.</span>
           </p>
           <div className="flex gap-6">
-            <button className="text-white text-xs tracking-widest uppercase underline underline-offset-4 hover:text-white/70 transition-colors">
+            <button 
+              onClick={() => scrollToSection('product')}
+              className="text-white text-xs tracking-widest uppercase underline underline-offset-4 hover:text-white/70 transition-colors"
+            >
               View The First Edition
             </button>
-            <button className="text-white text-xs tracking-widest uppercase underline underline-offset-4 hover:text-white/70 transition-colors">
+            <button 
+              onClick={() => scrollToSection('archive')}
+              className="text-white text-xs tracking-widest uppercase underline underline-offset-4 hover:text-white/70 transition-colors"
+            >
               Enter The Archive
             </button>
           </div>
         </div>
       </section>
 
-      {/* ── PRODUCT SECTION — white bg ── */}
-      <section className="bg-white">
+      {/* ── PRODUCT SECTION ── */}
+      <section id="product" className="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* Left: video full bleed, no padding */}
           <div className="relative overflow-hidden" style={{ minHeight: '580px' }}>
             <video
               className="absolute inset-0 w-full h-full object-cover"
@@ -105,7 +154,6 @@ function App() {
             </div>
           </div>
 
-          {/* Right: details */}
           <div className="px-10 md:px-16 py-16 flex flex-col justify-center space-y-8 bg-white">
             <div>
               <p className="text-xs tracking-widest uppercase text-gray-400 mb-4">Product Title</p>
@@ -134,7 +182,10 @@ function App() {
 
             <div className="flex items-center justify-between pt-2">
               <span className="text-4xl font-serif">$48</span>
-              <button className="px-8 py-4 bg-black text-white text-xs tracking-widest uppercase hover:bg-gray-800 transition-colors">
+              <button 
+                onClick={() => alert('Redirecting to payment gateway...')}
+                className="px-8 py-4 bg-black text-white text-xs tracking-widest uppercase hover:bg-gray-800 transition-colors"
+              >
                 Access The Editorial
               </button>
             </div>
@@ -142,11 +193,9 @@ function App() {
         </div>
       </section>
 
-      {/* ── QUOTE SECTION — cream bg, video corner-to-corner ── */}
-      {/*  Image 3: left side cream, right side video fills full height, no gap */}
+      {/* ── QUOTE SECTION ── */}
       <section style={{ backgroundColor: '#ede8df' }}>
         <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: '520px' }}>
-          {/* Left: text with padding */}
           <div className="flex flex-col justify-center space-y-6 px-8 md:px-16 py-20">
             <div className="w-10 h-0.5 bg-black"></div>
             <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight leading-tight text-black">
@@ -162,7 +211,6 @@ function App() {
             </p>
           </div>
 
-          {/* Right: video — full bleed, no padding, corner to corner */}
           <div className="relative overflow-hidden" style={{ minHeight: '520px' }}>
             <video
               className="absolute inset-0 w-full h-full object-cover"
@@ -174,9 +222,8 @@ function App() {
         </div>
       </section>
 
-      {/* ── STUDIES SECTION — WHITE bg (different from cream) ── */}
-      {/* Image 4: clearly white background, not cream */}
-      <section className="py-20 px-6 md:px-16 lg:px-24 bg-white">
+      {/* ── STUDIES SECTION ── */}
+      <section id="editorial" className="py-20 px-6 md:px-16 lg:px-24 bg-white">
         <div className="text-center mb-12">
           <p className="text-xs tracking-widest uppercase text-gray-400 mb-4">Seagloré Studies</p>
           <h3 className="text-2xl md:text-3xl font-serif italic text-black">
@@ -203,8 +250,7 @@ function App() {
         </div>
       </section>
 
-      {/* ── ACADEMY SECTION — cream bg (same as quote, different from studies) ── */}
-      {/* Image 5: cream/beige bg, centered text */}
+      {/* ── ACADEMY SECTION ── */}
       <section className="py-24 px-6 md:px-16 lg:px-24 text-center" style={{ backgroundColor: '#ede8df' }}>
         <p className="text-xs tracking-widest uppercase text-gray-500 mb-6">Seagloré Academy</p>
         <h2 className="text-4xl md:text-5xl font-serif mb-5 leading-tight text-black">
@@ -215,15 +261,18 @@ function App() {
           Not Trend Education.<br />
           Perception Training.
         </p>
-        <button className="text-xs tracking-widest uppercase border-b border-black pb-1 hover:opacity-60 transition-opacity">
+        <button 
+          onClick={() => alert('Academy section coming soon!')}
+          className="text-xs tracking-widest uppercase border-b border-black pb-1 hover:opacity-60 transition-opacity"
+        >
           Enter Academy
         </button>
       </section>
 
-      {/* ── ARCHIVE SECTION — white bg ── */}
-      <section className="py-20 px-6 md:px-16 lg:px-24 bg-white">
+      {/* ── ARCHIVE SECTION ── EXACT MATCH TO IMAGE ── */}
+      <section id="archive" className="py-20 px-6 md:px-16 lg:px-24 bg-white">
         <div className="flex justify-between items-start mb-12">
-          <h3 className="text-2xl font-serif italic">From the Archive</h3>
+          <h3 className="text-3xl font-serif italic text-black">From the Archive</h3>
           <p className="text-xs text-gray-500 max-w-xs text-right tracking-widest uppercase leading-relaxed">
             Selected essays are available inside the<br />Editorial Archive.
           </p>
@@ -235,39 +284,53 @@ function App() {
             { title: 'Regenerative Craft', img: '/images/archive3.jpg' },
             { title: 'Couture as Ritual', img: '/images/archive2.jpg' }
           ].map((item, index) => (
-            <div key={index} className="group cursor-pointer">
-              <div className="aspect-[3/4] overflow-hidden bg-gray-200 mb-4 relative">
-                {/* Image: grayscale + slight blur as in design */}
+            <div 
+              key={index} 
+              className="group cursor-pointer"
+              onClick={() => alert(`Opening ${item.title}...`)}
+            >
+              <div className="aspect-[3/4] overflow-hidden bg-gray-100 mb-4 relative">
+                {/* Image: grayscale + blur as in design */}
                 <img
                   src={item.img}
                   alt={item.title}
-                  className="w-full h-full object-cover transition-all duration-500"
-                  style={{ filter: 'grayscale(100%) blur(1.5px)', transform: 'scale(1.03)' }}
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
+                  style={{ 
+                    filter: 'grayscale(100%) blur(2px)', 
+                    transform: 'scale(1.05)'
+                  }}
                 />
                 {/* Subtle dark overlay */}
-                <div className="absolute inset-0 bg-black/10"></div>
-                {/* Golden lock circle */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-all duration-500"></div>
+                
+                {/* Golden lock circle - EXACT MATCH */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div
-                    className="w-10 h-10 rounded-full flex items-center justify-center"
-                    style={{ backgroundColor: 'rgba(190,158,80,0.88)' }}
+                    className="w-12 h-12 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+                    style={{ backgroundColor: '#c9a86c' }}
                   >
-                    <svg width="13" height="15" viewBox="0 0 13 15" fill="none">
+                    <svg width="16" height="18" viewBox="0 0 13 15" fill="none">
                       <rect x="0.5" y="6.5" width="12" height="8" rx="1.5" fill="white"/>
                       <path d="M3.5 6.5V4.5C3.5 2.84 4.84 1.5 6.5 1.5C8.16 1.5 9.5 2.84 9.5 4.5V6.5"
-                        stroke="white" strokeWidth="1.4" fill="none"/>
+                        stroke="white" strokeWidth="1.5" fill="none"/>
                     </svg>
                   </div>
                 </div>
               </div>
-              <p className="text-xs tracking-widest uppercase font-bold text-black mb-1">Archive Only</p>
-              <p className="font-serif italic text-base" style={{ color: '#9a8a6a' }}>{item.title}</p>
+              
+              {/* Text styling - EXACT MATCH */}
+              <p className="text-xs tracking-widest uppercase font-bold text-black mb-1">
+                Archive Only
+              </p>
+              <p className="font-serif italic text-lg text-gray-600 group-hover:text-black transition-colors">
+                {item.title}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── FOUNDER SECTION — sage green bg on right ── */}
+      {/* ── FOUNDER SECTION ── */}
       <section className="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="relative overflow-hidden" style={{ minHeight: '520px' }}>
@@ -305,7 +368,7 @@ function App() {
         </div>
       </section>
 
-      {/* ── FUTURE EDITIONS — white bg ── */}
+      {/* ── FUTURE EDITIONS ── */}
       <section className="pt-16 pb-6 px-6 md:px-16 lg:px-24 bg-white">
         <h2
           className="font-black uppercase leading-none mb-8 text-black"
@@ -333,7 +396,7 @@ function App() {
 
           <div className="w-full md:w-1/2 space-y-3">
             <h4 className="text-sm font-black uppercase tracking-widest text-black">Request Access</h4>
-            <div className="flex items-end gap-4 border-b border-gray-400 pb-2">
+            <form onSubmit={handleRequestAccess} className="flex items-end gap-4 border-b border-gray-400 pb-2">
               <input
                 type="email"
                 placeholder="Email Address"
@@ -341,10 +404,13 @@ function App() {
                 onChange={(e) => setEmail(e.target.value)}
                 className="flex-1 text-xs tracking-widest uppercase bg-transparent focus:outline-none text-gray-500 placeholder-gray-400"
               />
-              <button className="text-xs tracking-widest uppercase text-black hover:text-gray-600 transition-colors whitespace-nowrap">
+              <button 
+                type="submit"
+                className="text-xs tracking-widest uppercase text-black hover:text-gray-600 transition-colors whitespace-nowrap"
+              >
                 [ Request Access ]
               </button>
-            </div>
+            </form>
             <p className="text-xs text-gray-400 italic text-right">"We send beauty, not clutter."</p>
           </div>
         </div>
