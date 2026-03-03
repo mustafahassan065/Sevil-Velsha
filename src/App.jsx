@@ -512,7 +512,7 @@ function App() {
                   src={item.img}
                   alt={item.title}
                   className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                  style={{ filter: 'grayscale(100%) blur(8px)', transform: 'scale(1.1)' }}
+                  style={{ filter: 'grayscale(100%) blur(16.71px)', transform: 'scale(1.1)' }}
                 />
                 <div className="absolute inset-0 bg-black/15"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
