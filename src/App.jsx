@@ -337,7 +337,7 @@ function App() {
         <div className="hidden md:flex items-center gap-6 lg:gap-8">
           <div
             className="flex items-center justify-between bg-white font-bold gap-2 px-3 py-1.5 transition-all duration-300 cursor-pointer"
-            style={{ border: `1px solid ${scrolled ? '#cccccc' : 'white'}`, width: '200px' }}
+            style={{ border: `1px solid ${scrolled ? '#cccccc' : 'white'}`, width: '230px', minWidth: '230px' }}
             onClick={() => setShowSearch(true)}
           >
             <input
@@ -348,7 +348,7 @@ function App() {
               readOnly
             />
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-              stroke={scrolled ? '#666' : '#000000'} strokeWidth="2">
+              stroke={scrolled ? '#666' : '#000000'} strokeWidth="2" style={{ flexShrink: 0, display: 'block' }}>
               <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
             </svg>
           </div>
@@ -512,7 +512,7 @@ function App() {
                   src={item.img}
                   alt={item.title}
                   className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                  style={{ filter: 'grayscale(100%) blur(2px)', transform: 'scale(1.06)' }}
+                  style={{ filter: 'grayscale(100%) blur(8px)', transform: 'scale(1.1)' }}
                 />
                 <div className="absolute inset-0 bg-black/15"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
