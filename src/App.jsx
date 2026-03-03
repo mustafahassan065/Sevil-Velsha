@@ -512,9 +512,9 @@ function App() {
                   src={item.img}
                   alt={item.title}
                   className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105"
-                  style={{ filter: 'grayscale(100%)', transform: 'scale(1.06)' }}
+                  style={{ filter: 'grayscale(100%) blur(8px)', transform: 'scale(1.1)' }}
                 />
-                <div className="absolute inset-0" style={{ backdropFilter: 'blur(16.71px)', WebkitBackdropFilter: 'blur(16.71px)', backgroundColor: 'rgba(0,0,0,0.10)' }}></div>
+                <div className="absolute inset-0 bg-black/15"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="w-9 h-9 rounded-full flex items-center justify-center transition-transform duration-300 group-hover:scale-110" style={{ backgroundColor: 'white' }}>
                     <svg width="11" height="13" viewBox="0 0 13 15" fill="none">
