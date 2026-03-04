@@ -26,14 +26,11 @@ const SEARCH_INDEX = [
   // ── Quote / Vision ──
   { title: 'Fashion Has Always Looked To Paris', type: 'Quote',            desc: 'Seagloré\'s founding contrast — Paris vs the Ocean.',                      scrollTo: 'quote-section' },
   { title: 'Seagloré Looks To The Ocean',        type: 'Quote',            desc: 'The core vision statement of Seagloré.',                                    scrollTo: 'quote-section' },
-  { title: 'Ocean Couture For A Living Planet',  type: 'Tagline',          desc: 'Seagloré\'s mission tagline.',                                              scrollTo: 'quote-section' },
-  { title: 'Ocean Couture',                      type: 'Concept',          desc: 'Fashion that looks to the ocean, not Paris.',                               scrollTo: 'quote-section' },
-
+ 
   // ── Studies ──
   { title: 'Seagloré Studies',                   type: 'Section',          desc: '"Water As Structure. Not Symbol." — the editorial study series.',           scrollTo: 'studies-section' },
   { title: 'Water As Structure',                 type: 'Concept',          desc: 'Core editorial concept — water as form, not symbol. From Seagloré Studies.',scrollTo: 'studies-section' },
-  { title: 'Not Symbol',                         type: 'Concept',          desc: '"Water As Structure. Not Symbol." — from Seagloré Studies.',                scrollTo: 'studies-section' },
-
+  
   // ── Academy ──
   { title: 'Seagloré Academy',                   type: 'Section',          desc: 'Where nature is studied before it becomes form.',                           scrollTo: 'academy-section' },
   { title: 'Where Nature Is Studied',            type: 'Academy',          desc: 'Seagloré Academy — nature studied before it becomes form.',                 scrollTo: 'academy-section' },
