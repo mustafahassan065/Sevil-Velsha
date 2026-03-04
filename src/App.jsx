@@ -7,6 +7,34 @@ const ARCHIVE_ITEMS = [
   { title: 'Couture as Ritual', img: '/images/archive2.jpg' },
 ];
 
+// All searchable content/concepts mentioned on the page
+const SEARCH_INDEX = [
+  // Archive essays
+  { title: 'Minimal Luxury', type: 'Archive Essay', description: 'Selected essay from the Seagloré archive.', action: 'archive' },
+  { title: 'Regenerative Craft', type: 'Archive Essay', description: 'Selected essay from the Seagloré archive.', action: 'archive' },
+  { title: 'Couture as Ritual', type: 'Archive Essay', description: 'Selected essay from the Seagloré archive.', action: 'archive' },
+  { title: 'Water As Structure', type: 'Archive Essay', description: 'Locked archive essay.', action: 'archive' },
+  { title: 'Ocean Couture Manifesto', type: 'Archive Essay', description: 'Locked archive essay.', action: 'archive' },
+  // Products / editorial
+  { title: 'Season 0: Seafoam Birth', type: 'Digital Editorial', description: '84-page digital editorial. Private archive entry. $48.', action: 'editorial' },
+  { title: 'Seafoam Birth', type: 'Digital Editorial', description: '84-page digital editorial — Season 0.', action: 'editorial' },
+  // Sections / concepts
+  { title: 'Seagloré Studies', type: 'Section', description: '"Water As Structure. Not Symbol." — editorial study series.', action: 'editorial' },
+  { title: 'Seagloré Academy', type: 'Section', description: 'Where nature is studied before it becomes form. Perception training, not trend education.', action: 'modal' },
+  { title: 'The Archive', type: 'Section', description: 'Selected essays available inside the Editorial Archive.', action: 'archive' },
+  { title: 'Future Editions', type: 'Section', description: 'Additional editorial releases entering the archive over time. Small run. Slow release.', action: 'editorial' },
+  // Concepts
+  { title: 'Ocean Couture', type: 'Concept', description: 'Seagloré founding vision — fashion that looks to the ocean, not Paris.', action: 'editorial' },
+  { title: 'Perception Training', type: 'Concept', description: 'Seagloré Academy approach — not trend education, but training how you see.', action: 'modal' },
+  { title: 'Environmental Storytelling', type: 'Concept', description: 'One of Sevil Velsha\'s core creative disciplines.', action: 'editorial' },
+  { title: 'Voice Research', type: 'Concept', description: 'Creative discipline practiced by founder Sevil Velsha.', action: 'editorial' },
+  { title: 'Creative Direction', type: 'Concept', description: 'Led by Sevil Velsha, Founder & Creative Director of Seagloré.', action: 'editorial' },
+  { title: 'Digital Exclusive', type: 'Product Tag', description: 'Season 0 is a digital-only release — 84 pages, private archive access.', action: 'editorial' },
+  { title: 'Private Archive Entry', type: 'Access', description: 'Editorial access is private and limited. Request access to enter.', action: 'modal' },
+  { title: 'Sevil Velsha', type: 'Founder', description: 'Founder & Creative Director of Seagloré. "Couture and ecology as inevitability."', action: 'editorial' },
+  { title: 'Request Access', type: 'Action', description: 'Submit your email to request access to the editorial archive.', action: 'modal' },
+];
+
 // Local dev → Node server on 3001, Production (Vercel) → /api route
 const API_URL = import.meta.env.DEV
   ? 'http://localhost:3001/api/send-email'
@@ -107,18 +135,44 @@ function App() {
     }, 50);
   };
 
-  // ── Search (only 3 archive items) ──
+  // ── Search: full page content index ──
   const searchResults = searchQuery.trim()
-    ? ARCHIVE_ITEMS.filter(item =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+    ? SEARCH_INDEX.filter(item =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.type.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : [];
+
+  // ── Handle search result click ──
+  const handleSearchResultClick = (item) => {
+    setShowSearch(false);
+    setSearchQuery('');
+    setTimeout(() => {
+      if (item.action === 'archive') {
+        document.getElementById('archive')?.scrollIntoView({ behavior: 'smooth' });
+      } else if (item.action === 'editorial') {
+        document.getElementById('editorial-section')?.scrollIntoView({ behavior: 'smooth' });
+      } else if (item.action === 'modal') {
+        setShowAccessModal(true);
+      }
+    }, 100);
+  };
 
   const closeModal = () => {
     setShowAccessModal(false);
     setModalEmail('');
     setModalSubmitted(false);
     setModalError('');
+  };
+
+  // Type badge color
+  const typeBadgeStyle = (type) => {
+    if (type === 'Archive Essay') return { color: 'rgba(190,158,80,0.9)' };
+    if (type === 'Digital Editorial' || type === 'Product Tag') return { color: '#c9a84c' };
+    if (type === 'Section') return { color: '#9aa5b4' };
+    if (type === 'Concept') return { color: '#9a8a6a' };
+    return { color: 'rgba(255,255,255,0.4)' };
   };
 
   return (
@@ -168,55 +222,89 @@ function App() {
 
       {/* ── SEARCH MODAL ── */}
       {showSearch && (
-        <div className="fixed inset-0 z-[100] bg-black/90 flex items-start justify-center pt-24 sm:pt-32 p-4 sm:p-6" onClick={() => { setShowSearch(false); setSearchQuery(''); }}>
+        <div
+          className="fixed inset-0 z-[100] bg-black/90 flex items-start justify-center pt-24 sm:pt-32 p-4 sm:p-6"
+          onClick={() => { setShowSearch(false); setSearchQuery(''); }}
+        >
           <div className="w-full max-w-xl" onClick={e => e.stopPropagation()}>
+            {/* Search input */}
             <div className="flex items-center gap-4 border-b border-white/40 pb-4 mb-8">
               <input
                 autoFocus
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                placeholder="Search the archive..."
+                placeholder="Search Seagloré..."
                 className="flex-1 text-white text-base sm:text-lg bg-transparent focus:outline-none placeholder-white/40"
                 style={{ letterSpacing: '0.05em' }}
               />
-              <button onClick={() => { setShowSearch(false); setSearchQuery(''); }} className="text-white/60 text-xs tracking-widest uppercase flex-shrink-0">✕</button>
+              <button
+                onClick={() => { setShowSearch(false); setSearchQuery(''); }}
+                className="text-white/60 text-xs tracking-widest uppercase flex-shrink-0"
+              >✕</button>
             </div>
 
+            {/* Search results */}
             {searchQuery.trim() && (
-              <div className="space-y-3">
+              <div className="space-y-1">
                 {searchResults.length > 0 ? (
                   searchResults.map((item, i) => (
                     <div
                       key={i}
-                      className="text-white/70 text-sm tracking-widest cursor-pointer hover:text-white transition-colors flex items-center gap-3"
-                      onClick={() => {
-                        setShowSearch(false);
-                        setSearchQuery('');
-                        setTimeout(() => {
-                          document.getElementById('archive')?.scrollIntoView({ behavior: 'smooth' });
-                        }, 100);
-                      }}
+                      className="group flex items-start gap-4 px-3 py-3 cursor-pointer hover:bg-white/5 transition-colors rounded"
+                      onClick={() => handleSearchResultClick(item)}
                     >
-                      <svg width="10" height="10" viewBox="0 0 13 15" fill="none" className="flex-shrink-0">
-                        <rect x="0.5" y="6.5" width="12" height="8" rx="1.5" fill="rgba(190,158,80,0.88)"/>
-                        <path d="M3.5 6.5V4.5C3.5 2.84 4.84 1.5 6.5 1.5C8.16 1.5 9.5 2.84 9.5 4.5V6.5" stroke="rgba(190,158,80,0.88)" strokeWidth="1.4" fill="none"/>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-3 mb-0.5">
+                          <p className="text-white text-sm tracking-wide group-hover:text-white/80 transition-colors">{item.title}</p>
+                          <span className="text-xs tracking-widest uppercase flex-shrink-0" style={typeBadgeStyle(item.type)}>{item.type}</span>
+                        </div>
+                        <p className="text-white/35 text-xs tracking-wide leading-relaxed">{item.description}</p>
+                      </div>
+                      <svg className="flex-shrink-0 mt-1 opacity-30 group-hover:opacity-70 transition-opacity" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
                       </svg>
-                      {item.title}
                     </div>
                   ))
                 ) : (
-                  <p className="text-white/40 text-xs tracking-widest italic">No results found in archive.</p>
+                  <p className="text-white/40 text-xs tracking-widest italic px-3">No results found.</p>
                 )}
               </div>
             )}
 
+            {/* Default state: show categories */}
             {!searchQuery.trim() && (
-              <div className="space-y-2">
-                <p className="text-white/30 text-xs tracking-widest uppercase mb-4">Archive Contents</p>
-                {ARCHIVE_ITEMS.map((item, i) => (
-                  <div key={i} className="text-white/40 text-sm tracking-widest">{item.title}</div>
-                ))}
+              <div className="space-y-6">
+                <div>
+                  <p className="text-white/30 text-xs tracking-widest uppercase mb-3">Archive Essays</p>
+                  <div className="space-y-1.5">
+                    {SEARCH_INDEX.filter(i => i.type === 'Archive Essay').map((item, i) => (
+                      <div key={i} className="text-white/40 text-sm tracking-widest hover:text-white/70 cursor-pointer transition-colors px-1" onClick={() => handleSearchResultClick(item)}>
+                        {item.title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-white/30 text-xs tracking-widest uppercase mb-3">Sections & Products</p>
+                  <div className="space-y-1.5">
+                    {SEARCH_INDEX.filter(i => i.type === 'Section' || i.type === 'Digital Editorial').map((item, i) => (
+                      <div key={i} className="text-white/40 text-sm tracking-widest hover:text-white/70 cursor-pointer transition-colors px-1" onClick={() => handleSearchResultClick(item)}>
+                        {item.title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <p className="text-white/30 text-xs tracking-widest uppercase mb-3">Concepts</p>
+                  <div className="space-y-1.5">
+                    {SEARCH_INDEX.filter(i => i.type === 'Concept' || i.type === 'Founder').map((item, i) => (
+                      <div key={i} className="text-white/40 text-sm tracking-widest hover:text-white/70 cursor-pointer transition-colors px-1" onClick={() => handleSearchResultClick(item)}>
+                        {item.title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
             )}
           </div>
@@ -275,7 +363,6 @@ function App() {
           >
             ✕ Close
           </button>
-          {/* Search in mobile menu */}
           <div
             className="flex items-center gap-3 border border-gray-300 px-4 py-3 mb-8 cursor-pointer"
             onClick={() => { setMobileMenuOpen(false); setShowSearch(true); }}
@@ -321,7 +408,6 @@ function App() {
           backdropFilter: scrolled ? 'blur(8px)' : 'none',
         }}
       >
-        {/* Logo */}
         <div
           className="cursor-pointer flex-shrink-0"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -333,7 +419,6 @@ function App() {
           />
         </div>
 
-        {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6 lg:gap-8">
           <div
             className="flex items-center justify-between bg-white font-bold gap-2 px-3 py-1.5 transition-all duration-300 cursor-pointer"
@@ -366,7 +451,6 @@ function App() {
           >Archive</button>
         </div>
 
-        {/* Mobile Hamburger */}
         <button
           className="md:hidden flex flex-col gap-1.5 p-1"
           onClick={() => setMobileMenuOpen(true)}
