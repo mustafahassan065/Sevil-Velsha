@@ -21,10 +21,10 @@ export default async function handler(req, res) {
   });
 
   try {
-    // 1. Notify the client (info@sevilvelsha.com)
+    // 1. Notify seaglore@gmail.com (customer emails go here)
     await transporter.sendMail({
       from: `"Seagloré" <${process.env.GMAIL_USER}>`,
-      to: 'info@sevilvelsha.com',
+      to: 'seaglore@gmail.com', // Changed from info@sevilvelsha.com to seaglore@gmail.com
       subject: 'New Archive Access Request — Seagloré',
       html: `
         <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 40px; background: #fff;">

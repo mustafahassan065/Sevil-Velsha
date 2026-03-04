@@ -579,25 +579,29 @@ function App() {
             <p className="text-sm tracking-widest uppercase font-bold text-gray-500">© 2026 Seagloré. Ocean Couture.</p>
           </div>
           <div className="w-full md:w-1/2 space-y-3">
-            <h4 className="text-base font-black uppercase tracking-widest text-black">Request Access</h4>
-            <div className="flex items-end gap-3 border-b border-gray-400 pb-2">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleRequestAccess()}
-                className="flex-1 text-sm bg-transparent focus:outline-none text-gray-500 placeholder-gray-400 min-w-0"
-                style={{ letterSpacing: '0.02em' }}
-              />
-              <button
-                className="text-xs tracking-widest uppercase text-black hover:text-gray-600 transition-colors whitespace-nowrap flex-shrink-0"
-                onClick={handleRequestAccess}
-              >
-                {accessSubmitted ? '[ Submitted ✓ ]' : accessError ? '[ Try Again ]' : '[ Request Access ]'}
-              </button>
+            <h4 className="text-base font-black uppercase tracking-widest text-black">Contact Us</h4>
+            <p className="text-sm text-gray-600">For inquiries, please contact us at: <a href="mailto:info@seaglore.com" className="text-black hover:underline">info@seaglore.com</a></p>
+            <div className="border-t border-gray-200 pt-3 mt-3">
+              <h4 className="text-base font-black uppercase tracking-widest text-black mb-2">Request Access</h4>
+              <div className="flex items-end gap-3 border-b border-gray-400 pb-2">
+                <input
+                  type="email"
+                  placeholder="your@email.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={e => e.key === 'Enter' && handleRequestAccess()}
+                  className="flex-1 text-sm bg-transparent focus:outline-none text-gray-500 placeholder-gray-400 min-w-0"
+                  style={{ letterSpacing: '0.02em' }}
+                />
+                <button
+                  className="text-xs tracking-widest uppercase text-black hover:text-gray-600 transition-colors whitespace-nowrap flex-shrink-0"
+                  onClick={handleRequestAccess}
+                >
+                  {accessSubmitted ? '[ Submitted ✓ ]' : accessError ? '[ Try Again ]' : '[ Request Access ]'}
+                </button>
+              </div>
+              <p className="text-xs text-gray-400 italic text-right">"We send beauty, not clutter."</p>
             </div>
-            <p className="text-xs text-gray-400 italic text-right">"We send beauty, not clutter."</p>
           </div>
         </div>
       </footer>
