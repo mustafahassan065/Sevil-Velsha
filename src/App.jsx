@@ -7,32 +7,68 @@ const ARCHIVE_ITEMS = [
   { title: 'Couture as Ritual', img: '/images/archive2.jpg' },
 ];
 
-// All searchable content/concepts mentioned on the page
+// Each item's `scrollTo` = exact section id on the page where that concept lives.
+// `modal: true` = also open the access modal after scrolling.
 const SEARCH_INDEX = [
-  // Archive essays
-  { title: 'Minimal Luxury', type: 'Archive Essay', description: 'Selected essay from the Seagloré archive.', action: 'archive' },
-  { title: 'Regenerative Craft', type: 'Archive Essay', description: 'Selected essay from the Seagloré archive.', action: 'archive' },
-  { title: 'Couture as Ritual', type: 'Archive Essay', description: 'Selected essay from the Seagloré archive.', action: 'archive' },
-  { title: 'Water As Structure', type: 'Archive Essay', description: 'Locked archive essay.', action: 'archive' },
-  { title: 'Ocean Couture Manifesto', type: 'Archive Essay', description: 'Locked archive essay.', action: 'archive' },
-  // Products / editorial
-  { title: 'Season 0: Seafoam Birth', type: 'Digital Editorial', description: '84-page digital editorial. Private archive entry. $48.', action: 'editorial' },
-  { title: 'Seafoam Birth', type: 'Digital Editorial', description: '84-page digital editorial — Season 0.', action: 'editorial' },
-  // Sections / concepts
-  { title: 'Seagloré Studies', type: 'Section', description: '"Water As Structure. Not Symbol." — editorial study series.', action: 'editorial' },
-  { title: 'Seagloré Academy', type: 'Section', description: 'Where nature is studied before it becomes form. Perception training, not trend education.', action: 'modal' },
-  { title: 'The Archive', type: 'Section', description: 'Selected essays available inside the Editorial Archive.', action: 'archive' },
-  { title: 'Future Editions', type: 'Section', description: 'Additional editorial releases entering the archive over time. Small run. Slow release.', action: 'editorial' },
-  // Concepts
-  { title: 'Ocean Couture', type: 'Concept', description: 'Seagloré founding vision — fashion that looks to the ocean, not Paris.', action: 'editorial' },
-  { title: 'Perception Training', type: 'Concept', description: 'Seagloré Academy approach — not trend education, but training how you see.', action: 'modal' },
-  { title: 'Environmental Storytelling', type: 'Concept', description: 'One of Sevil Velsha\'s core creative disciplines.', action: 'editorial' },
-  { title: 'Voice Research', type: 'Concept', description: 'Creative discipline practiced by founder Sevil Velsha.', action: 'editorial' },
-  { title: 'Creative Direction', type: 'Concept', description: 'Led by Sevil Velsha, Founder & Creative Director of Seagloré.', action: 'editorial' },
-  { title: 'Digital Exclusive', type: 'Product Tag', description: 'Season 0 is a digital-only release — 84 pages, private archive access.', action: 'editorial' },
-  { title: 'Private Archive Entry', type: 'Access', description: 'Editorial access is private and limited. Request access to enter.', action: 'modal' },
-  { title: 'Sevil Velsha', type: 'Founder', description: 'Founder & Creative Director of Seagloré. "Couture and ecology as inevitability."', action: 'editorial' },
-  { title: 'Request Access', type: 'Action', description: 'Submit your email to request access to the editorial archive.', action: 'modal' },
+  // ── Hero ──
+  { title: 'Ocean Couture, Documented',          type: 'Hero',             desc: 'The opening tagline of Seagloré.',                                         scrollTo: 'hero' },
+  { title: 'Limited Digital Editorial Archive',  type: 'Hero',             desc: 'Seagloré is a limited digital editorial archive.',                          scrollTo: 'hero' },
+
+  // ── Editorial / Product ──
+  { title: 'Season 0: Seafoam Birth',            type: 'Digital Editorial',desc: '84-page digital editorial. Private archive entry. $48.',                   scrollTo: 'editorial-section' },
+  { title: 'Seafoam Birth',                      type: 'Digital Editorial',desc: 'Season 0 — the first Seagloré editorial.',                                 scrollTo: 'editorial-section' },
+  { title: 'Digital Exclusive',                  type: 'Product Tag',      desc: 'Season 0 is a digital-only release.',                                       scrollTo: 'editorial-section' },
+  { title: '84 Pages',                           type: 'Product Detail',   desc: 'Season 0: Seafoam Birth is 84 pages long.',                                 scrollTo: 'editorial-section' },
+  { title: 'Private Archive Entry',              type: 'Access',           desc: 'Editorial access is private. Request access to enter.',                     scrollTo: 'editorial-section' },
+  { title: '$48',                                type: 'Pricing',          desc: 'Season 0: Seafoam Birth — $48 digital editorial.',                          scrollTo: 'editorial-section' },
+  { title: 'Access The Editorial',               type: 'Action',           desc: 'Purchase access to Season 0: Seafoam Birth.',                               scrollTo: 'editorial-section', modal: true },
+
+  // ── Quote / Vision ──
+  { title: 'Fashion Has Always Looked To Paris', type: 'Quote',            desc: 'Seagloré\'s founding contrast — Paris vs the Ocean.',                      scrollTo: 'quote-section' },
+  { title: 'Seagloré Looks To The Ocean',        type: 'Quote',            desc: 'The core vision statement of Seagloré.',                                    scrollTo: 'quote-section' },
+  { title: 'Ocean Couture For A Living Planet',  type: 'Tagline',          desc: 'Seagloré\'s mission tagline.',                                              scrollTo: 'quote-section' },
+  { title: 'Ocean Couture',                      type: 'Concept',          desc: 'Fashion that looks to the ocean, not Paris.',                               scrollTo: 'quote-section' },
+
+  // ── Studies ──
+  { title: 'Seagloré Studies',                   type: 'Section',          desc: '"Water As Structure. Not Symbol." — the editorial study series.',           scrollTo: 'studies-section' },
+  { title: 'Water As Structure',                 type: 'Concept',          desc: 'Core editorial concept — water as form, not symbol. From Seagloré Studies.',scrollTo: 'studies-section' },
+  { title: 'Not Symbol',                         type: 'Concept',          desc: '"Water As Structure. Not Symbol." — from Seagloré Studies.',                scrollTo: 'studies-section' },
+
+  // ── Academy ──
+  { title: 'Seagloré Academy',                   type: 'Section',          desc: 'Where nature is studied before it becomes form.',                           scrollTo: 'academy-section' },
+  { title: 'Where Nature Is Studied',            type: 'Academy',          desc: 'Seagloré Academy — nature studied before it becomes form.',                 scrollTo: 'academy-section' },
+  { title: 'Perception Training',                type: 'Concept',          desc: 'Not trend education — Seagloré Academy trains how you perceive.',           scrollTo: 'academy-section' },
+  { title: 'Not Trend Education',                type: 'Concept',          desc: 'Seagloré Academy\'s philosophy — perception training, not trends.',         scrollTo: 'academy-section' },
+  { title: 'Enter Academy',                      type: 'Action',           desc: 'Request access to Seagloré Academy.',                                       scrollTo: 'academy-section', modal: true },
+
+  // ── Archive ──
+  { title: 'From The Archive',                   type: 'Section',          desc: 'Selected archive essays — available with editorial purchase.',              scrollTo: 'archive' },
+  { title: 'Minimal Luxury',                     type: 'Archive Essay',    desc: 'Archive essay — available with editorial access.',                          scrollTo: 'archive' },
+  { title: 'Regenerative Craft',                 type: 'Archive Essay',    desc: 'Archive essay — available with editorial access.',                          scrollTo: 'archive' },
+  { title: 'Couture as Ritual',                  type: 'Archive Essay',    desc: 'Archive essay — available with editorial access.',                          scrollTo: 'archive' },
+  { title: 'Water As Structure (Essay)',         type: 'Archive Essay',    desc: 'Locked archive essay — requires editorial purchase.',                       scrollTo: 'archive' },
+  { title: 'Ocean Couture Manifesto',            type: 'Archive Essay',    desc: 'Locked archive essay — requires editorial purchase.',                       scrollTo: 'archive' },
+  { title: 'Archive Only',                       type: 'Access',           desc: 'These essays are exclusively inside the editorial archive.',                scrollTo: 'archive' },
+
+  // ── Founder ──
+  { title: 'Sevil Velsha',                       type: 'Founder',          desc: 'Founder & Creative Director of Seagloré.',                                  scrollTo: 'founder-section' },
+  { title: 'Founder & Creative Director',        type: 'Founder',          desc: 'Sevil Velsha — Founder & Creative Director of Seagloré.',                  scrollTo: 'founder-section' },
+  { title: 'Couture and Ecology',                type: 'Quote',            desc: '"Couture and ecology as inevitability" — Sevil Velsha.',                    scrollTo: 'founder-section' },
+  { title: 'Creative Direction',                 type: 'Discipline',       desc: 'One of Sevil Velsha\'s core creative disciplines.',                         scrollTo: 'founder-section' },
+  { title: 'Environmental Storytelling',         type: 'Discipline',       desc: 'One of Sevil Velsha\'s core creative disciplines.',                         scrollTo: 'founder-section' },
+  { title: 'Voice Research',                     type: 'Discipline',       desc: 'One of Sevil Velsha\'s core creative disciplines.',                         scrollTo: 'founder-section' },
+
+  // ── Future Editions ──
+  { title: 'Future Editions',                    type: 'Section',          desc: 'Additional editorial releases entering the archive over time.',             scrollTo: 'future-editions' },
+  { title: 'Small Run. Slow Release.',           type: 'Tagline',          desc: 'Future Editions — limited, slow editorial releases.',                       scrollTo: 'future-editions' },
+  { title: 'Small Run',                          type: 'Tagline',          desc: 'Future Editions are produced in small runs.',                               scrollTo: 'future-editions' },
+  { title: 'Slow Release',                       type: 'Tagline',          desc: 'Seagloré releases editorials slowly over time.',                            scrollTo: 'future-editions' },
+
+  // ── Footer / Contact ──
+  { title: 'Request Access',                     type: 'Action',           desc: 'Submit your email to request archive access.',                              scrollTo: 'footer-section', modal: true },
+  { title: 'Contact',                            type: 'Info',             desc: 'info@seaglore.com — for all inquiries.',                                    scrollTo: 'footer-section' },
+  { title: 'info@seaglore.com',                  type: 'Contact',          desc: 'Seagloré contact email.',                                                   scrollTo: 'footer-section' },
+  { title: 'We Send Beauty, Not Clutter',        type: 'Tagline',          desc: 'Seagloré\'s email philosophy.',                                             scrollTo: 'footer-section' },
 ];
 
 // Local dev → Node server on 3001, Production (Vercel) → /api route
@@ -135,27 +171,22 @@ function App() {
     }, 50);
   };
 
-  // ── Search: full page content index ──
+  // ── Search filter ──
   const searchResults = searchQuery.trim()
     ? SEARCH_INDEX.filter(item =>
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        item.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
         item.type.toLowerCase().includes(searchQuery.toLowerCase())
       )
     : [];
 
-  // ── Handle search result click ──
+  // ── Click: scroll EXACTLY to that section, optionally open modal ──
   const handleSearchResultClick = (item) => {
     setShowSearch(false);
     setSearchQuery('');
     setTimeout(() => {
-      if (item.action === 'archive') {
-        document.getElementById('archive')?.scrollIntoView({ behavior: 'smooth' });
-      } else if (item.action === 'editorial') {
-        document.getElementById('editorial-section')?.scrollIntoView({ behavior: 'smooth' });
-      } else if (item.action === 'modal') {
-        setShowAccessModal(true);
-      }
+      document.getElementById(item.scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+      if (item.modal) setShowAccessModal(true);
     }, 100);
   };
 
@@ -166,13 +197,14 @@ function App() {
     setModalError('');
   };
 
-  // Type badge color
-  const typeBadgeStyle = (type) => {
-    if (type === 'Archive Essay') return { color: 'rgba(190,158,80,0.9)' };
-    if (type === 'Digital Editorial' || type === 'Product Tag') return { color: '#c9a84c' };
-    if (type === 'Section') return { color: '#9aa5b4' };
-    if (type === 'Concept') return { color: '#9a8a6a' };
-    return { color: 'rgba(255,255,255,0.4)' };
+  const typeBadgeColor = (type) => {
+    if (type === 'Archive Essay')    return 'rgba(190,158,80,0.85)';
+    if (type === 'Digital Editorial' || type === 'Pricing') return '#c9a84c';
+    if (type === 'Section')          return '#9aa5b4';
+    if (type === 'Concept')          return '#9a8a6a';
+    if (type === 'Founder' || type === 'Discipline') return '#7a9e7a';
+    if (type === 'Action')           return '#aaa';
+    return 'rgba(255,255,255,0.35)';
   };
 
   return (
@@ -227,7 +259,8 @@ function App() {
           onClick={() => { setShowSearch(false); setSearchQuery(''); }}
         >
           <div className="w-full max-w-xl" onClick={e => e.stopPropagation()}>
-            {/* Search input */}
+
+            {/* Input */}
             <div className="flex items-center gap-4 border-b border-white/40 pb-4 mb-8">
               <input
                 autoFocus
@@ -244,7 +277,7 @@ function App() {
               >✕</button>
             </div>
 
-            {/* Search results */}
+            {/* Results */}
             {searchQuery.trim() && (
               <div className="space-y-1">
                 {searchResults.length > 0 ? (
@@ -255,11 +288,11 @@ function App() {
                       onClick={() => handleSearchResultClick(item)}
                     >
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-3 mb-0.5">
+                        <div className="flex items-center gap-3 mb-0.5 flex-wrap">
                           <p className="text-white text-sm tracking-wide group-hover:text-white/80 transition-colors">{item.title}</p>
-                          <span className="text-xs tracking-widest uppercase flex-shrink-0" style={typeBadgeStyle(item.type)}>{item.type}</span>
+                          <span className="text-xs tracking-widest uppercase flex-shrink-0" style={{ color: typeBadgeColor(item.type) }}>{item.type}</span>
                         </div>
-                        <p className="text-white/35 text-xs tracking-wide leading-relaxed">{item.description}</p>
+                        <p className="text-white/35 text-xs tracking-wide leading-relaxed">{item.desc}</p>
                       </div>
                       <svg className="flex-shrink-0 mt-1 opacity-30 group-hover:opacity-70 transition-opacity" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -272,34 +305,34 @@ function App() {
               </div>
             )}
 
-            {/* Default state: show categories */}
+            {/* Default state */}
             {!searchQuery.trim() && (
               <div className="space-y-6">
                 <div>
+                  <p className="text-white/30 text-xs tracking-widest uppercase mb-3">Sections</p>
+                  <div className="space-y-2">
+                    {SEARCH_INDEX.filter(i => i.type === 'Section').map((item, i) => (
+                      <div key={i} className="text-white/45 text-sm tracking-widest hover:text-white/80 cursor-pointer transition-colors px-1" onClick={() => handleSearchResultClick(item)}>
+                        {item.title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
                   <p className="text-white/30 text-xs tracking-widest uppercase mb-3">Archive Essays</p>
-                  <div className="space-y-1.5">
+                  <div className="space-y-2">
                     {SEARCH_INDEX.filter(i => i.type === 'Archive Essay').map((item, i) => (
-                      <div key={i} className="text-white/40 text-sm tracking-widest hover:text-white/70 cursor-pointer transition-colors px-1" onClick={() => handleSearchResultClick(item)}>
+                      <div key={i} className="text-white/45 text-sm tracking-widest hover:text-white/80 cursor-pointer transition-colors px-1" onClick={() => handleSearchResultClick(item)}>
                         {item.title}
                       </div>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <p className="text-white/30 text-xs tracking-widest uppercase mb-3">Sections & Products</p>
-                  <div className="space-y-1.5">
-                    {SEARCH_INDEX.filter(i => i.type === 'Section' || i.type === 'Digital Editorial').map((item, i) => (
-                      <div key={i} className="text-white/40 text-sm tracking-widest hover:text-white/70 cursor-pointer transition-colors px-1" onClick={() => handleSearchResultClick(item)}>
-                        {item.title}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-white/30 text-xs tracking-widest uppercase mb-3">Concepts</p>
-                  <div className="space-y-1.5">
-                    {SEARCH_INDEX.filter(i => i.type === 'Concept' || i.type === 'Founder').map((item, i) => (
-                      <div key={i} className="text-white/40 text-sm tracking-widest hover:text-white/70 cursor-pointer transition-colors px-1" onClick={() => handleSearchResultClick(item)}>
+                  <p className="text-white/30 text-xs tracking-widest uppercase mb-3">Concepts & People</p>
+                  <div className="space-y-2">
+                    {SEARCH_INDEX.filter(i => ['Concept', 'Founder', 'Discipline', 'Tagline', 'Quote'].includes(i.type)).map((item, i) => (
+                      <div key={i} className="text-white/45 text-sm tracking-widest hover:text-white/80 cursor-pointer transition-colors px-1" onClick={() => handleSearchResultClick(item)}>
                         {item.title}
                       </div>
                     ))}
@@ -318,7 +351,6 @@ function App() {
             <button className="absolute top-4 right-4 text-xs tracking-widest uppercase" onClick={closeModal}>✕ Close</button>
             <p className="text-xs tracking-widest uppercase text-gray-400 mb-3">Request Access</p>
             <h2 className="text-xl sm:text-2xl font-serif italic mb-6 text-black">Enter The Archive</h2>
-
             {modalSubmitted ? (
               <div className="text-center py-8">
                 <p className="text-xs tracking-widest uppercase text-gray-500 mb-2">Request Submitted ✓</p>
@@ -463,7 +495,7 @@ function App() {
       </nav>
 
       {/* ── HERO ── */}
-      <section className="relative h-screen w-full overflow-hidden">
+      <section id="hero" className="relative h-screen w-full overflow-hidden">
         <video className="absolute inset-0 w-full h-full object-cover" autoPlay loop muted playsInline>
           <source src="/images/HeroSection.mp4" type="video/mp4" />
         </video>
@@ -529,7 +561,7 @@ function App() {
       </section>
 
       {/* ── QUOTE SECTION ── */}
-      <section style={{ backgroundColor: '#ede8df' }}>
+      <section id="quote-section" style={{ backgroundColor: '#ede8df' }}>
         <div className="grid grid-cols-1 lg:grid-cols-2" style={{ minHeight: '420px' }}>
           <div className="flex flex-col justify-center space-y-5 sm:space-y-6 px-6 sm:px-8 md:px-16 py-14 sm:py-20">
             <div className="w-10 h-0.5 bg-black"></div>
@@ -550,7 +582,7 @@ function App() {
       </section>
 
       {/* ── STUDIES SECTION ── */}
-      <section className="py-14 sm:py-20 px-5 sm:px-8 md:px-16 lg:px-24 bg-white">
+      <section id="studies-section" className="py-14 sm:py-20 px-5 sm:px-8 md:px-16 lg:px-24 bg-white">
         <div className="text-center mb-10 sm:mb-12">
           <p className="text-sm tracking-widest uppercase text-gray-400 mb-4 font-medium">Seagloré Studies</p>
           <h3 className="text-xl sm:text-2xl md:text-3xl font-serif italic text-black">"Water As Structure. Not Symbol."</h3>
@@ -567,7 +599,7 @@ function App() {
       </section>
 
       {/* ── ACADEMY SECTION ── */}
-      <section className="py-16 sm:py-24 px-5 sm:px-8 md:px-16 lg:px-24 text-center" style={{ backgroundColor: '#ede8df' }}>
+      <section id="academy-section" className="py-16 sm:py-24 px-5 sm:px-8 md:px-16 lg:px-24 text-center" style={{ backgroundColor: '#ede8df' }}>
         <p className="text-xs tracking-widest uppercase font-bold mb-6">Seagloré Academy</p>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif mb-5 leading-tight text-black">
           Where nature is studied<br />before it becomes form.
@@ -616,7 +648,7 @@ function App() {
       </section>
 
       {/* ── FOUNDER SECTION ── */}
-      <section className="bg-white">
+      <section id="founder-section" className="bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="relative overflow-hidden" style={{ minHeight: '400px' }}>
             <img src="/images/about.png" alt="Sevil Velsha" className="absolute inset-0 w-full h-full object-cover" />
@@ -641,7 +673,7 @@ function App() {
       </section>
 
       {/* ── FUTURE EDITIONS ── */}
-      <section className="pt-12 sm:pt-16 pb-6 px-5 sm:px-8 md:px-16 lg:px-24 bg-white">
+      <section id="future-editions" className="pt-12 sm:pt-16 pb-6 px-5 sm:px-8 md:px-16 lg:px-24 bg-white">
         <h2 className="font-black uppercase leading-none mb-6 sm:mb-8 text-black" style={{ fontSize: 'clamp(3rem, 12vw, 9rem)', letterSpacing: '-0.02em' }}>
           Future<br />Editions
         </h2>
@@ -657,7 +689,7 @@ function App() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="py-10 px-5 sm:px-8 md:px-16 lg:px-24 bg-white">
+      <footer id="footer-section" className="py-10 px-5 sm:px-8 md:px-16 lg:px-24 bg-white">
         <div className="flex flex-col md:flex-row justify-between items-start gap-8">
           <div className="pt-2">
             <p className="text-sm tracking-widest uppercase font-bold text-gray-500">© 2026 Seagloré. Ocean Couture.</p>
