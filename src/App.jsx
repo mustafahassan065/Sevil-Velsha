@@ -46,8 +46,7 @@ const SEARCH_INDEX = [
   { title: 'Minimal Luxury',                     type: 'Archive Essay',    desc: 'Archive essay — available with editorial access.',                          scrollTo: 'archive' },
   { title: 'Regenerative Craft',                 type: 'Archive Essay',    desc: 'Archive essay — available with editorial access.',                          scrollTo: 'archive' },
   { title: 'Couture as Ritual',                  type: 'Archive Essay',    desc: 'Archive essay — available with editorial access.',                          scrollTo: 'archive' },
-  { title: 'Water As Structure (Essay)',         type: 'Archive Essay',    desc: 'Locked archive essay — requires editorial purchase.',                       scrollTo: 'archive' },
-  { title: 'Ocean Couture Manifesto',            type: 'Archive Essay',    desc: 'Locked archive essay — requires editorial purchase.',                       scrollTo: 'archive' },
+  
   { title: 'Archive Only',                       type: 'Access',           desc: 'These essays are exclusively inside the editorial archive.',                scrollTo: 'archive' },
 
   // ── Founder ──
