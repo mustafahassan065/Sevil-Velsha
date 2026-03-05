@@ -72,6 +72,10 @@ const API_URL = import.meta.env.DEV
   ? 'http://localhost:3001/api/send-email'
   : '/api/send-email';
 
+const CONTACT_API_URL = import.meta.env.DEV
+  ? 'http://localhost:3001/api/send-contact'
+  : '/api/send-contact';
+
 function App() {
   const [email, setEmail] = useState('');
   const [scrolled, setScrolled] = useState(false);
@@ -86,6 +90,15 @@ function App() {
   const [modalSubmitted, setModalSubmitted] = useState(false);
   const [modalError, setModalError] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // ── Contact Modal State ──
+  const [showContactModal, setShowContactModal] = useState(false);
+  const [contactName, setContactName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactMessage, setContactMessage] = useState('');
+  const [contactSubmitting, setContactSubmitting] = useState(false);
+  const [contactSubmitted, setContactSubmitted] = useState(false);
+  const [contactError, setContactError] = useState('');
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 80);
@@ -144,6 +157,48 @@ function App() {
     } finally {
       setModalSubmitting(false);
     }
+  };
+
+  // ── Contact modal submit ──
+  const handleContactSubmit = async () => {
+    if (!contactName.trim() || !contactEmail.trim() || !contactMessage.trim()) {
+      setContactError('Please fill in all fields.');
+      return;
+    }
+    setContactSubmitting(true);
+    setContactError('');
+    try {
+      const response = await fetch(CONTACT_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: contactName.trim(), email: contactEmail.trim(), message: contactMessage.trim() }),
+      });
+      if (!response.ok) throw new Error('Server error');
+      const data = await response.json();
+      if (!data.success) throw new Error(data.message);
+      setContactSubmitted(true);
+      setContactName('');
+      setContactEmail('');
+      setContactMessage('');
+      setTimeout(() => {
+        setContactSubmitted(false);
+        setShowContactModal(false);
+      }, 3000);
+    } catch (err) {
+      console.error('Contact email error:', err);
+      setContactError('Something went wrong. Please try again.');
+    } finally {
+      setContactSubmitting(false);
+    }
+  };
+
+  const closeContactModal = () => {
+    setShowContactModal(false);
+    setContactName('');
+    setContactEmail('');
+    setContactMessage('');
+    setContactSubmitted(false);
+    setContactError('');
   };
 
   // ── Scroll helpers ──
@@ -374,6 +429,69 @@ function App() {
                   disabled={modalSubmitting}
                 >
                   {modalSubmitting ? 'Submitting...' : 'Request Access'}
+                </button>
+              </>
+            )}
+            <p className="text-xs text-gray-400 italic text-center mt-4">"We send beauty, not clutter."</p>
+          </div>
+        </div>
+      )}
+
+      {/* ── CONTACT MODAL ── */}
+      {showContactModal && (
+        <div className="fixed inset-0 z-[100] bg-black/80 flex items-center justify-center p-4 sm:p-6" onClick={closeContactModal}>
+          <div className="bg-white max-w-md w-full p-6 sm:p-10 relative" onClick={e => e.stopPropagation()}>
+            <button className="absolute top-4 right-4 text-xs tracking-widest uppercase" onClick={closeContactModal}>✕ Close</button>
+            <p className="text-xs tracking-widest uppercase text-gray-400 mb-3">Get In Touch</p>
+            <h2 className="text-xl sm:text-2xl font-serif italic mb-6 text-black">Contact Us</h2>
+            {contactSubmitted ? (
+              <div className="text-center py-8">
+                <p className="text-xs tracking-widest uppercase text-gray-500 mb-2">Message Sent ✓</p>
+                <p className="font-serif italic text-gray-400 text-sm">We'll be in touch soon.</p>
+              </div>
+            ) : (
+              <>
+                <div className="space-y-4 mb-6">
+                  <div className="border-b border-gray-300 pb-2">
+                    <input
+                      type="text"
+                      placeholder="Your Name"
+                      value={contactName}
+                      onChange={e => setContactName(e.target.value)}
+                      className="w-full text-sm bg-transparent focus:outline-none text-gray-600 placeholder-gray-400"
+                      style={{ letterSpacing: '0.02em' }}
+                    />
+                  </div>
+                  <div className="border-b border-gray-300 pb-2">
+                    <input
+                      type="email"
+                      placeholder="your@email.com"
+                      value={contactEmail}
+                      onChange={e => setContactEmail(e.target.value)}
+                      className="w-full text-sm bg-transparent focus:outline-none text-gray-600 placeholder-gray-400"
+                      style={{ letterSpacing: '0.02em' }}
+                    />
+                  </div>
+                  <div className="border-b border-gray-300 pb-2">
+                    <textarea
+                      placeholder="Your message..."
+                      value={contactMessage}
+                      onChange={e => setContactMessage(e.target.value)}
+                      rows={4}
+                      className="w-full text-sm bg-transparent focus:outline-none text-gray-600 placeholder-gray-400 resize-none"
+                      style={{ letterSpacing: '0.02em' }}
+                    />
+                  </div>
+                </div>
+                {contactError && (
+                  <p className="text-xs text-red-400 tracking-wide mb-3 italic">{contactError}</p>
+                )}
+                <button
+                  className="w-full py-4 bg-black text-white text-xs tracking-widest uppercase hover:bg-gray-800 transition-colors disabled:opacity-50"
+                  onClick={handleContactSubmit}
+                  disabled={contactSubmitting}
+                >
+                  {contactSubmitting ? 'Sending...' : 'Send Message'}
                 </button>
               </>
             )}
@@ -692,7 +810,15 @@ function App() {
           </div>
           <div className="w-full md:w-1/2 space-y-3">
             <h4 className="text-base font-black uppercase tracking-widest text-black">Contact Us</h4>
-            <p className="text-sm text-gray-600">For inquiries, please contact us at: <a href="mailto:info@seaglore.com" className="text-black hover:underline">info@seaglore.com</a></p>
+            <p className="text-sm text-gray-600">
+              For inquiries, please contact us at:{' '}
+              <button
+                className="text-black hover:underline font-medium"
+                onClick={() => setShowContactModal(true)}
+              >
+                info@seaglore.com
+              </button>
+            </p>
             <div className="border-t border-gray-200 pt-3 mt-3">
               <h4 className="text-base font-black uppercase tracking-widest text-black mb-2">Request Access</h4>
               <div className="flex items-end gap-3 border-b border-gray-400 pb-2">
