@@ -809,15 +809,17 @@ function App() {
             <p className="text-sm tracking-widest uppercase font-bold text-gray-500">© 2026 Seagloré. Ocean Couture.</p>
           </div>
           <div className="w-full md:w-1/2 space-y-3">
-            <h4 className="text-base font-black uppercase tracking-widest text-black">Contact Us</h4>
+            <button
+              onClick={() => setShowContactModal(true)}
+              className="group flex items-center gap-3 border border-black px-5 py-3 hover:bg-black transition-colors duration-200"
+            >
+              <span className="text-sm font-black uppercase tracking-widest text-black group-hover:text-white transition-colors duration-200">Contact Us</span>
+              <svg className="text-black group-hover:text-white transition-colors duration-200" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
             <p className="text-sm text-gray-600">
-              For inquiries, please contact us at:{' '}
-              <button
-                className="text-black hover:underline font-medium"
-                onClick={() => setShowContactModal(true)}
-              >
-                info@seaglore.com
-              </button>
+              For inquiries, please contact us at: <span className="text-black">info@seaglore.com</span>
             </p>
             <div className="border-t border-gray-200 pt-3 mt-3">
               <h4 className="text-base font-black uppercase tracking-widest text-black mb-2">Request Access</h4>
