@@ -1,5 +1,6 @@
 // src/App.jsx
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ARCHIVE_ITEMS = [
   { title: 'Minimal Luxury', img: '/images/archive1.jpg' },
@@ -7,14 +8,9 @@ const ARCHIVE_ITEMS = [
   { title: 'Couture as Ritual', img: '/images/archive2.jpg' },
 ];
 
-// Each item's `scrollTo` = exact section id on the page where that concept lives.
-// `modal: true` = also open the access modal after scrolling.
 const SEARCH_INDEX = [
-  // ── Hero ──
   { title: 'Ocean Couture, Documented',          type: 'Hero',             desc: 'The opening tagline of Seagloré.',                                         scrollTo: 'hero' },
   { title: 'Limited Digital Editorial Archive',  type: 'Hero',             desc: 'Seagloré is a limited digital editorial archive.',                          scrollTo: 'hero' },
-
-  // ── Editorial / Product ──
   { title: 'Season 0: Seafoam Birth',            type: 'Digital Editorial',desc: '84-page digital editorial. Private archive entry. $48.',                   scrollTo: 'editorial-section' },
   { title: 'Seafoam Birth',                      type: 'Digital Editorial',desc: 'Season 0 — the first Seagloré editorial.',                                 scrollTo: 'editorial-section' },
   { title: 'Digital Exclusive',                  type: 'Product Tag',      desc: 'Season 0 is a digital-only release.',                                       scrollTo: 'editorial-section' },
@@ -22,52 +18,36 @@ const SEARCH_INDEX = [
   { title: 'Private Archive Entry',              type: 'Access',           desc: 'Editorial access is private. Request access to enter.',                     scrollTo: 'editorial-section' },
   { title: '$48',                                type: 'Pricing',          desc: 'Season 0: Seafoam Birth — $48 digital editorial.',                          scrollTo: 'editorial-section' },
   { title: 'Access The Editorial',               type: 'Action',           desc: 'Purchase access to Season 0: Seafoam Birth.',                               scrollTo: 'editorial-section', modal: true },
-
-  // ── Quote / Vision ──
   { title: 'Fashion Has Always Looked To Paris', type: 'Quote',            desc: 'Seagloré\'s founding contrast — Paris vs the Ocean.',                      scrollTo: 'quote-section' },
   { title: 'Seagloré Looks To The Ocean',        type: 'Quote',            desc: 'The core vision statement of Seagloré.',                                    scrollTo: 'quote-section' },
- 
-  // ── Studies ──
   { title: 'Seagloré Studies',                   type: 'Section',          desc: '"Water As Structure. Not Symbol." — the editorial study series.',           scrollTo: 'studies-section' },
   { title: 'Water As Structure',                 type: 'Concept',          desc: 'Core editorial concept — water as form, not symbol. From Seagloré Studies.',scrollTo: 'studies-section' },
-  
-  // ── Academy ──
   { title: 'Seagloré Academy',                   type: 'Section',          desc: 'Where nature is studied before it becomes form.',                           scrollTo: 'academy-section' },
   { title: 'Where Nature Is Studied',            type: 'Academy',          desc: 'Seagloré Academy — nature studied before it becomes form.',                 scrollTo: 'academy-section' },
   { title: 'Perception Training',                type: 'Concept',          desc: 'Not trend education — Seagloré Academy trains how you perceive.',           scrollTo: 'academy-section' },
   { title: 'Not Trend Education',                type: 'Concept',          desc: 'Seagloré Academy\'s philosophy — perception training, not trends.',         scrollTo: 'academy-section' },
   { title: 'Enter Academy',                      type: 'Action',           desc: 'Request access to Seagloré Academy.',                                       scrollTo: 'academy-section', modal: true },
-
-  // ── Archive ──
   { title: 'From The Archive',                   type: 'Section',          desc: 'Selected archive essays — available with editorial purchase.',              scrollTo: 'archive' },
   { title: 'Minimal Luxury',                     type: 'Archive Essay',    desc: 'Archive essay — available with editorial access.',                          scrollTo: 'archive' },
   { title: 'Regenerative Craft',                 type: 'Archive Essay',    desc: 'Archive essay — available with editorial access.',                          scrollTo: 'archive' },
   { title: 'Couture as Ritual',                  type: 'Archive Essay',    desc: 'Archive essay — available with editorial access.',                          scrollTo: 'archive' },
-  
   { title: 'Archive Only',                       type: 'Access',           desc: 'These essays are exclusively inside the editorial archive.',                scrollTo: 'archive' },
-
-  // ── Founder ──
   { title: 'Sevil Velsha',                       type: 'Founder',          desc: 'Founder & Creative Director of Seagloré.',                                  scrollTo: 'founder-section' },
   { title: 'Founder & Creative Director',        type: 'Founder',          desc: 'Sevil Velsha — Founder & Creative Director of Seagloré.',                  scrollTo: 'founder-section' },
   { title: 'Couture and Ecology',                type: 'Quote',            desc: '"Couture and ecology as inevitability" — Sevil Velsha.',                    scrollTo: 'founder-section' },
   { title: 'Creative Direction',                 type: 'Discipline',       desc: 'One of Sevil Velsha\'s core creative disciplines.',                         scrollTo: 'founder-section' },
   { title: 'Environmental Storytelling',         type: 'Discipline',       desc: 'One of Sevil Velsha\'s core creative disciplines.',                         scrollTo: 'founder-section' },
   { title: 'Voice Research',                     type: 'Discipline',       desc: 'One of Sevil Velsha\'s core creative disciplines.',                         scrollTo: 'founder-section' },
-
-  // ── Future Editions ──
   { title: 'Future Editions',                    type: 'Section',          desc: 'Additional editorial releases entering the archive over time.',             scrollTo: 'future-editions' },
   { title: 'Small Run. Slow Release.',           type: 'Tagline',          desc: 'Future Editions — limited, slow editorial releases.',                       scrollTo: 'future-editions' },
   { title: 'Small Run',                          type: 'Tagline',          desc: 'Future Editions are produced in small runs.',                               scrollTo: 'future-editions' },
   { title: 'Slow Release',                       type: 'Tagline',          desc: 'Seagloré releases editorials slowly over time.',                            scrollTo: 'future-editions' },
-
-  // ── Footer / Contact ──
   { title: 'Request Access',                     type: 'Action',           desc: 'Submit your email to request archive access.',                              scrollTo: 'footer-section', modal: true },
   { title: 'Contact',                            type: 'Info',             desc: 'info@seaglore.com — for all inquiries.',                                    scrollTo: 'footer-section' },
   { title: 'info@seaglore.com',                  type: 'Contact',          desc: 'Seagloré contact email.',                                                   scrollTo: 'footer-section' },
   { title: 'We Send Beauty, Not Clutter',        type: 'Tagline',          desc: 'Seagloré\'s email philosophy.',                                             scrollTo: 'footer-section' },
 ];
 
-// Local dev → Node server on 3001, Production (Vercel) → /api route
 const API_URL = import.meta.env.DEV
   ? 'http://localhost:3001/api/send-email'
   : '/api/send-email';
@@ -76,7 +56,11 @@ const CONTACT_API_URL = import.meta.env.DEV
   ? 'http://localhost:3001/api/send-contact'
   : '/api/send-contact';
 
+// ── Atelier URL — apna actual Atelier page ka URL yahan set karein ──
+
+
 function App() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [scrolled, setScrolled] = useState(false);
   const [showArchive, setShowArchive] = useState(false);
@@ -91,7 +75,6 @@ function App() {
   const [modalError, setModalError] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // ── Contact Modal State ──
   const [showContactModal, setShowContactModal] = useState(false);
   const [contactName, setContactName] = useState('');
   const [contactEmail, setContactEmail] = useState('');
@@ -106,7 +89,6 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // ── Core email sender ──
   const sendEmail = async (emailAddress) => {
     const response = await fetch(API_URL, {
       method: 'POST',
@@ -122,7 +104,6 @@ function App() {
     return data;
   };
 
-  // ── Footer request access ──
   const handleRequestAccess = async () => {
     if (!email.trim()) return;
     setAccessError(false);
@@ -138,7 +119,6 @@ function App() {
     }
   };
 
-  // ── Modal request access ──
   const handleModalSubmit = async () => {
     if (!modalEmail.trim()) return;
     setModalSubmitting(true);
@@ -159,7 +139,6 @@ function App() {
     }
   };
 
-  // ── Contact modal submit ──
   const handleContactSubmit = async () => {
     if (!contactName.trim() || !contactEmail.trim() || !contactMessage.trim()) {
       setContactError('Please fill in all fields.');
@@ -201,7 +180,6 @@ function App() {
     setContactError('');
   };
 
-  // ── Scroll helpers ──
   const scrollToEditorial = () => {
     setShowArchive(false);
     setShowSearch(false);
@@ -222,7 +200,11 @@ function App() {
     }, 50);
   };
 
-  // ── Search filter ──
+  // ── Atelier page par navigate karna ──
+  const openAtelier = () => {
+    navigate('/atelier');
+  };
+
   const searchResults = searchQuery.trim()
     ? SEARCH_INDEX.filter(item =>
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -231,7 +213,6 @@ function App() {
       )
     : [];
 
-  // ── Click: scroll EXACTLY to that section, optionally open modal ──
   const handleSearchResultClick = (item) => {
     setShowSearch(false);
     setSearchQuery('');
@@ -310,8 +291,6 @@ function App() {
           onClick={() => { setShowSearch(false); setSearchQuery(''); }}
         >
           <div className="w-full max-w-xl" onClick={e => e.stopPropagation()}>
-
-            {/* Input */}
             <div className="flex items-center gap-4 border-b border-white/40 pb-4 mb-8">
               <input
                 autoFocus
@@ -327,8 +306,6 @@ function App() {
                 className="text-white/60 text-xs tracking-widest uppercase flex-shrink-0"
               >✕</button>
             </div>
-
-            {/* Results */}
             {searchQuery.trim() && (
               <div className="space-y-1">
                 {searchResults.length > 0 ? (
@@ -355,8 +332,6 @@ function App() {
                 )}
               </div>
             )}
-
-            {/* Default state */}
             {!searchQuery.trim() && (
               <div className="space-y-6">
                 <div>
@@ -536,6 +511,14 @@ function App() {
             >
               Archive
             </button>
+            {/* ── Seagloré Atelier — Mobile Menu ── */}
+            <button
+              className="text-left text-2xl font-black uppercase tracking-widest border-b border-gray-100 pb-6"
+              style={{ color: '#c9a84c' }}
+              onClick={() => { setMobileMenuOpen(false); openAtelier(); }}
+            >
+              Seagloré Atelier
+            </button>
             <button
               className="text-left text-2xl font-black uppercase tracking-widest text-black border-b border-gray-100 pb-6"
               onClick={() => { setMobileMenuOpen(false); setShowAccessModal(true); }}
@@ -595,6 +578,15 @@ function App() {
             style={{ color: scrolled ? '#111' : '#000000' }}
             onClick={scrollToArchive}
           >Archive</button>
+
+          {/* ── Seagloré Atelier — Desktop Navbar ── */}
+          <button
+            className="text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:opacity-70 px-3 py-1.5"
+            style={{ color: '#c9a84c', border: '1px solid #c9a84c' }}
+            onClick={openAtelier}
+          >
+            Seagloré Atelier
+          </button>
         </div>
 
         <button
@@ -809,6 +801,19 @@ function App() {
             <p className="text-sm tracking-widest uppercase font-bold text-gray-500">© 2026 Seagloré. Ocean Couture.</p>
           </div>
           <div className="w-full md:w-1/2 space-y-3">
+
+            {/* ── Seagloré Atelier — Footer ── */}
+            <button
+              onClick={openAtelier}
+              className="group flex items-center gap-3 px-5 py-3 hover:opacity-80 transition-opacity duration-200"
+              style={{ border: '1px solid #c9a84c' }}
+            >
+              <span className="text-sm font-black uppercase tracking-widest" style={{ color: '#c9a84c' }}>Seagloré Atelier</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+
             <button
               onClick={() => setShowContactModal(true)}
               className="group flex items-center gap-3 border border-black px-5 py-3 hover:bg-black transition-colors duration-200"
@@ -818,6 +823,7 @@ function App() {
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
+
             <p className="text-sm text-gray-600">
               For inquiries, please contact us at: <span className="text-black">info@seaglore.com</span>
             </p>
