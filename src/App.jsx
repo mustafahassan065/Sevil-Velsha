@@ -56,9 +56,6 @@ const CONTACT_API_URL = import.meta.env.DEV
   ? 'http://localhost:3001/api/send-contact'
   : '/api/send-contact';
 
-// ── Atelier URL — apna actual Atelier page ka URL yahan set karein ──
-
-
 function App() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
@@ -200,7 +197,6 @@ function App() {
     }, 50);
   };
 
-  // ── Atelier page par navigate karna ──
   const openAtelier = () => {
     navigate('/atelier');
   };
@@ -511,10 +507,9 @@ function App() {
             >
               Archive
             </button>
-            {/* ── Seagloré Atelier — Mobile Menu ── */}
+            {/* ── Seagloré Atelier — Mobile: same black style as others ── */}
             <button
-              className="text-left text-2xl font-black uppercase tracking-widest border-b border-gray-100 pb-6"
-              style={{ color: '#c9a84c' }}
+              className="text-left text-2xl font-black uppercase tracking-widest text-black border-b border-gray-100 pb-6"
               onClick={() => { setMobileMenuOpen(false); openAtelier(); }}
             >
               Seagloré Atelier
@@ -579,10 +574,10 @@ function App() {
             onClick={scrollToArchive}
           >Archive</button>
 
-          {/* ── Seagloré Atelier — Desktop Navbar ── */}
+          {/* ── Seagloré Atelier — Desktop: same black style as other nav buttons ── */}
           <button
-            className="text-xs font-bold tracking-widest uppercase transition-all duration-300 hover:opacity-70 px-3 py-1.5"
-            style={{ color: '#c9a84c', border: '1px solid #c9a84c' }}
+            className="text-xs font-bold tracking-widest uppercase transition-colors duration-300 hover:opacity-70"
+            style={{ color: scrolled ? '#111' : '#000000' }}
             onClick={openAtelier}
           >
             Seagloré Atelier
@@ -802,14 +797,13 @@ function App() {
           </div>
           <div className="w-full md:w-1/2 space-y-3">
 
-            {/* ── Seagloré Atelier — Footer ── */}
+            {/* ── Seagloré Atelier — Footer: same black style as Contact Us ── */}
             <button
               onClick={openAtelier}
-              className="group flex items-center gap-3 px-5 py-3 hover:opacity-80 transition-opacity duration-200"
-              style={{ border: '1px solid #c9a84c' }}
+              className="group flex items-center gap-3 border border-black px-5 py-3 hover:bg-black transition-colors duration-200"
             >
-              <span className="text-sm font-black uppercase tracking-widest" style={{ color: '#c9a84c' }}>Seagloré Atelier</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c9a84c" strokeWidth="2">
+              <span className="text-sm font-black uppercase tracking-widest text-black group-hover:text-white transition-colors duration-200">Seagloré Atelier</span>
+              <svg className="text-black group-hover:text-white transition-colors duration-200" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </button>
