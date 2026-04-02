@@ -5,7 +5,7 @@ import './index.css'
 import App from './App.jsx'
 import Atelier from './Atelier.jsx'
 import OceanLivingCertification from './OceanLivingCertification';
-import CheckoutPage             from './CheckoutPage';
+import CheckoutPage             from './CheckoutPage.jsx';
 import ThankYouPage             from './ThankYouPage';
 import CoursePage               from './CoursePage';
 

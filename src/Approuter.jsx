@@ -9,9 +9,9 @@ import App                      from './App';          // existing Seagloré hom
 
 // ── Ocean Living funnel pages ─────────────────────────────────────
 import OceanLivingCertification from './OceanLivingCertification';
-import CheckoutPage             from './Checkoutpage';
-import ThankYouPage             from './Thankyoupage';
-import CoursePage               from './Coursepage';
+import CheckoutPage             from './CheckoutPage';
+import ThankYouPage             from './ThankYouPage';
+import CoursePage               from './CoursePage';
 
 // ── If you have an Atelier page ───────────────────────────────────
 // import AtelierPage from './AtelierPage';
