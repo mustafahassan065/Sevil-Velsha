@@ -582,6 +582,15 @@ function App() {
           >
             Seagloré Atelier
           </button>
+
+          {/* ── Ocean Living Certification ── */}
+          <button
+            className="text-xs font-bold tracking-widest uppercase transition-colors duration-300 hover:opacity-70"
+            style={{ color: scrolled ? '#111' : '#000000' }}
+            onClick={() => navigate('/ocean-living-certification')}
+          >
+            Ocean Living
+          </button>
         </div>
 
         <button
@@ -803,6 +812,17 @@ function App() {
               className="group flex items-center gap-3 border border-black px-5 py-3 hover:bg-black transition-colors duration-200"
             >
               <span className="text-sm font-black uppercase tracking-widest text-black group-hover:text-white transition-colors duration-200">Seagloré Atelier</span>
+              <svg className="text-black group-hover:text-white transition-colors duration-200" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            </button>
+
+            {/* ── Ocean Living Certification — Footer button ── */}
+            <button
+              onClick={() => navigate('/ocean-living-certification')}
+              className="group flex items-center gap-3 border border-black px-5 py-3 hover:bg-black transition-colors duration-200"
+            >
+              <span className="text-sm font-black uppercase tracking-widest text-black group-hover:text-white transition-colors duration-200">Ocean Living Certification</span>
               <svg className="text-black group-hover:text-white transition-colors duration-200" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
