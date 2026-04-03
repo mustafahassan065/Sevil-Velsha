@@ -190,21 +190,21 @@ export default function OceanLivingCertification() {
           Text: SEAGLORÉ label + "ENTER THE EXPERIENCE" as BORDERED BUTTON
           + "7-day experience • certificate included" tag
       ══════════════════════════════════════════ */}
-      <section style={{ position:'relative', width:'100%', height:'100vh', overflow:'hidden' }}>
+      <section style={{ position:'relative', width:'100%', height:'145vh', overflow:'hidden' }}>
         <img src="/images/hero.jpg" alt="Ocean Living"
           style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center top' }}/>
         <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.2)' }}/>
         <div style={{
-          position:'relative', zIndex:2,
-          height:'100%', display:'flex', flexDirection:'column',
-          alignItems:'center', justifyContent:'center', textAlign:'center',
-          padding: '0 24px', gap: 0,
-        }}>
+  position:'relative', zIndex:2,
+  height:'100%', display:'flex', flexDirection:'column',
+  alignItems:'center', justifyContent:'flex-end', textAlign:'center',
+  padding: '0 24px 350px', gap: 0,
+}}>
 
           {/* SEAGLORÉ label */}
           <p style={{
             fontFamily:"'Jost', sans-serif", fontSize:'13px', fontWeight:400,
-            letterSpacing:'0.32em', textTransform:'uppercase',
+            letterSpacing:'0.10em', textTransform:'uppercase',
             color:'rgba(255,255,255,0.9)', marginBottom: 28,
           }}>
             S E A G L O R É
@@ -241,122 +241,282 @@ export default function OceanLivingCertification() {
           HERO TEXT — white bg, large serif headings,
           two bordered rect buttons
       ══════════════════════════════════════════ */}
-      <section style={{ ...SEC_WHITE, padding:'88px 0 80px' }}>
-        <div style={{ ...INNER, textAlign:'center' }}>
-          <h1 style={{ ...T.h1, marginBottom:6 }}>You are not tired.</h1>
-          <h1 style={{ ...T.h1, marginBottom:30 }}>You are disconnected.</h1>
-          <p style={{ ...T.body, color:MUTED, maxWidth:460, margin:'0 auto 52px', lineHeight:1.9 }}>
-            A 7-day system to reset your life —<br/>
-            with calm, clarity, and control.
-          </p>
-          <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-            <button onClick={() => go(CHECKOUT)} style={{
-              fontFamily:"'Jost', sans-serif", fontSize:'11px', fontWeight:500,
-              letterSpacing:'0.2em', textTransform:'uppercase',
-              padding:'16px 40px', border:`1px solid ${TEAL}`,
-              color:TEAL, background:'transparent', cursor:'pointer',
-            }}>
-              ENTER THE EXPERIENCE
-            </button>
-            <button onClick={() => jump('lead-section')} style={{
-              fontFamily:"'Jost', sans-serif", fontSize:'11px', fontWeight:500,
-              letterSpacing:'0.2em', textTransform:'uppercase',
-              padding:'16px 40px', border:`1px solid ${TEAL}`,
-              color:TEAL, background:'transparent', cursor:'pointer',
-            }}>
-              RECEIVE THE OCEAN GUIDE
-            </button>
-          </div>
-        </div>
-      </section>
+      <section style={{ ...SEC_WHITE, padding:'140px 0 130px' }}>
+  <div style={{ ...INNER, textAlign:'center' }}>
 
+    <h1 style={{
+      fontFamily:"'Cormorant Garamond', Georgia, serif",
+      fontSize:'clamp(2.2rem, 4.5vw, 3.5rem)',
+      fontWeight: 500,
+      lineHeight: 1.2,
+      color: '#2d4a47',
+      margin: '0 auto 6px',
+      maxWidth: 480,
+    }}>You are not tired.</h1>
+
+    <h1 style={{
+      fontFamily:"'Cormorant Garamond', Georgia, serif",
+      fontSize:'clamp(2.2rem, 4.5vw, 3.5rem)',
+      fontWeight: 500,
+      lineHeight: 1.2,
+      color: '#2d4a47',
+      margin: '0 auto 52px',
+      maxWidth: 480,
+    }}>You are disconnected.</h1>
+
+    <p style={{
+      fontFamily:"'Jost', sans-serif",
+      fontSize:'clamp(1.7rem, 2vw, 1.25rem)',
+      fontWeight: 400,
+      color: '#9aa5a3',
+      maxWidth: 420,
+      margin:'0 auto 64px',
+      lineHeight: 1.85,
+      letterSpacing:'0.01em',
+    }}>
+      A 7-day system to reset your life —<br/>
+      with calm, clarity, and control.
+    </p>
+
+    <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
+      <button onClick={() => go(CHECKOUT)} style={{
+        fontFamily:"'Jost', sans-serif",
+        fontSize:'11px', fontWeight:400,
+        letterSpacing:'0.18em', textTransform:'uppercase',
+        padding:'16px 44px',
+        border:'1px solid #c8c8c8',
+        borderRadius:'4px',
+        color:'#7a8a88',
+        background:'transparent',
+        cursor:'pointer',
+      }}>
+        ENTER THE EXPERIENCE
+      </button>
+      <button onClick={() => jump('lead-section')} style={{
+        fontFamily:"'Jost', sans-serif",
+        fontSize:'11px', fontWeight:400,
+        letterSpacing:'0.18em', textTransform:'uppercase',
+        padding:'16px 44px',
+        border:'1px solid #c8c8c8',
+        borderRadius:'4px',
+        color:'#7a8a88',
+        background:'transparent',
+        cursor:'pointer',
+      }}>
+        RECEIVE THE OCEAN GUIDE
+      </button>
+    </div>
+  </div>
+</section>
       {/* ══════════════════════════════════════════
           CREATED BY SEVIL VELSHA
       ══════════════════════════════════════════ */}
-      <section style={{ ...SEC_WHITE, padding:'48px 0 72px' }}>
-        <div style={{ ...INNER }}>
-          <h2 style={{ ...T.h2, textAlign:'center', marginBottom:52 }}>Created by Sevil Velsha</h2>
-          <div style={{ display:'flex', gap: isMobile ? 24 : 40, alignItems:'flex-start', flexDirection: isMobile ? 'column' : 'row' }}>
-            <div style={{
-              flexShrink:0, width: isMobile ? 120 : 180, height: isMobile ? 120 : 180,
-              backgroundColor:'#e8e3dc',
-              display:'flex', alignItems:'center', justifyContent:'center',
-            }}>
-              <span style={{
-                fontFamily:"'Cormorant Garamond', serif", fontSize:44,
-                fontWeight:500, color:TEAL_LT, letterSpacing:'0.06em',
-              }}>SV</span>
-            </div>
-            <div style={{ flex:1, minWidth:240 }}>
-              <p style={{ ...T.body, color:MUTED, marginBottom:10 }}>Founder of Seagloré</p>
-              <p style={{ ...T.body, marginBottom:20, maxWidth:460, lineHeight:1.8 }}>
-                Creator of the Ocean Living philosophy — a system for calm,
-                clarity, and conscious living.
-              </p>
-             
-              <p style={{ ...T.italic, fontSize:17, marginBottom:4 }}>"Where Nature Becomes Couture"</p>
-              <p style={{ ...T.label }}>— SEAGLORÉ</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <section style={{ ...SEC_WHITE, padding:'68px 0 152px' }}>
+  <div style={{ ...INNER }}>
+    <h2 style={{
+      fontFamily:"'Cormorant Garamond', Georgia, serif",
+      fontSize:'clamp(2.2rem, 4.5vw, 3.5rem)',
+      fontWeight: 900,
+      color: '#2d4a47',
+      textAlign:'center',
+      marginBottom: 15,
+      margin: '0 auto 52px',
+    }}>Created by Sevil Velsha</h2>
+
+    <div style={{
+      display:'flex', gap: isMobile ? 24 : 48,
+      alignItems:'flex-start',
+      flexDirection: isMobile ? 'column' : 'row'
+    }}>
+      {/* SV Avatar */}
+<div style={{
+  flexShrink: 0,
+  width: isMobile ? 140 : 240,
+  height: isMobile ? 140 : 260,
+  backgroundColor: '#e8e4de',
+  display:'flex', alignItems:'center', justifyContent:'center',
+  overflow: 'hidden',
+  borderRadius:'12px' ,
+}}>
+  <img
+    src="/images/profile.png"
+    alt="Sevil Velsha"
+    style={{
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+    }}
+  />
+</div>
+
+      {/* Text */}
+      <div style={{ flex:1, minWidth:240, paddingTop: 40 }}>
+        <p style={{
+          fontFamily:"'Jost', sans-serif",
+          fontSize:'20px', fontWeight:400,
+          color:'#5A6C6D',
+          marginBottom: 20,
+          letterSpacing:'0.02em',
+        }}>Founder of Seagloré</p>
+
+        <p style={{
+          fontFamily:"'Jost', sans-serif",
+          fontSize:'clamp(0.95rem, 1.5vw, 1.05rem)',
+          fontWeight: 400,
+          color:'#5A6C6D',
+          marginBottom: 32,
+          maxWidth: 480,
+          lineHeight: 1.85,
+          letterSpacing:'0.01em',
+        }}>
+          Creator of the Ocean Living philosophy — a system for calm,
+          clarity, and conscious living.
+        </p>
+
+        <p style={{
+          fontFamily:"'Cormorant Garamond', Georgia, serif",
+          fontSize:'clamp(1.1rem, 2vw, 1.3rem)',
+          fontStyle:'italic',
+          fontWeight: 900,
+          color:'#2d4a47',
+          marginBottom: 6,
+          lineHeight: 1.5,
+          
+        }}>"Where Nature Becomes Couture"</p>
+
+        <p style={{
+          fontFamily:"'Jost', sans-serif",
+          fontSize:'11px', fontWeight:500,
+          letterSpacing:'0.22em',
+          textTransform:'uppercase',
+          color:'#7aaba5',
+        }}>— SEAGLORÉ</p>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ══════════════════════════════════════════
           WHY MODERN LIFE
       ══════════════════════════════════════════ */}
       <section style={{ ...SEC_CREAM }}>
-        <div style={{ ...INNER, textAlign:'center' }}>
-          <h2 style={{ ...T.h2, maxWidth:640, margin:'0 auto 52px' }}>
-            Why modern life leaves people tired and disconnected
-          </h2>
-          <div style={{ display:'flex', justifyContent:'center', gap:44, flexWrap:'wrap', marginBottom:48 }}>
-            {[
-              'Constant Stress','Overconsumption','Lack of Balance',
-              'Disconnection from Nature','Unhealthy Routines',
-            ].map((label, i) => (
-              <div key={i} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:10, width:88 }}>
-                {WHY_ICONS[i]}
-                <p style={{ ...T.sm, textAlign:'center', lineHeight:1.4 }}>{label}</p>
-              </div>
-            ))}
-          </div>
-          <p style={{ ...T.italic, fontSize:'clamp(1rem,2.5vw,1.25rem)', maxWidth:520, margin:'0 auto', color:BODY }}>
-            "Most people do not need more information. They need a better way to live."
-          </p>
-        </div>
-      </section>
+  <div style={{ ...INNER, textAlign:'center' }}>
+
+    {/* Heading */}
+    <h2 style={{
+      fontFamily:"'Cormorant Garamond', Georgia, serif",
+      fontSize:'clamp(2.1rem, 4.5vw, 2.8rem)',
+      fontWeight: 900,
+      color: '#2C3E3F',
+      maxWidth: 900,
+      margin:'0 auto 64px',
+      lineHeight: 1.25,
+    }}>
+      Why modern life leaves people tired and<br/>disconnected
+    </h2>
+
+    {/* Icons row */}
+    <div style={{ display:'flex', justifyContent:'center', gap: 90, flexWrap:'nowrap', marginBottom: 56 }}>
+      {[
+{ label: 'Constant Stress', icon: (
+  <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+    <circle cx="21" cy="21" r="18" stroke="#7A9C9E" strokeWidth="1.3"/>
+    <circle cx="21" cy="21" r="18" stroke="#7A9C9E" strokeWidth="1.3"/>
+    <path d="M21 12v11" stroke="#7A9C9E" strokeWidth="1.6" strokeLinecap="round"/>
+    <circle cx="21" cy="28" r="1.2" fill="#7A9C9E"/>
+  </svg>
+)},
+{ label: 'Overconsumption', icon: (
+  <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
+    <path d="M6 10h4.5l4.5 14h13l4-11H15" stroke="#7A9C9E" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="17.5" cy="30.5" r="2.2" stroke="#7A9C9E" strokeWidth="1.3"/>
+    <circle cx="29.5" cy="30.5" r="2.2" stroke="#7A9C9E" strokeWidth="1.3"/>
+  </svg>
+)},
+{ label: 'Lack of Balance', icon: (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+    <path d="M31.9976 31.9976L37.9971 15.9988L43.9966 31.9976C42.2568 33.2975 40.1569 33.9974 37.9971 33.9974C35.8373 33.9974 33.7374 33.2975 31.9976 31.9976Z" stroke="#7aaba5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3.99951 31.9976L9.99905 15.9988L15.9986 31.9976C14.2587 33.2975 12.1589 33.9974 9.99905 33.9974C7.83922 33.9974 5.73938 33.2975 3.99951 31.9976Z" stroke="#7aaba5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M13.999 41.9968H33.9975" stroke="#7A9C9E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M23.998 5.99954V41.9968" stroke="#7A9C9E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M5.99951 13.9989H9.99921C13.9989 13.9989 19.9984 11.9991 23.9981 9.99924C27.9978 11.9991 33.9974 13.9989 37.9971 13.9989H41.9968" stroke="#7aaba5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+)},
+
+{ label: 'Disconnection from Nature', icon: (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+    <path d="M21.9984 39.9969C18.4868 40.0076 15.0994 38.698 12.5082 36.3281C9.91688 33.9581 8.31098 30.7008 8.00894 27.2021C7.7069 23.7035 8.73079 20.2192 10.8775 17.4402C13.0243 14.6611 16.1371 12.7904 19.5986 12.1991C30.9977 9.99924 33.9975 8.95932 37.9972 3.99969C39.997 7.99939 41.9969 12.3591 41.9969 19.9985C41.9969 30.9976 32.4376 39.9969 21.9984 39.9969Z" stroke="#7A9C9E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3.99951 41.9968C3.99951 35.9973 7.69923 31.2776 14.1587 29.9977C18.9984 29.0378 23.998 25.998 25.9978 23.9982" stroke="#7A9C9E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+)},
+
+{ label: 'Unhealthy Routines', icon: (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+    <path d="M43.9965 23.9982H39.0368C38.1628 23.9963 37.3123 24.2808 36.6153 24.808C35.9182 25.3353 35.4131 26.0764 35.1771 26.9179L30.4775 43.6367C30.4472 43.7405 30.384 43.8317 30.2975 43.8967C30.211 43.9616 30.1057 43.9966 29.9975 43.9966C29.8894 43.9966 29.7841 43.9616 29.6976 43.8967C29.611 43.8317 29.5479 43.7405 29.5176 43.6367L18.4784 4.35967C18.4481 4.25582 18.385 4.16459 18.2984 4.09969C18.2119 4.03478 18.1066 3.99969 17.9984 3.99969C17.8903 3.99969 17.785 4.03478 17.6985 4.09969C17.6119 4.16459 17.5488 4.25582 17.5185 4.35967L12.8188 21.0784C12.5838 21.9166 12.0817 22.6553 11.3887 23.1823C10.6957 23.7092 9.8497 23.9957 8.97913 23.9982H3.99951" stroke="#7A9C9E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+)},
+      ].map((item, i) => (
+        <div key={i} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:10, width:120, minWidth:120 }}>
+      {item.icon}
+      <p style={{
+        fontFamily:"'Jost', sans-serif",
+        fontSize:'17px', fontWeight:500,
+        color:'#4A5C5D',
+        textAlign:'center',
+        lineHeight: 1.5,
+        letterSpacing:'0.01em',
+        whiteSpace:'nowrap',
+      }}>{item.label}</p>
+    </div>
+      ))}
+    </div>
+
+    {/* Quote */}
+    <p style={{
+      fontFamily:"'Cormorant Garamond', Georgia, serif",
+      fontSize:'clamp(1.2rem, 2.2vw, 1.5rem)',
+      fontStyle:'italic',
+      fontWeight: 900,
+      color:'#2C3E3F',
+      maxWidth: 860,
+      margin:'0 auto',
+      lineHeight: 1.7,
+    }}>
+      "Most people do not need more information. They need a better way to<br/>live."
+    </p>
+
+  </div>
+</section>
 
       {/* ══════════════════════════════════════════
           WHAT OCEAN LIVING MEANS
       ══════════════════════════════════════════ */}
       <section style={{ ...SEC_WHITE, padding:'72px 0 0' }}>
         <div style={{ ...INNER, textAlign:'center', marginBottom:40 }}>
-          <h2 style={{ ...T.h2, marginBottom:20 }}>What Ocean Living Means</h2>
-          <p style={{ ...T.italic, color:BODY, maxWidth:600, margin:'0 auto', fontSize:'clamp(1rem,2.2vw,1.15rem)' }}>
+          <h2 style={{ ...T.h2,color:'#2C3E3F',fontWeight:900, marginBottom:20 }}>What Ocean Living Means</h2>
+          <p style={{ ...T.bold, color:'#5A6C6D',fontWeight:400, maxWidth:600, margin:'0 auto', fontSize:'clamp(1rem,2.2vw,1.15rem)' }}>
             "Ocean Living is not about ocean science. It is a philosophy of living with calm,
             clarity, conscious choice, and better daily habits."
           </p>
         </div>
         <div style={{ maxWidth:820, margin:'0 auto', padding:'0 36px' }}>
           <img src="/images/oceanliving.jpg" alt="Ocean Living"
-            style={{ width:'100%', height:400, objectFit:'cover', objectPosition:'center', display:'block' }}/>
+            style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'center', display:'block' }}/>
         </div>
-        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', marginTop:0 }}>
-          {[
-            { t:'Calm',           d:'Slower, more intentional life' },
-            { t:'Sustainability', d:'Better choices, less waste' },
-            { t:'Wellbeing',      d:'Habits that support energy and balance' },
-          ].map((c,i) => (
-            <div key={i} style={{
-              padding:'36px 24px', textAlign:'center',
-              borderTop:`2px solid ${CREAM}`,
-              borderRight: i<2 ? `1px solid ${CREAM}` : 'none',
-            }}>
-              <p style={{ ...T.h3, marginBottom:8 }}>{c.t}</p>
-              <p style={{ ...T.sm }}>{c.d}</p>
-            </div>
-          ))}
-        </div>
+        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, minmax(0, 350px))', marginBottom:48, justifyContent:'center' }}>
+  {[
+    { t:'Calm',           d:'Slower, more intentional life' },
+    { t:'Sustainability', d:'Better choices, less waste' },
+    { t:'Wellbeing',      d:'Habits that support energy and balance' },
+  ].map((c,i) => (
+    <div key={i} style={{
+      padding:'54px 4px', textAlign:'center',
+    }}>
+      <p style={{ ...T.h3, marginBottom:5,fontWeight:700 }}>{c.t}</p>
+      <p style={{ ...T.sm,fontWeight:500 }}>{c.d}</p>
+    </div>
+  ))}
+</div>
       </section>
 
       {/* ══════════════════════════════════════════
@@ -531,7 +691,7 @@ export default function OceanLivingCertification() {
         {/* Photo */}
         <div style={{ maxWidth:820, margin:'0 auto', padding:'0 36px' }}>
           <img src="/images/ocean3.jpg" alt="After"
-            style={{ width:'100%', height:460, objectFit:'cover', objectPosition:'center top', display:'block' }}/>
+            style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'center top', display:'block' }}/>
         </div>
 
         {/* ── Before / After — gap:24 between boxes ── */}
