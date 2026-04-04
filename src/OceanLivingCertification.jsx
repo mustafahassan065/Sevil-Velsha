@@ -199,27 +199,16 @@ export default function OceanLivingCertification() {
   return (
     <div style={{ fontFamily: "'Jost', sans-serif", background: WHITE, minHeight: '100vh' }}>
 
-      {/* ── NAVBAR ── */}
-      <nav style={{
-        position:'fixed', top:0, left:0, right:0, zIndex:50,
-        display:'flex', alignItems:'center', justifyContent:'space-between',
-        padding: isMobile ? '14px 20px' : '18px 40px',
-        backgroundColor: scrolled ? 'rgba(255,255,255,0.95)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(8px)' : 'none',
-        transition: 'all .3s',
-      }}>
-        
-       
-      </nav>
+      
 
       {/* ══════════════════════════════════════════
           HERO — full-bleed photo
           Text: SEAGLORÉ label + "ENTER THE EXPERIENCE" as BORDERED BUTTON
           + "7-day experience • certificate included" tag
       ══════════════════════════════════════════ */}
-      <section style={{ position:'relative', width:'100%', height:'145vh', overflow:'hidden' }}>
+      <section style={{ position:'relative', width:'100%', height:'133vh', overflow:'hidden' }}>
         <img src="/images/hero.jpg" alt="Ocean Living"
-          style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center top' }}/>
+          style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center center' }}/>
         <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.2)' }}/>
         <div style={{
   position:'relative', zIndex:2,
@@ -239,20 +228,21 @@ export default function OceanLivingCertification() {
 
           {/* ── ENTER THE EXPERIENCE — BORDERED BUTTON (exact from Image 1) ── */}
           <button
-            onClick={() => go(CHECKOUT)}
-            style={{
-              fontFamily:"'Jost', sans-serif", fontSize:'11px', fontWeight:500,
-              letterSpacing:'0.28em', textTransform:'uppercase',
-              color: WHITE,
-              background: 'transparent',
-              border: '1px solid rgba(255,255,255,0.85)',
-              padding: '14px 44px',
-              cursor: 'pointer',
-              marginBottom: 24,
-            }}
-          >
-            ENTER THE EXPERIENCE
-          </button>
+  onClick={() => go(CHECKOUT)}
+  style={{
+    fontFamily:"'Jost', sans-serif", fontSize:'11px', fontWeight:500,
+    letterSpacing:'0.28em', textTransform:'uppercase',
+    color: WHITE,
+    background: 'rgba(255,255,255,0.12)',
+    backdropFilter: 'blur(1px)',
+    border: '1px solid rgba(255,255,255,0.12)',
+    padding: '14px 44px',
+    cursor: 'pointer',
+    marginBottom: 24,
+  }}
+>
+  ENTER THE EXPERIENCE
+</button>
 
           {/* Tag line */}
           <p style={{
