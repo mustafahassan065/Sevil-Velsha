@@ -208,7 +208,7 @@ export default function OceanLivingCertification() {
       ══════════════════════════════════════════ */}
       <section style={{ position:'relative', width:'100%', height:'133vh', overflow:'hidden' }}>
         <img src="/images/hero.jpg" alt="Ocean Living"
-          style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center center' }}/>
+          style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center center',filter: 'brightness(1.2) saturate(1.1)' }}/>
         <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.2)' }}/>
         <div style={{
   position:'relative', zIndex:2,
@@ -230,7 +230,7 @@ export default function OceanLivingCertification() {
           <button
   onClick={() => go(CHECKOUT)}
   style={{
-    fontFamily:"'Jost', sans-serif", fontSize:'11px', fontWeight:500,
+    fontFamily:"'Jost', sans-serif", fontSize:'11px', fontWeight:300,
     letterSpacing:'0.28em', textTransform:'uppercase',
     color: WHITE,
     background: 'rgba(255,255,255,0.12)',
