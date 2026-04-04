@@ -118,11 +118,38 @@ const WHY_ICONS = [
 ];
 
 const WHO_ICONS = [
-  <svg key="br" width="30" height="30" viewBox="0 0 30 30" fill="none"><rect x="4" y="11" width="22" height="15" rx="2" stroke={TEAL_LT} strokeWidth="1.3"/><path d="M10 11V9a5 5 0 0 1 10 0v2" stroke={TEAL_LT} strokeWidth="1.3"/></svg>,
-  <svg key="gr" width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M4 11l11-6 11 6-11 6-11-6z" stroke={TEAL_LT} strokeWidth="1.3" strokeLinejoin="round"/><path d="M9 14v7c3 2 9 2 12 0v-7" stroke={TEAL_LT} strokeWidth="1.3" strokeLinejoin="round"/></svg>,
-  <svg key="lf" width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M15 4C9 11 5 14 5 20a10 10 0 0 0 20 0c0-6-4-9-10-16z" stroke={TEAL_LT} strokeWidth="1.3" strokeLinejoin="round"/></svg>,
-  <svg key="ht" width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M15 26S5 18 5 11a7 7 0 0 1 10-6.3A7 7 0 0 1 25 11c0 7-10 15-10 15z" stroke={TEAL_LT} strokeWidth="1.3" strokeLinejoin="round"/></svg>,
-  <svg key="st" width="30" height="30" viewBox="0 0 30 30" fill="none"><path d="M15 4l2.5 7h7.5l-6 4.5 2.3 7-6.3-4.5-6.3 4.5 2.3-7L5 11h7.5z" stroke={TEAL_LT} strokeWidth="1.3" strokeLinejoin="round"/></svg>,
+  // Professionals seeking balance — briefcase
+  <svg key="br" width="36" height="36" viewBox="0 0 40 40" fill="none">
+    <path d="M26.6648 33.3307V6.66609C26.6648 5.7821 26.3137 4.93432 25.6886 4.30924C25.0635 3.68417 24.2157 3.33301 23.3318 3.33301H16.6656C15.7816 3.33301 14.9338 3.68417 14.3088 4.30924C13.6837 4.93432 13.3325 5.7821 13.3325 6.66609V33.3307" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M33.3307 9.99902H6.66609C4.82528 9.99902 3.33301 11.4913 3.33301 13.3321V29.9975C3.33301 31.8383 4.82528 33.3306 6.66609 33.3306H33.3307C35.1715 33.3306 36.6638 31.8383 36.6638 29.9975V13.3321C36.6638 11.4913 35.1715 9.99902 33.3307 9.99902Z" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>,
+
+  // Students building a stronger profile — graduation cap
+  <svg key="gr" width="36" height="36" viewBox="0 0 40 40" fill="none">
+    <path d="M35.6972 18.2019C35.9955 18.0703 36.2487 17.854 36.4254 17.5799C36.602 17.3058 36.6944 16.986 36.691 16.6599C36.6876 16.3338 36.5887 16.0159 36.4064 15.7455C36.2241 15.4752 35.9665 15.2642 35.6655 15.1388L21.3816 8.6326C20.9474 8.43453 20.4757 8.33203 19.9984 8.33203C19.5211 8.33203 19.0494 8.43453 18.6152 8.6326L4.33292 15.1321C4.03622 15.2621 3.78382 15.4756 3.60659 15.7468C3.42935 16.0179 3.33496 16.3348 3.33496 16.6587C3.33496 16.9826 3.42935 17.2994 3.60659 17.5706C3.78382 17.8417 4.03622 18.0553 4.33292 18.1852L18.6152 24.698C19.0494 24.8961 19.5211 24.9986 19.9984 24.9986C20.4757 24.9986 20.9474 24.8961 21.3816 24.698L35.6972 18.2019Z" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M36.6641 16.6655V26.6648" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M9.99902 20.8315V26.6644C9.99902 27.9904 11.0525 29.2621 12.9277 30.1997C14.803 31.1373 17.3463 31.6641 19.9983 31.6641C22.6502 31.6641 25.1936 31.1373 27.0688 30.1997C28.944 29.2621 29.9975 27.9904 29.9975 26.6644V20.8315" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>,
+
+  // People interested in sustainable living — leaf
+  <svg key="lf" width="36" height="36" viewBox="0 0 40 40" fill="none">
+    <path d="M18.332 33.3307C15.4057 33.3396 12.5829 32.2483 10.4235 30.2733C8.26407 28.2983 6.92581 25.5839 6.67411 22.6684C6.42242 19.7529 7.27566 16.8492 9.06462 14.5334C10.8536 12.2175 13.4476 10.6586 16.3322 10.1658C25.8314 8.33263 28.3312 7.46603 31.6643 3.33301C33.3309 6.66609 34.9974 10.2991 34.9974 16.6653C34.9974 25.8313 27.0313 33.3307 18.332 33.3307Z" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M3.33301 34.9974C3.33301 29.9978 6.41611 26.0647 11.799 24.9982C15.8321 24.1982 19.9984 21.6651 21.6649 19.9985" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>,
+
+  // Those who want a calmer lifestyle — heart
+  <svg key="ht" width="36" height="36" viewBox="0 0 40 40" fill="none">
+    <path d="M31.6642 23.3314C34.1473 20.8983 36.6638 17.9819 36.6638 14.1655C36.6638 11.7345 35.6981 9.40311 33.9791 7.68416C32.2602 5.96521 29.9288 4.99951 27.4978 4.99951C24.5647 4.99951 22.4982 5.83278 19.9984 8.33259C17.4986 5.83278 15.4321 4.99951 12.499 4.99951C10.068 4.99951 7.73661 5.96521 6.01766 7.68416C4.29871 9.40311 3.33301 11.7345 3.33301 14.1655C3.33301 17.9985 5.83282 20.915 8.33263 23.3314L19.9984 34.9972L31.6642 23.3314Z" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>,
+
+  // Individuals drawn to elegant intentional living — sparkle/star
+  <svg key="st" width="36" height="36" viewBox="0 0 40 40" fill="none">
+    <path d="M16.5602 25.8312C16.4114 25.2545 16.1108 24.7281 15.6897 24.307C15.2685 23.8858 14.7422 23.5852 14.1654 23.4364L3.9412 20.7999C3.76676 20.7504 3.61324 20.6454 3.50392 20.5007C3.3946 20.356 3.33545 20.1797 3.33545 19.9983C3.33545 19.817 3.3946 19.6406 3.50392 19.496C3.61324 19.3513 3.76676 19.2462 3.9412 19.1967L14.1654 16.5586C14.742 16.4099 15.2681 16.1096 15.6893 15.6887C16.1105 15.2679 16.4112 14.7419 16.5602 14.1654L19.1967 3.94122C19.2457 3.7661 19.3507 3.61182 19.4955 3.50191C19.6404 3.39201 19.8173 3.33252 19.9991 3.33252C20.181 3.33252 20.3578 3.39201 20.5027 3.50191C20.6476 3.61182 20.7526 3.7661 20.8016 3.94122L23.4364 14.1654C23.5852 14.7422 23.8858 15.2685 24.3069 15.6897C24.7281 16.1109 25.2545 16.4115 25.8312 16.5603L36.0554 19.1951C36.2312 19.2436 36.3863 19.3484 36.4968 19.4935C36.6073 19.6386 36.6671 19.8159 36.6671 19.9983C36.6671 20.1807 36.6073 20.3581 36.4968 20.5032C36.3863 20.6483 36.2312 20.7531 36.0554 20.8016L25.8312 23.4364C25.2545 23.5852 24.7281 23.8858 24.3069 24.307C23.8858 24.7281 23.5852 25.2545 23.4364 25.8312L20.7999 36.0554C20.7509 36.2306 20.6459 36.3848 20.5011 36.4947C20.3562 36.6047 20.1793 36.6641 19.9975 36.6641C19.8156 36.6641 19.6388 36.6047 19.4939 36.4947C19.349 36.3848 19.244 36.2306 19.195 36.0554L16.5602 25.8312Z" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M33.3306 4.99951V11.6657" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M36.6637 8.33252H29.9976" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M6.66602 28.3311V31.6641" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M8.33259 29.9976H4.99951" stroke="#7A9C9E" strokeWidth="2.49981" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>,
 ];
 
 function useWindowWidth() {
@@ -523,24 +550,23 @@ export default function OceanLivingCertification() {
           WHAT YOU WILL LEARN
       ══════════════════════════════════════════ */}
       <section style={{ ...SEC_CREAM }}>
-        <div style={{ ...INNER, textAlign:'center' }}>
-          <h2 style={{ ...T.h2, marginBottom:52 }}>What You Will Learn</h2>
-          <div style={{ maxWidth:560, margin:'0 auto' }}>
-            {[
-              'Rebuild your daily rhythm with clarity',
-              'Reduce mental and environmental noise',
-              'Design a calm, intentional lifestyle',
-              'Shift your thinking toward conscious living',
-            ].map((item, i, arr) => (
-              <div key={i}>
-                <div style={{ width:40, height:1, background:TEAL, margin:'0 auto', marginBottom:22 }}/>
-                <p style={{ ...T.body, textAlign:'center', color:BODY, padding:'0 0 4px' }}>{item}</p>
-                {i === arr.length-1 && <div style={{ width:40, height:1, background:TEAL, margin:'22px auto 0' }}/>}
-              </div>
-            ))}
-          </div>
+  <div style={{ ...INNER, textAlign:'center' }}>
+    <h2 style={{ ...T.h2, fontWeight:900, marginBottom:52 }}>What You Will Learn</h2>
+    <div style={{ maxWidth:560, margin:'0 auto' }}>
+      {[
+        'Rebuild your daily rhythm with clarity',
+        'Reduce mental and environmental noise',
+        'Design a calm, intentional lifestyle',
+        'Shift your thinking toward conscious living',
+      ].map((item, i, arr) => (
+        <div key={i}>
+          <div style={{ width:40, height:1, background:TEAL, margin:'0 auto', marginBottom:22 }}/>
+          <p style={{ ...T.body, textAlign:'center', color:BODY, padding:'0 0 30px', fontSize:'23px' }}>{item}</p>
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
 
       {/* ══════════════════════════════════════════
           COURSE CURRICULUM — ACCORDION with cream bg + border
@@ -548,8 +574,8 @@ export default function OceanLivingCertification() {
       ══════════════════════════════════════════ */}
       <section style={{ ...SEC_WHITE }}>
         <div style={{ ...INNER, textAlign:'center' }}>
-          <h2 style={{ ...T.h2, marginBottom:48 }}>Course Curriculum</h2>
-          <div style={{ maxWidth:820, margin:'0 auto' }}>
+          <h2 style={{ ...T.h2, marginBottom:58 }}>Course Curriculum</h2>
+          <div style={{ maxWidth:820,height:450,  margin:'0 auto' }}>
 
             {/* Accordion rows — cream background with border, chevron */}
             {[
@@ -575,7 +601,7 @@ export default function OceanLivingCertification() {
                   }}
                 >
                   <p style={{
-                    fontFamily:"'Cormorant Garamond', serif", fontSize:'1.1rem', fontWeight:500,
+                    fontFamily:"'Cormorant Garamond', serif", fontSize:'1.3rem', fontWeight:900,
                     color: TEAL, margin:0,
                   }}>{title}</p>
                   <Chevron open={curriculum === i} color={TEAL_LT}/>
@@ -607,54 +633,130 @@ export default function OceanLivingCertification() {
       {/* ══════════════════════════════════════════
           EARN YOUR CERTIFICATE
       ══════════════════════════════════════════ */}
-      <section style={{ ...SEC_CREAM }}>
-        <div style={{ ...INNER }}>
-          <h2 style={{ ...T.h2, textAlign:'center', marginBottom:56 }}>Earn Your Certificate</h2>
-          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? 32 : 60, alignItems:'start' }}>
-            <div>
-              {[
-                ['Complete all lessons','Learn at your own pace with lifetime access'],
-                ['Pass the final quiz','Demonstrate your understanding of the Ocean Living Method'],
-                ['Receive your branded certificate','Download and share your achievement'],
-              ].map(([tl,d],i) => (
-                <div key={i} style={{ display:'flex', gap:16, alignItems:'flex-start', marginBottom:28 }}>
-                  <CheckCircle/>
-                  <div>
-                    <p style={{ ...T.body, fontWeight:500, marginBottom:4 }}>{tl}</p>
-                    <p style={{ ...T.sm }}>{d}</p>
-                  </div>
-                </div>
-              ))}
-              <p style={{ ...T.italic, fontSize:15, color:MUTED, marginTop:8 }}>
-                "Add your certificate to LinkedIn, CV, or personal development portfolio."
-              </p>
-            </div>
-            <div style={{ background:WHITE, padding:'40px 32px', textAlign:'center', boxShadow:'0 2px 16px rgba(0,0,0,0.06)' }}>
-              <div style={{ display:'flex', justifyContent:'center', marginBottom:20 }}><Ribbon/></div>
-              <p style={{ ...T.h3, marginBottom:8 }}>Certificate of Completion</p>
-              <p style={{ ...T.sm, marginBottom:10 }}>This certifies that</p>
-              <p style={{
-                fontFamily:"'Cormorant Garamond',serif", fontSize:28, fontStyle:'italic',
-                fontWeight:500, color:TEAL, marginBottom:10,
-              }}>[Your Name]</p>
-              <p style={{ ...T.sm, marginBottom:10 }}>has successfully completed</p>
-              <p style={{ ...T.body, fontWeight:500, color:TEAL, lineHeight:1.5, marginBottom:14 }}>
-                Ocean Living Certification:<br/>
-                Sustainable Living &amp; Personal Wellbeing
-              </p>
-              <p style={{ ...T.label }}>SEAGLORÉ METHOD</p>
-            </div>
+     <section style={{ ...SEC_CREAM }}>
+  <div style={{ maxWidth:'1100px', margin:'0 auto', padding:'72px 36px' }}>
+
+    {/* Heading */}
+    <h2 style={{
+      fontFamily:"'Cormorant Garamond', Georgia, serif",
+      fontSize:'clamp(1.8rem, 3.5vw, 2.8rem)',
+      fontWeight: 700,
+      color: '#2d4a47',
+      textAlign:'center',
+      marginBottom: 12,
+      whiteSpace: isMobile ? 'normal' : 'nowrap',
+    }}>Become Certified in Ocean Living Systems</h2>
+
+    <p style={{
+      fontFamily:"'Jost', sans-serif",
+      fontSize:'15px', fontWeight:400,
+      color:'#7a8a88',
+      textAlign:'center',
+      marginBottom: 64,
+      letterSpacing:'0.02em',
+    }}>A recognized certification in sustainable living and personal wellbeing</p>
+
+    {/* Main grid */}
+    <div style={{
+      display:'grid',
+      gridTemplateColumns: isMobile ? '1fr' : '280px 1fr',
+      gap: isMobile ? 40 : 80,
+      alignItems:'center',
+      marginBottom: 48,
+    }}>
+
+      {/* LEFT — bullet points */}
+      <div style={{ display:'flex', flexDirection:'column', gap:28 }}>
+        {[
+          'Master sustainable living principles grounded in real-world application',
+          'Apply ocean-based practices for clarity, balance, and wellbeing',
+          'Earn a verified SEAGLORÉ certification',
+          'Showcase your certification on LinkedIn, in schools, on your CV, or in your professional portfolio',
+        ].map((text, i) => (
+          <div key={i} style={{ display:'flex', gap:16, alignItems:'flex-start' }}>
+            <div style={{ width:20, height:2, backgroundColor:'#2d4a47', flexShrink:0, marginTop:10 }}/>
+            <p style={{
+              fontFamily:"'Jost', sans-serif",
+              fontSize:'15px', fontWeight:400,
+              color:'#2C3E3F', lineHeight:1.7, margin:0,
+            }}>{text}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* RIGHT — Certificate card */}
+      <div style={{
+        background: WHITE,
+        padding:'40px 60px',
+        position:'relative',
+        boxShadow:'0 2px 24px rgba(0,0,0,0.07)',
+        width:'100%',
+      }}>
+        {/* Corner marks */}
+        <div style={{ position:'absolute', top:16, left:16, width:16, height:16, borderTop:'1.5px solid #ccc', borderLeft:'1.5px solid #ccc' }}/>
+        <div style={{ position:'absolute', top:16, right:16, width:16, height:16, borderTop:'1.5px solid #ccc', borderRight:'1.5px solid #ccc' }}/>
+        <div style={{ position:'absolute', bottom:16, left:16, width:16, height:16, borderBottom:'1.5px solid #ccc', borderLeft:'1.5px solid #ccc' }}/>
+        <div style={{ position:'absolute', bottom:16, right:16, width:16, height:16, borderBottom:'1.5px solid #ccc', borderRight:'1.5px solid #ccc' }}/>
+
+        <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'10px', fontWeight:500, letterSpacing:'0.28em', textTransform:'uppercase', color:'#2C3E3F', textAlign:'center', marginBottom:20 }}>
+          S E A G L O R É &nbsp; A C A D E M Y
+        </p>
+        <p style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:'clamp(1.2rem, 2vw, 1.5rem)', fontWeight:600, color:'#2C3E3F', textAlign:'center', marginBottom:8, lineHeight:1.3 }}>
+          Certification in Ocean Living Systems
+        </p>
+        <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'12px', fontWeight:400, color:'#5A6C6D', textAlign:'center', marginBottom:16 }}>
+          This certifies that
+        </p>
+        <p style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:'clamp(2rem, 4vw, 2.8rem)', fontWeight:700, color:'#2C3E3F', textAlign:'center', marginBottom:6, lineHeight:1.2 }}>
+          Emma Wilson
+        </p>
+        <p style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:'12px', fontStyle:'italic', color:'#7A9C9E', textAlign:'center', marginBottom:20 }}>
+          Sample Certificate — Your Name Will Appear Here
+        </p>
+        <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'12px', fontWeight:400, color:'#7A9C9E', textAlign:'center', marginBottom:16, lineHeight:1.7 }}>
+          has successfully completed the SEAGLORÉ Academy program<br/>and demonstrated applied understanding of:
+        </p>
+        <div style={{ marginBottom:20, textAlign:'center' }}>
+          {['Sustainable Living Systems','Environmental Awareness','Personal Wellbeing Through Natural Alignment'].map((item,i) => (
+            <p key={i} style={{ fontFamily:"'Jost', sans-serif", fontSize:'12px', fontWeight:400, color:'#2C3E3F', marginBottom:4 }}>• {item}</p>
+          ))}
+        </div>
+        <p style={{ fontFamily:"'Cormorant Garamond', serif", fontSize:'12px', fontStyle:'italic', color:'#2C3E3F', textAlign:'center', marginBottom:24, lineHeight:1.7 }}>
+          This certification represents disciplined study, observation,<br/>and integration of ocean-derived principles into daily life.
+        </p>
+        <div style={{ display:'flex', justifyContent:'space-between', alignItems:'flex-end' }}>
+          <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'10px', fontWeight:500, letterSpacing:'0.18em', textTransform:'uppercase', color:'#2C3E3F' }}>SEAGLORÉ ACADEMY</p>
+          <div style={{ textAlign:'right' }}>
+            <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'10px', color:'#7a8a88', marginBottom:2 }}>Issued: April 12, 2026</p>
+            <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'10px', color:'#7a8a88', marginBottom:2 }}>Certificate ID: SOL-2026-XXXXX</p>
+            <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'10px', color:'#7a8a88' }}>Verify: seaglore.com/verify</p>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+
+    {/* Bottom */}
+    <div style={{ textAlign:'center', marginBottom:24 }}>
+      <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'13px', fontWeight:400, color:'#7aaba5', letterSpacing:'0.08em' }}>
+        Downloadable &nbsp;•&nbsp; Shareable &nbsp;•&nbsp; Verified
+      </p>
+    </div>
+    <div style={{ borderTop:'1px solid #d8d3cc', paddingTop:24, textAlign:'center' }}>
+      <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'14px', fontWeight:400, color:'#7a8a88' }}>
+        Each certificate includes a unique ID and can be verified online
+      </p>
+    </div>
+
+  </div>
+</section>
 
       {/* ══════════════════════════════════════════
           WHO THIS COURSE IS FOR
       ══════════════════════════════════════════ */}
-      <section style={{ ...SEC_WHITE }}>
+      <section style={{ ...SEC_WHITE,marginBottom:'60px' }}>
         <div style={{ ...INNER, textAlign:'center' }}>
-          <h2 style={{ ...T.h2, marginBottom:48 }}>Who This Course Is For</h2>
-          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap:14, marginBottom:14 }}>
+          <h2 style={{ ...T.h2,color:'#2C3E3F', fontWeight:900, marginBottom:48 }}>Who This Course Is For</h2>
+          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap:14,fontWeight:900, marginBottom:14,color:'#2C3E3F', }}>
             {[
               'Professionals seeking balance',
               'Students building a stronger profile',
@@ -666,7 +768,7 @@ export default function OceanLivingCertification() {
               </div>
             ))}
           </div>
-          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2,1fr)', gap:14, maxWidth:580, margin:'0 auto' }}>
+          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2,1fr)', gap:14,fontWeight:900, maxWidth:580, margin:'0 auto',color:'#2C3E3F', }}>
             {[
               'Those who want a calmer, healthier lifestyle',
               'Individuals drawn to elegant, intentional living',
@@ -696,7 +798,7 @@ export default function OceanLivingCertification() {
 
         {/* ── Before / After — gap:24 between boxes ── */}
         <div style={{
-          maxWidth:820, margin:'40px auto 0', padding:'0 36px 72px',
+          maxWidth:1020, margin:'40px auto 0', padding:'0 36px 72px',
           display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
           gap: 24,
         }}>
@@ -735,9 +837,9 @@ export default function OceanLivingCertification() {
       ══════════════════════════════════════════ */}
       <section style={{ ...SEC_WHITE }}>
         <div style={{ ...INNER, textAlign:'center' }}>
-          <p style={{ ...T.label, marginBottom:14 }}>EARLY EXPERIENCE</p>
+          <p style={{ ...T.label,color:'#7A9C9E', marginBottom:14 }}>EARLY EXPERIENCE</p>
           <div style={{ width:40, height:1, background:TEAL, margin:'0 auto 28px' }}/>
-          <p style={{ ...T.italic, fontSize:'clamp(1.1rem,2.8vw,1.6rem)', maxWidth:580, margin:'0 auto', color:BODY, lineHeight:1.6 }}>
+          <p style={{ ...T.italic, fontSize:'clamp(1.1rem,2.8vw,1.6rem)', maxWidth:580, margin:'0 auto', color:'#2C3E3F', lineHeight:1.6 }}>
             Participants report feeling calmer, clearer, and more in control within days.
           </p>
         </div>
@@ -765,7 +867,7 @@ export default function OceanLivingCertification() {
             padding: isMobile ? '32px 24px' : '52px 48px', textAlign:'center',
           }}>
             <div style={{ display:'flex', alignItems:'baseline', justifyContent:'center', gap:14, marginBottom:6 }}>
-              <span style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'1.7rem', color:MUTED, textDecoration:'line-through' }}>
+              <span style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'1.7rem', color:'#7A9C9E', textDecoration:'line-through' }}>
                 {PRICE_OLD}
               </span>
               <span style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(2.8rem,8vw,4.2rem)', fontWeight:500, color:TEAL }}>
@@ -774,7 +876,7 @@ export default function OceanLivingCertification() {
             </div>
             <p style={{ ...T.sm, marginBottom:28 }}>One-time investment</p>
             <div style={{ borderTop:`1px solid #ccc7be`, marginBottom:28 }}/>
-            <div style={{ display:'flex', flexDirection:'column', gap:12, textAlign:'left', marginBottom:36 }}>
+            <div style={{ display:'flex',color:'#7A9C9E', flexDirection:'column', gap:12, textAlign:'left', marginBottom:36 }}>
               {[
                 '7-day structured experience',
                 'Ocean Study Digital Brochure (included)',
@@ -855,7 +957,7 @@ export default function OceanLivingCertification() {
       ══════════════════════════════════════════ */}
       <section style={{ position:'relative', overflow:'hidden' }}>
         <img src="/images/oceanCta.png" alt="Begin"
-          style={{ width:'100%', height:580, objectFit:'cover', objectPosition:'center', display:'block' }}/>
+          style={{ width:'100%', height:'700px', objectFit:'cover', objectPosition:'center', display:'block' }}/>
         <div style={{ position:'absolute', inset:0, background:'rgba(25,42,40,0.55)' }}/>
         <div style={{
           position:'absolute', inset:0,
@@ -899,17 +1001,17 @@ export default function OceanLivingCertification() {
       ══════════════════════════════════════════ */}
       <footer style={{ backgroundColor:TEAL, padding:'52px 32px', textAlign:'center' }}>
         <p style={{
-          fontFamily:"'Jost',sans-serif", fontSize:14, fontWeight:500,
-          letterSpacing:'0.3em', textTransform:'uppercase', color:WHITE, marginBottom:10,
+          fontFamily:"'Jost',sans-serif", fontSize:24, fontWeight:900,
+          letterSpacing:'0.1em', textTransform:'uppercase', color:'#F5F3F0', marginBottom:10,
         }}>SEAGLORÉ</p>
         <p style={{
-          fontFamily:"'Cormorant Garamond',serif",
-          fontSize:15, fontStyle:'italic', color:'rgba(255,255,255,0.55)', marginBottom:28,
+          
+          fontSize:15, fontStyle:'solid', color:'#B8A99A', marginBottom:28,
         }}>
           Where Nature Becomes Couture
         </p>
         <div style={{ borderTop:'1px solid rgba(255,255,255,0.1)', paddingTop:20 }}>
-          <p style={{ ...T.sm, color:'rgba(255,255,255,0.35)', fontSize:12 }}>
+          <p style={{ ...T.sm, color:'#7A9C9E', fontSize:12 }}>
             © 2026 SEAGLORÉ. All rights reserved.
           </p>
         </div>
