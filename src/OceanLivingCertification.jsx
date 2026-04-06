@@ -417,7 +417,7 @@ export default function OceanLivingCertification() {
           WHY MODERN LIFE
       ══════════════════════════════════════════ */}
       <section style={{ ...SEC_CREAM }}>
-  <div style={{ ...INNER, textAlign:'center' }}>
+  <div style={{ ...INNER, textAlign:'center',backgroundColor:'#EAE8E5' }}>
 
     {/* Heading */}
     <h2 style={{
@@ -540,7 +540,7 @@ export default function OceanLivingCertification() {
           WHAT YOU WILL LEARN
       ══════════════════════════════════════════ */}
       <section style={{ ...SEC_CREAM }}>
-  <div style={{ ...INNER, textAlign:'center' }}>
+  <div style={{ ...INNER, textAlign:'center',backgroundColor:'#EAE8E5' }}>
     <h2 style={{ ...T.h2, fontWeight:900, marginBottom:52 }}>What You Will Learn</h2>
     <div style={{ maxWidth:560, margin:'0 auto' }}>
       {[
@@ -624,7 +624,7 @@ export default function OceanLivingCertification() {
           EARN YOUR CERTIFICATE
       ══════════════════════════════════════════ */}
      <section style={{ ...SEC_CREAM }}>
-  <div style={{ maxWidth:'1100px', margin:'0 auto', padding:'72px 36px' }}>
+  <div style={{ maxWidth:'1100px', margin:'0 auto', padding:'72px 36px',backgroundColor:'#EAE8E5' }}>
 
     {/* Heading */}
     <h2 style={{
@@ -744,7 +744,7 @@ export default function OceanLivingCertification() {
           WHO THIS COURSE IS FOR
       ══════════════════════════════════════════ */}
       <section style={{ ...SEC_WHITE,marginBottom:'60px' }}>
-        <div style={{ ...INNER, textAlign:'center' }}>
+        <div style={{ ...INNER, textAlign:'center',maxWidth:'1000px' }}>
           <h2 style={{ ...T.h2,color:'#2C3E3F', fontWeight:900, marginBottom:48 }}>Who This Course Is For</h2>
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap:14,fontWeight:900, marginBottom:14,color:'#2C3E3F', }}>
             {[
@@ -758,7 +758,7 @@ export default function OceanLivingCertification() {
               </div>
             ))}
           </div>
-          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2,1fr)', gap:14,fontWeight:900, maxWidth:580, margin:'0 auto',color:'#2C3E3F', }}>
+          <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(2,1fr)', gap:14,fontWeight:900, maxWidth:700, margin:'0 auto',color:'#2C3E3F', }}>
             {[
               'Those who want a calmer, healthier lifestyle',
               'Individuals drawn to elegant, intentional living',
@@ -776,7 +776,7 @@ export default function OceanLivingCertification() {
           AFTER THIS EXPERIENCE
           ── Before/After boxes with GAP between them
       ══════════════════════════════════════════ */}
-      <section style={{ backgroundColor:CREAM, paddingTop:72 }}>
+      <section style={{ backgroundColor:'#EAE8E5', paddingTop:72 }}>
         <div style={{ textAlign:'center', marginBottom:40, padding:'0 36px' }}>
           <h2 style={{ ...T.h2 }}>After This Experience</h2>
         </div>
@@ -854,7 +854,7 @@ export default function OceanLivingCertification() {
           </h2>
           <div style={{
             background:CREAM, maxWidth:540, margin:'0 auto',
-            padding: isMobile ? '32px 24px' : '52px 48px', textAlign:'center',
+            padding: isMobile ? '32px 24px' : '52px 48px', textAlign:'center', borderRadius:'8px'
           }}>
             <div style={{ display:'flex', alignItems:'baseline', justifyContent:'center', gap:14, marginBottom:6 }}>
               <span style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'1.7rem', color:'#7A9C9E', textDecoration:'line-through' }}>
@@ -876,7 +876,7 @@ export default function OceanLivingCertification() {
               ].map((item,i) => (
                 <div key={i} style={{ display:'flex', alignItems:'center', gap:12 }}>
                   <LineCheck/>
-                  <p style={{ ...T.body }}>{item}</p>
+                  <p style={{ ...T.body,color:'#7A9C9E' }}>{item}</p>
                 </div>
               ))}
             </div>
@@ -902,7 +902,7 @@ export default function OceanLivingCertification() {
       <section style={{ ...SEC_WHITE }}>
         <div style={{ ...INNER, textAlign:'center' }}>
           <h2 style={{ ...T.h2, marginBottom:48 }}>Frequently Asked Questions</h2>
-          <div style={{ maxWidth:700, margin:'0 auto', textAlign:'left', display:'flex', flexDirection:'column', gap:8 }}>
+          <div style={{ maxWidth:700, margin:'0 auto', textAlign:'left', display:'flex', flexDirection:'column', gap:8, }}>
             {[
               ['Who is this for?','This is for anyone feeling overwhelmed, overstimulated, or disconnected. No prior knowledge needed.'],
               ['How is this different from other courses?','Ocean Living is not a trend course. It is a structured philosophy — calm, intentional, deeply personal.'],
@@ -919,6 +919,7 @@ export default function OceanLivingCertification() {
                   borderRadius: 2,
                   overflow: 'hidden',
                   backgroundColor: WHITE,
+                  
                 }}
               >
                 <button
