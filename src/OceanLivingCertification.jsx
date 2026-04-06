@@ -577,7 +577,7 @@ export default function OceanLivingCertification() {
                 key={i}
                 style={{
                   border: `1px solid #d8d3cc`,
-                  backgroundColor: CREAM,
+                  backgroundColor: '#F9F8F6',
                   marginBottom: 8,
                   borderRadius: 2,
                   overflow: 'hidden',
@@ -752,7 +752,7 @@ export default function OceanLivingCertification() {
               'Students building a stronger profile',
               'People interested in sustainable living',
             ].map((label,i) => (
-              <div key={i} style={{ background:CREAM, padding:'28px 22px', textAlign:'left', borderRadius:4 }}>
+              <div key={i} style={{ background:'#F9F8F6', padding:'28px 22px', textAlign:'left',border:'0.85px solid #E0DDD8', borderRadius:4 }}>
                 <div style={{ marginBottom:16 }}>{WHO_ICONS[i]}</div>
                 <p style={{ ...T.body }}>{label}</p>
               </div>
@@ -763,7 +763,7 @@ export default function OceanLivingCertification() {
               'Those who want a calmer, healthier lifestyle',
               'Individuals drawn to elegant, intentional living',
             ].map((label,i) => (
-              <div key={i} style={{ background:CREAM, padding:'28px 22px', textAlign:'left', borderRadius:4 }}>
+              <div key={i} style={{ background:'#F9F8F6', padding:'28px 22px', textAlign:'left',border:'0.85px solid #E0DDD8', borderRadius:4 }}>
                 <div style={{ marginBottom:16 }}>{WHO_ICONS[3+i]}</div>
                 <p style={{ ...T.body }}>{label}</p>
               </div>
