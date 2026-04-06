@@ -309,7 +309,7 @@ export default function OceanLivingCertification() {
       }}>
         ENTER THE EXPERIENCE
       </button>
-      <button onClick={() => jump('lead-section')} style={{
+      <button onClick={() => jump('ocean')} style={{
         fontFamily:"'Jost', sans-serif",
         fontSize:'11px', fontWeight:400,
         letterSpacing:'0.18em', textTransform:'uppercase',
@@ -508,7 +508,7 @@ export default function OceanLivingCertification() {
       {/* ══════════════════════════════════════════
           WHAT OCEAN LIVING MEANS
       ══════════════════════════════════════════ */}
-      <section style={{ ...SEC_WHITE, padding:'72px 0 0' }}>
+      <section id='ocean' style={{ ...SEC_WHITE, padding:'72px 0 0' }}>
         <div style={{ ...INNER, textAlign:'center', marginBottom:40 }}>
           <h2 style={{ ...T.h2,color:'#2C3E3F',fontWeight:900, marginBottom:20 }}>What Ocean Living Means</h2>
           <p style={{ ...T.bold, color:'#5A6C6D',fontWeight:400, maxWidth:600, margin:'0 auto', fontSize:'clamp(1rem,2.2vw,1.15rem)' }}>
