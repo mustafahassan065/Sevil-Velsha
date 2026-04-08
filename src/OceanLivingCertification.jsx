@@ -28,6 +28,26 @@ const injectFont = () => {
   link.rel  = 'stylesheet';
   link.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap';
   document.head.appendChild(link);
+
+  // Hero wave animation keyframes
+  if (document.getElementById('ol-anim')) return;
+  const style = document.createElement('style');
+  style.id = 'ol-anim';
+  style.textContent = `
+    @keyframes oceanBreathe {
+    0%   { transform: scale(1.05) translateY(0px); }
+    50%  { transform: scale(1.05) translateY(-10px); }
+    100% { transform: scale(1.05) translateY(0px); }
+  }
+  @keyframes waterShimmer {
+    0%   { opacity: 0; }
+    30%  { opacity: 0; }
+    50%  { opacity: 1; }
+    70%  { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  `;
+  document.head.appendChild(style);
 };
 
 const SEC_WHITE = { backgroundColor: WHITE,  padding: '72px 0' };
@@ -206,10 +226,37 @@ export default function OceanLivingCertification() {
           Text: SEAGLORÉ label + "ENTER THE EXPERIENCE" as BORDERED BUTTON
           + "7-day experience • certificate included" tag
       ══════════════════════════════════════════ */}
-      <section style={{ position:'relative', width:'100%', height:'133vh', overflow:'hidden' }}>
-  <img src="/images/hero.jpg" alt="Ocean Living"
-    style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center center', filter:'brightness(1.2) saturate(1.1)' }}/>
-  <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.2)' }}/>
+<section style={{ position:'relative', width:'100%', height:'133vh', overflow:'hidden' }}>
+
+  {/* Background image — Soft Wave Motion (translateY ±10px, 8s, ease-in-out, infinite) */}
+  <img
+    src="/images/hero.jpg"
+    alt="Ocean Living"
+    style={{
+      position:'absolute', inset:0,
+      width:'100%', height:'100%',
+      objectFit:'cover', objectPosition:'center center',
+      filter:'brightness(1.2) saturate(1.1)',
+      transformOrigin:'center center',
+      animation:'oceanBreathe 8s ease-in-out infinite',
+    }}
+  />
+
+  {/* Water Reflection — right side only (darya wali side), very subtle shimmer */}
+  <div style={{
+    position:'absolute',
+    top: 0, right: 0,
+    width:'50%', height:'100%',
+    background:'linear-gradient(to left, rgba(160,210,210,0.07) 0%, transparent 100%)',
+    animation:'waterShimmer 9s ease-in-out infinite',
+    pointerEvents:'none',
+    zIndex:1,
+  }}/>
+
+  {/* Dark overlay */}
+  <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.2)', zIndex:1 }}/>
+
+  {/* Text content */}
   <div style={{
     position:'relative', zIndex:2,
     height:'100%', display:'flex', flexDirection:'column',
@@ -221,8 +268,7 @@ export default function OceanLivingCertification() {
       fontSize:'clamp(2.2rem, 5vw, 3.8rem)', fontWeight:400,
       lineHeight:1.2, color:WHITE,
       margin:'0 auto 32px', maxWidth:620,
-    }}>You are not tired.<br>
-    </br> You are overloaded.</h1>
+    }}>You are not tired. You are overloaded.</h1>
 
     <p style={{
       fontFamily:"'Jost', sans-serif",
@@ -246,8 +292,8 @@ export default function OceanLivingCertification() {
       Enter the Experience
     </button>
   </div>
-</section>
 
+</section>
 
 
       {/* ══════════════════════════════════════════
@@ -646,7 +692,7 @@ export default function OceanLivingCertification() {
           AFTER THIS EXPERIENCE
           ── Before/After boxes with GAP between them
       ══════════════════════════════════════════ */}
-      <section style={{ backgroundColor:'#EAE8E5', paddingTop:72 }}>
+      <section style={{ backgroundColor:'#EAE8E5', paddingTop:120, paddingBottom:80 }}>
         <div style={{ textAlign:'center', marginBottom:40, padding:'0 36px' }}>
           <h2 style={{ ...T.h2 }}>After This Experience</h2>
         </div>
@@ -658,7 +704,7 @@ export default function OceanLivingCertification() {
 
         {/* ── Before / After — gap:24 between boxes ── */}
         <div style={{
-          maxWidth:1020, margin:'40px auto 0', padding:'0 36px 72px',
+          maxWidth:1020, margin:'60px auto 0', padding:'0 36px 100px',
           display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
           gap: 24,
         }}>
@@ -914,7 +960,7 @@ export default function OceanLivingCertification() {
       {/* ══════════════════════════════════════════
           FOOTER
       ══════════════════════════════════════════ */}
-      <footer style={{ backgroundColor:TEAL, padding:'52px 32px', textAlign:'center' }}>
+      <footer style={{ backgroundColor:TEAL, padding:'104px 64px', textAlign:'center' }}>
         <p style={{
           fontFamily:"'Jost',sans-serif", fontSize:24, fontWeight:900,
           letterSpacing:'0.1em', textTransform:'uppercase', color:'#F5F3F0', marginBottom:10,
