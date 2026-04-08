@@ -207,124 +207,72 @@ export default function OceanLivingCertification() {
           + "7-day experience • certificate included" tag
       ══════════════════════════════════════════ */}
       <section style={{ position:'relative', width:'100%', height:'133vh', overflow:'hidden' }}>
-        <img src="/images/hero.jpg" alt="Ocean Living"
-          style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center center',filter: 'brightness(1.2) saturate(1.1)' }}/>
-        <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.2)' }}/>
-        <div style={{
-  position:'relative', zIndex:2,
-  height:'100%', display:'flex', flexDirection:'column',
-  alignItems:'center', justifyContent:'flex-end', textAlign:'center',
-  padding: '0 24px 350px', gap: 0,
-}}>
+  <img src="/images/hero.jpg" alt="Ocean Living"
+    style={{ position:'absolute', inset:0, width:'100%', height:'100%', objectFit:'cover', objectPosition:'center center', filter:'brightness(1.2) saturate(1.1)' }}/>
+  <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.2)' }}/>
+  <div style={{
+    position:'relative', zIndex:2,
+    height:'100%', display:'flex', flexDirection:'column',
+    alignItems:'center', justifyContent:'center', textAlign:'center',
+    padding:'0 24px',
+  }}>
+    <h1 style={{
+      fontFamily:"'Cormorant Garamond', Georgia, serif",
+      fontSize:'clamp(2.2rem, 5vw, 3.8rem)', fontWeight:400,
+      lineHeight:1.2, color:WHITE,
+      margin:'0 auto 32px', maxWidth:620,
+    }}>You are not tired.<br>
+    </br> You are overloaded.</h1>
 
-          {/* SEAGLORÉ label */}
+    <p style={{
+      fontFamily:"'Jost', sans-serif",
+      fontSize:'clamp(0.9rem,1.8vw,1.05rem)', fontWeight:300,
+      letterSpacing:'0.04em', color:'rgba(255,255,255,0.75)',
+      lineHeight:2.2, margin:'0 auto 40px', maxWidth:480,
+    }}>
+      A 7-day structured experience<br/>
+      to reduce mental noise,<br/>
+      regain control of your attention,<br/>
+      and build a calm, intentional way of living.
+    </p>
+
+    <button onClick={() => go(CHECKOUT)} style={{
+      fontFamily:"'Jost', sans-serif", fontSize:'11px', fontWeight:400,
+      letterSpacing:'0.22em', textTransform:'uppercase',
+      color:WHITE, background:'transparent',
+      border:'1px solid rgba(255,255,255,0.7)',
+      padding:'15px 52px', cursor:'pointer',
+    }}>
+      Enter the Experience
+    </button>
+  </div>
+</section>
+
+
+
+      {/* ══════════════════════════════════════════
+          WHAT THIS IS — New section
+      ══════════════════════════════════════════ */}
+      <section style={{ backgroundColor:'#EAE8E5', padding:'100px 0' }}>
+        <div style={{ maxWidth:'540px', margin:'0 auto', padding:'0 36px', textAlign:'center' }}>
           <p style={{
-            fontFamily:"'Jost', sans-serif", fontSize:'13px', fontWeight:400,
-            letterSpacing:'0.10em', textTransform:'uppercase',
-            color:'rgba(255,255,255,0.9)', marginBottom: 28,
-          }}>
-            S E A G L O R É
-          </p>
-
-          {/* ── ENTER THE EXPERIENCE — BORDERED BUTTON (exact from Image 1) ── */}
-          <button
-  onClick={() => go(CHECKOUT)}
-  style={{
-    fontFamily:"'Jost', sans-serif", fontSize:'11px', fontWeight:300,
-    letterSpacing:'0.28em', textTransform:'uppercase',
-    color: WHITE,
-    background: 'rgba(255,255,255,0.12)',
-    backdropFilter: 'blur(1px)',
-    border: '1px solid rgba(255,255,255,0.12)',
-    padding: '14px 44px',
-    cursor: 'pointer',
-    marginBottom: 24,
-  }}
->
-  ENTER THE EXPERIENCE
-</button>
-
-          {/* Tag line */}
+            fontFamily:"'Jost', sans-serif", fontSize:'11px', fontWeight:400,
+            letterSpacing:'0.24em', textTransform:'uppercase',
+            color:'#7a8a88', marginBottom:28,
+          }}>What this is</p>
           <p style={{
-            fontFamily:"'Jost', sans-serif", fontSize:'11px', fontWeight:300,
-            letterSpacing:'0.14em', color:'rgba(255,255,255,0.6)',
+            fontFamily:"'Cormorant Garamond', Georgia, serif",
+            fontSize:'clamp(1.2rem, 2.5vw, 1.5rem)',
+            fontStyle:'italic', fontWeight:400,
+            color:'#2d4a47', lineHeight:1.85,
           }}>
-            7-day experience • certificate included
+            A 7-day guided system combining<br/>
+            video instruction, curated readings,<br/>
+            and daily practices designed to reset how you think, move, and live.
           </p>
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════
-          HERO TEXT — white bg, large serif headings,
-          two bordered rect buttons
-      ══════════════════════════════════════════ */}
-      <section style={{ ...SEC_WHITE, padding:'140px 0 130px' }}>
-  <div style={{ ...INNER, textAlign:'center' }}>
-
-    <h1 style={{
-      fontFamily:"'Cormorant Garamond', Georgia, serif",
-      fontSize:'clamp(2.2rem, 4.5vw, 3.5rem)',
-      fontWeight: 500,
-      lineHeight: 1.2,
-      color: '#2d4a47',
-      margin: '0 auto 6px',
-      maxWidth: 480,
-    }}>You are not tired.</h1>
-
-    <h1 style={{
-      fontFamily:"'Cormorant Garamond', Georgia, serif",
-      fontSize:'clamp(2.2rem, 4.5vw, 3.5rem)',
-      fontWeight: 500,
-      lineHeight: 1.2,
-      color: '#2d4a47',
-      margin: '0 auto 52px',
-      maxWidth: 480,
-    }}>You are disconnected.</h1>
-
-    <p style={{
-      fontFamily:"'Jost', sans-serif",
-      fontSize:'clamp(1.7rem, 2vw, 1.25rem)',
-      fontWeight: 400,
-      color: '#9aa5a3',
-      maxWidth: 420,
-      margin:'0 auto 64px',
-      lineHeight: 1.85,
-      letterSpacing:'0.01em',
-    }}>
-      A 7-day system to reset your life —<br/>
-      with calm, clarity, and control.
-    </p>
-
-    <div style={{ display:'flex', gap:16, justifyContent:'center', flexWrap:'wrap' }}>
-      <button onClick={() => go(CHECKOUT)} style={{
-        fontFamily:"'Jost', sans-serif",
-        fontSize:'11px', fontWeight:400,
-        letterSpacing:'0.18em', textTransform:'uppercase',
-        padding:'16px 44px',
-        border:'1px solid #c8c8c8',
-        borderRadius:'4px',
-        color:'#7a8a88',
-        background:'transparent',
-        cursor:'pointer',
-      }}>
-        ENTER THE EXPERIENCE
-      </button>
-      <button onClick={() => jump('ocean')} style={{
-        fontFamily:"'Jost', sans-serif",
-        fontSize:'11px', fontWeight:400,
-        letterSpacing:'0.18em', textTransform:'uppercase',
-        padding:'16px 44px',
-        border:'1px solid #c8c8c8',
-        borderRadius:'4px',
-        color:'#7a8a88',
-        background:'transparent',
-        cursor:'pointer',
-      }}>
-        RECEIVE THE OCEAN GUIDE
-      </button>
-    </div>
-  </div>
-</section>
       {/* ══════════════════════════════════════════
           CREATED BY SEVIL VELSHA
       ══════════════════════════════════════════ */}
@@ -348,8 +296,8 @@ export default function OceanLivingCertification() {
       {/* SV Avatar */}
 <div style={{
   flexShrink: 0,
-  width: isMobile ? 140 : 240,
-  height: isMobile ? 140 : 260,
+  width: isMobile ? 180 : 340,
+  height: isMobile ? 200 : 420,
   backgroundColor: '#e8e4de',
   display:'flex', alignItems:'center', justifyContent:'center',
   overflow: 'hidden',
@@ -370,7 +318,7 @@ export default function OceanLivingCertification() {
       <div style={{ flex:1, minWidth:240, paddingTop: 40 }}>
         <p style={{
           fontFamily:"'Jost', sans-serif",
-          fontSize:'20px', fontWeight:400,
+          fontSize:'clamp(1rem,1.8vw,1.2rem)', fontWeight:400,
           color:'#5A6C6D',
           marginBottom: 20,
           letterSpacing:'0.02em',
@@ -378,7 +326,7 @@ export default function OceanLivingCertification() {
 
         <p style={{
           fontFamily:"'Jost', sans-serif",
-          fontSize:'clamp(0.95rem, 1.5vw, 1.05rem)',
+          fontSize:'clamp(1rem,1.8vw,1.15rem)',
           fontWeight: 400,
           color:'#5A6C6D',
           marginBottom: 32,
@@ -429,78 +377,26 @@ export default function OceanLivingCertification() {
       margin:'0 auto 64px',
       lineHeight: 1.25,
     }}>
-      Why modern life leaves people tired and<br/>disconnected
+      Why modern life creates noise
     </h2>
 
-    {/* Icons row */}
-    <div style={{ display:'flex', justifyContent:'center', gap: 90, flexWrap:'nowrap', marginBottom: 56 }}>
+    <div style={{ maxWidth:'500px', margin:'0 auto', display:'flex', flexDirection:'column' }}>
       {[
-{ label: 'Constant Stress', icon: (
-  <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
-    <circle cx="21" cy="21" r="18" stroke="#7A9C9E" strokeWidth="1.3"/>
-    <circle cx="21" cy="21" r="18" stroke="#7A9C9E" strokeWidth="1.3"/>
-    <path d="M21 12v11" stroke="#7A9C9E" strokeWidth="1.6" strokeLinecap="round"/>
-    <circle cx="21" cy="28" r="1.2" fill="#7A9C9E"/>
-  </svg>
-)},
-{ label: 'Overconsumption', icon: (
-  <svg width="42" height="42" viewBox="0 0 42 42" fill="none">
-    <path d="M6 10h4.5l4.5 14h13l4-11H15" stroke="#7A9C9E" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
-    <circle cx="17.5" cy="30.5" r="2.2" stroke="#7A9C9E" strokeWidth="1.3"/>
-    <circle cx="29.5" cy="30.5" r="2.2" stroke="#7A9C9E" strokeWidth="1.3"/>
-  </svg>
-)},
-{ label: 'Lack of Balance', icon: (
-  <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
-    <path d="M31.9976 31.9976L37.9971 15.9988L43.9966 31.9976C42.2568 33.2975 40.1569 33.9974 37.9971 33.9974C35.8373 33.9974 33.7374 33.2975 31.9976 31.9976Z" stroke="#7aaba5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M3.99951 31.9976L9.99905 15.9988L15.9986 31.9976C14.2587 33.2975 12.1589 33.9974 9.99905 33.9974C7.83922 33.9974 5.73938 33.2975 3.99951 31.9976Z" stroke="#7aaba5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M13.999 41.9968H33.9975" stroke="#7A9C9E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M23.998 5.99954V41.9968" stroke="#7A9C9E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M5.99951 13.9989H9.99921C13.9989 13.9989 19.9984 11.9991 23.9981 9.99924C27.9978 11.9991 33.9974 13.9989 37.9971 13.9989H41.9968" stroke="#7aaba5" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-)},
-
-{ label: 'Disconnection from Nature', icon: (
-  <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
-    <path d="M21.9984 39.9969C18.4868 40.0076 15.0994 38.698 12.5082 36.3281C9.91688 33.9581 8.31098 30.7008 8.00894 27.2021C7.7069 23.7035 8.73079 20.2192 10.8775 17.4402C13.0243 14.6611 16.1371 12.7904 19.5986 12.1991C30.9977 9.99924 33.9975 8.95932 37.9972 3.99969C39.997 7.99939 41.9969 12.3591 41.9969 19.9985C41.9969 30.9976 32.4376 39.9969 21.9984 39.9969Z" stroke="#7A9C9E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M3.99951 41.9968C3.99951 35.9973 7.69923 31.2776 14.1587 29.9977C18.9984 29.0378 23.998 25.998 25.9978 23.9982" stroke="#7A9C9E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-)},
-
-{ label: 'Unhealthy Routines', icon: (
-  <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
-    <path d="M43.9965 23.9982H39.0368C38.1628 23.9963 37.3123 24.2808 36.6153 24.808C35.9182 25.3353 35.4131 26.0764 35.1771 26.9179L30.4775 43.6367C30.4472 43.7405 30.384 43.8317 30.2975 43.8967C30.211 43.9616 30.1057 43.9966 29.9975 43.9966C29.8894 43.9966 29.7841 43.9616 29.6976 43.8967C29.611 43.8317 29.5479 43.7405 29.5176 43.6367L18.4784 4.35967C18.4481 4.25582 18.385 4.16459 18.2984 4.09969C18.2119 4.03478 18.1066 3.99969 17.9984 3.99969C17.8903 3.99969 17.785 4.03478 17.6985 4.09969C17.6119 4.16459 17.5488 4.25582 17.5185 4.35967L12.8188 21.0784C12.5838 21.9166 12.0817 22.6553 11.3887 23.1823C10.6957 23.7092 9.8497 23.9957 8.97913 23.9982H3.99951" stroke="#7A9C9E" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-)},
+        'Constant distraction',
+        'Mental overload',
+        'Lack of clarity',
+        'Reactive decisions',
+        'No structure',
       ].map((item, i) => (
-        <div key={i} style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:10, width:120, minWidth:120 }}>
-      {item.icon}
-      <p style={{
-        fontFamily:"'Jost', sans-serif",
-        fontSize:'17px', fontWeight:500,
-        color:'#4A5C5D',
-        textAlign:'center',
-        lineHeight: 1.5,
-        letterSpacing:'0.01em',
-        whiteSpace:'nowrap',
-      }}>{item.label}</p>
-    </div>
+        <div key={i} style={{ padding:'24px 0', borderBottom:'1px solid #d8d3cc' }}>
+          <p style={{
+            fontFamily:"'Cormorant Garamond', Georgia, serif",
+            fontSize:'clamp(1.2rem,2.5vw,1.6rem)', fontWeight:400,
+            color:'#2C3E3F', textAlign:'center', margin:0, lineHeight:1.4,
+          }}>{item}</p>
+        </div>
       ))}
     </div>
-
-    {/* Quote */}
-    <p style={{
-      fontFamily:"'Cormorant Garamond', Georgia, serif",
-      fontSize:'clamp(1.2rem, 2.2vw, 1.5rem)',
-      fontStyle:'italic',
-      fontWeight: 900,
-      color:'#2C3E3F',
-      maxWidth: 860,
-      margin:'0 auto',
-      lineHeight: 1.7,
-    }}>
-      "Most people do not need more information. They need a better way to<br/>live."
-    </p>
 
   </div>
 </section>
@@ -522,9 +418,9 @@ export default function OceanLivingCertification() {
         </div>
         <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, minmax(0, 350px))', marginBottom:48, justifyContent:'center' }}>
   {[
-    { t:'Calm',           d:'Slower, more intentional life' },
-    { t:'Sustainability', d:'Better choices, less waste' },
-    { t:'Wellbeing',      d:'Habits that support energy and balance' },
+    { t:'Calm',           d:'A state where your actions are deliberate, not reactive.' },
+    { t:'Clarity',        d:'The ability to see what matters and ignore what does not.' },
+    { t:'Control',        d:'Consistent, intentional behavior shaped through small, repeated actions.' },
   ].map((c,i) => (
     <div key={i} style={{
       padding:'54px 4px', textAlign:'center',
@@ -541,13 +437,14 @@ export default function OceanLivingCertification() {
       ══════════════════════════════════════════ */}
       <section style={{ ...SEC_CREAM }}>
   <div style={{ ...INNER, textAlign:'center',backgroundColor:'#EAE8E5' }}>
-    <h2 style={{ ...T.h2, fontWeight:900, marginBottom:52 }}>What You Will Learn</h2>
+    <h2 style={{ ...T.h2, fontWeight:900, marginBottom:52 }}>What You Will Experience</h2>
     <div style={{ maxWidth:560, margin:'0 auto' }}>
       {[
-        'Rebuild your daily rhythm with clarity',
-        'Reduce mental and environmental noise',
-        'Design a calm, intentional lifestyle',
-        'Shift your thinking toward conscious living',
+        'How to slow down and reduce mental overload',
+        'How to focus your attention and think clearly',
+        'How to move from reaction to intentional action',
+        'How to build simple daily structure that works',
+        'How to create calm without withdrawing from life',
       ].map((item, i, arr) => (
         <div key={i}>
           <div style={{ width:40, height:1, background:TEAL, margin:'0 auto', marginBottom:22 }}/>
@@ -565,57 +462,30 @@ export default function OceanLivingCertification() {
       <section style={{ ...SEC_WHITE }}>
         <div style={{ ...INNER, textAlign:'center' }}>
           <h2 style={{ ...T.h2, marginBottom:58 }}>Course Curriculum</h2>
-          <div style={{ maxWidth:820,height:450,  margin:'0 auto' }}>
+          <div style={{ maxWidth:820, margin:'0 auto' }}>
 
-            {/* Accordion rows — cream background with border, chevron */}
+            {/* 7-Day Structure */}
             {[
-              ['Module 1 — Why People Don\'t Feel Well', 'This module explores why modern life disconnects people from calm, clarity, and their natural rhythm. You will understand the root causes of mental fatigue and environmental overwhelm.'],
-              ['Module 2 — Sustainable Living Made Simple', 'Learn practical, elegant approaches to reducing consumption and making daily choices that align with a slower, more intentional lifestyle.'],
-              ['Module 3 — The Ocean Living Method', 'The complete Ocean Living system — a structured daily practice for rebuilding rhythm, reducing noise, and returning to clarity and conscious living.'],
-            ].map(([title, desc], i) => (
-              <div
-                key={i}
-                style={{
-                  border: `1px solid #d8d3cc`,
-                  backgroundColor: '#F9F8F6',
-                  marginBottom: 8,
-                  borderRadius: 2,
-                  overflow: 'hidden',
-                }}
-              >
-                <button
-                  onClick={() => setCurriculum(curriculum === i ? null : i)}
-                  style={{
-                    width:'100%', display:'flex', justifyContent:'space-between', alignItems:'center',
-                    padding:'20px 24px', background:'none', border:'none', cursor:'pointer', textAlign:'left',
-                  }}
-                >
-                  <p style={{
-                    fontFamily:"'Cormorant Garamond', serif", fontSize:'1.3rem', fontWeight:900,
-                    color: TEAL, margin:0,
-                  }}>{title}</p>
-                  <Chevron open={curriculum === i} color={TEAL_LT}/>
-                </button>
-                {curriculum === i && (
-                  <div style={{ padding:'0 24px 20px' }}>
-                    <p style={{ ...T.body, color:MUTED }}>{desc}</p>
-                  </div>
-                )}
+              { day:'Day 1', title:'Reset',        sub:'Core video session + short reflection',             desc:'Understand why you feel overloaded and begin slowing down your pace.' },
+              { day:'Day 2', title:'Awareness',    sub:'Video session + Ocean Reflection',                  desc:'Observe your habits, attention, and daily patterns.' },
+              { day:'Day 3', title:'Slowing Down', sub:'Video session + Ocean Studies — Volume I',          desc:'Reduce speed and regain control of your actions.' },
+              { day:'Day 4', title:'Clarity',      sub:'Reflection + practical exercise',                   desc:'Identify what matters and remove unnecessary mental noise.' },
+              { day:'Day 5', title:'Control',      sub:'Video session + applied practice',                  desc:'Build simple, intentional behaviors you can repeat.' },
+              { day:'Day 6', title:'Integration',  sub:'Ocean Studies — Volume II + real-life application', desc:'Apply the system to your daily routine.' },
+              { day:'Day 7', title:'Completion',   sub:'Final integration quiz + certification',            desc:'Complete the process and receive your credential.' },
+            ].map((item, i) => (
+              <div key={i} style={{
+                display:'flex', gap:32, alignItems:'flex-start',
+                padding:'28px 0', borderBottom:`1px solid #d8d3cc`, textAlign:'left',
+              }}>
+                <p style={{ fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:400, letterSpacing:'0.16em', color:TEAL_LT, textTransform:'uppercase', flexShrink:0, minWidth:56, margin:0 }}>{item.day}</p>
+                <div>
+                  <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.1rem,2vw,1.4rem)', fontWeight:400, color:TEAL, margin:'0 0 4px' }}>{item.title}</p>
+                  <p style={{ fontFamily:"'Jost',sans-serif", fontSize:'12px', color:MUTED, margin:'0 0 6px', letterSpacing:'0.02em' }}>{item.sub}</p>
+                  <p style={{ fontFamily:"'Jost',sans-serif", fontSize:'13px', color:MUTED, lineHeight:1.7, margin:0 }}>{item.desc}</p>
+                </div>
               </div>
             ))}
-
-            {/* Format info — centered below */}
-            <div style={{ marginTop:28, textAlign:'center' }}>
-              <p style={{ ...T.sm, marginBottom:4 }}>
-                <span style={{ fontWeight:600, color:BODY }}>Format:</span> Short video lessons
-              </p>
-              <p style={{ ...T.sm, marginBottom:4 }}>
-                <span style={{ fontWeight:600, color:BODY }}>Final quiz</span> included
-              </p>
-              <p style={{ ...T.sm }}>
-                <span style={{ fontWeight:600, color:BODY }}>Certificate</span> upon completion
-              </p>
-            </div>
           </div>
         </div>
       </section>
@@ -635,7 +505,7 @@ export default function OceanLivingCertification() {
       textAlign:'center',
       marginBottom: 12,
       whiteSpace: isMobile ? 'normal' : 'nowrap',
-    }}>Become Certified in Ocean Living Systems</h2>
+    }}>Become Certified in Ocean Living</h2>
 
     <p style={{
       fontFamily:"'Jost', sans-serif",
@@ -644,7 +514,7 @@ export default function OceanLivingCertification() {
       textAlign:'center',
       marginBottom: 64,
       letterSpacing:'0.02em',
-    }}>A recognized certification in sustainable living and personal wellbeing</p>
+    }}>A recognition of completion of the method</p>
 
     {/* Main grid */}
     <div style={{
@@ -745,12 +615,12 @@ export default function OceanLivingCertification() {
       ══════════════════════════════════════════ */}
       <section style={{ ...SEC_WHITE,marginBottom:'60px' }}>
         <div style={{ ...INNER, textAlign:'center',maxWidth:'1000px' }}>
-          <h2 style={{ ...T.h2,color:'#2C3E3F', fontWeight:900, marginBottom:48 }}>Who This Course Is For</h2>
+          <h2 style={{ ...T.h2,color:'#2C3E3F', fontWeight:900, marginBottom:48 }}>Who This Experience Is For</h2>
           <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3,1fr)', gap:14,fontWeight:900, marginBottom:14,color:'#2C3E3F', }}>
             {[
-              'Professionals seeking balance',
-              'Students building a stronger profile',
-              'People interested in sustainable living',
+              'Overloaded professionals',
+              'People seeking clarity',
+              'Individuals building intentional lives',
             ].map((label,i) => (
               <div key={i} style={{ background:'#F9F8F6', padding:'28px 22px', textAlign:'left',border:'0.85px solid #E0DDD8', borderRadius:4 }}>
                 <div style={{ marginBottom:16 }}>{WHO_ICONS[i]}</div>
@@ -836,6 +706,42 @@ export default function OceanLivingCertification() {
       </section>
 
       {/* ══════════════════════════════════════════
+          RESULTS SECTION — New
+      ══════════════════════════════════════════ */}
+      <section style={{ backgroundColor:'#EAE8E5', padding:'100px 0' }}>
+        <div style={{ maxWidth:'540px', margin:'0 auto', padding:'0 36px', textAlign:'center' }}>
+          <h2 style={{
+            fontFamily:"'Cormorant Garamond', Georgia, serif",
+            fontSize:'clamp(2rem,4.5vw,3rem)', fontWeight:400,
+            color:'#2d4a47', marginBottom:56,
+          }}>After 7 days, you will</h2>
+          <div style={{ display:'flex', flexDirection:'column' }}>
+            {[
+              'Feel calmer and more in control',
+              'Think more clearly and make decisions faster',
+              'Reduce mental overload and distraction',
+              'Build a simple daily structure that works',
+            ].map((item, i) => (
+              <div key={i} style={{
+                display:'flex', gap:24, alignItems:'center',
+                padding:'28px 0', borderBottom:'1px solid #d8d3cc',
+              }}>
+                <span style={{
+                  fontFamily:"'Cormorant Garamond',serif",
+                  fontSize:'1rem', fontWeight:400, color:'#4a7c76', flexShrink:0,
+                }}>0{i+1}</span>
+                <p style={{
+                  fontFamily:"'Cormorant Garamond',Georgia,serif",
+                  fontSize:'clamp(1.1rem,2.5vw,1.4rem)', fontWeight:400,
+                  color:'#2d4a47', margin:0, textAlign:'left',
+                }}>{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════
           LEAD CAPTURE
       ══════════════════════════════════════════ */}
       
@@ -847,11 +753,15 @@ export default function OceanLivingCertification() {
         <div style={{ ...INNER, textAlign:'center' }}>
           <h2 style={{
             fontFamily:"'Cormorant Garamond',serif",
-            fontSize:'clamp(1.8rem,4vw,2.6rem)', fontWeight:500,
-            color:WHITE, marginBottom:48,
+            fontSize:'clamp(1.8rem,4vw,2.6rem)', fontWeight:400,
+            color:WHITE, marginBottom:12,
           }}>
-            {PRODUCT}
+            Ocean Living — 7 Day Private Experience
           </h2>
+          <p style={{
+            fontFamily:"'Jost',sans-serif", fontSize:'14px', fontWeight:400,
+            color:'rgba(255,255,255,0.55)', marginBottom:48, maxWidth:460, margin:'0 auto 48px',
+          }}>A structured system for calm, clarity, and intentional living inspired by the ocean</p>
           <div style={{
             background:CREAM, maxWidth:540, margin:'0 auto',
             padding: isMobile ? '32px 24px' : '52px 48px', textAlign:'center', borderRadius:'8px'
@@ -864,15 +774,17 @@ export default function OceanLivingCertification() {
                 {PRICE}
               </span>
             </div>
-            <p style={{ ...T.sm, marginBottom:28 }}>One-time investment</p>
+            <p style={{ fontFamily:"'Jost',sans-serif", fontSize:'13px', color:MUTED, marginBottom:6 }}>One-time access</p>
+            <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'14px', fontStyle:'italic', color:MUTED, marginBottom:28 }}>A curated transformation, not a course</p>
             <div style={{ borderTop:`1px solid #ccc7be`, marginBottom:28 }}/>
             <div style={{ display:'flex',color:'#7A9C9E', flexDirection:'column', gap:12, textAlign:'left', marginBottom:36 }}>
               {[
-                '7-day structured experience',
-                'Ocean Study Digital Brochure (included)',
-                'Final certification',
-                'Practical lifestyle system',
-                'Lifetime access',
+                'Guided video sessions that teach you how to slow down, focus, and regain control of your attention',
+                'Ocean Studies — Volume I (editorial digital book)',
+                'Ocean Studies — Volume II (advanced reflections & real-life application)',
+                'Certified Ocean Living Practitioner credential',
+                'Daily Ocean Ritual System (simple practices for calm, clarity, and discipline)',
+                'Lifetime access to the method',
               ].map((item,i) => (
                 <div key={i} style={{ display:'flex', alignItems:'center', gap:12 }}>
                   <LineCheck/>
@@ -880,17 +792,33 @@ export default function OceanLivingCertification() {
                 </div>
               ))}
             </div>
+            {/* After 7 days inside pricing */}
+            <div style={{ borderTop:`1px solid #ccc7be`, marginTop:4, paddingTop:24, marginBottom:28 }}>
+              <p style={{ fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500, letterSpacing:'0.16em', textTransform:'uppercase', color:MUTED, marginBottom:16, textAlign:'left' }}>After 7 days, you will</p>
+              {[
+                'Feel calmer and more in control of your day',
+                'Think more clearly and make decisions faster',
+                'Reduce mental noise and overwhelm',
+                'Build a lifestyle that feels intentional, not chaotic',
+              ].map((item,i) => (
+                <div key={i} style={{ display:'flex', alignItems:'flex-start', gap:10, marginBottom:10 }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ flexShrink:0, marginTop:3 }}><path d="M5 12l5 5 9-10" stroke={TEAL_LT} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  <p style={{ fontFamily:"'Jost',sans-serif", fontSize:'14px', fontWeight:400, color:BODY, margin:0 }}>{item}</p>
+                </div>
+              ))}
+            </div>
+
             <button onClick={() => go(CHECKOUT)} style={{
               width:'100%', padding:'18px 24px',
               background:TEAL, color:WHITE, border:'none', cursor:'pointer',
-              fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
+              fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:400,
               letterSpacing:'0.22em', textTransform:'uppercase',
             }}>
-              BEGIN THE EXPERIENCE
+              Enter the Experience
             </button>
           </div>
           <p style={{ ...T.sm, color:'rgba(255,255,255,0.4)', marginTop:18, fontSize:12 }}>
-            A curated experience, not a course
+            Early access price. Immediate access after payment.
           </p>
         </div>
       </section>
@@ -904,13 +832,11 @@ export default function OceanLivingCertification() {
           <h2 style={{ ...T.h2, marginBottom:48 }}>Frequently Asked Questions</h2>
           <div style={{ maxWidth:700, margin:'0 auto', textAlign:'left', display:'flex', flexDirection:'column', gap:8, }}>
             {[
-              ['Who is this for?','This is for anyone feeling overwhelmed, overstimulated, or disconnected. No prior knowledge needed.'],
-              ['How is this different from other courses?','Ocean Living is not a trend course. It is a structured philosophy — calm, intentional, deeply personal.'],
-              ['How quickly will I feel results?','Participants report feeling calmer, clearer, and more in control within days of beginning.'],
-              ['Is this worth the price?',`At ${PRICE}, this is a one-time investment in a lifetime of calmer, more intentional living.`],
-              ['Do I get a certificate?','Yes. Upon completing all lessons and the final quiz, you receive a branded certificate.'],
-              ['Can I add it to LinkedIn?','Yes. Your certificate can be added to LinkedIn, your CV, or personal development portfolio.'],
-              ['Do I need previous knowledge?','No. This experience is designed to be accessible to everyone, wherever you are in life.'],
+              ['Who is this for?','This is for anyone feeling overloaded, overwhelmed, or unable to focus. No prior knowledge needed.'],
+              ['How is this different from other courses?','This is not a course. It is a 7-day structured private experience with daily guidance, readings, and applied practices.'],
+              ['How quickly will I notice results?','Most participants report feeling calmer and more in control within the first 2–3 days.'],
+              ['What do I need to start?','Nothing. Just your email and 30–45 minutes per day for 7 days.'],
+              ['Do I get a certificate?','Yes. Upon completing all sessions and the final quiz, you receive a verified SEAGLORÉ credential.'],
             ].map(([q,a],i) => (
               <div
                 key={i}
@@ -960,19 +886,17 @@ export default function OceanLivingCertification() {
             fontSize:'clamp(2rem,5vw,3.4rem)', fontWeight:500,
             color:WHITE, marginBottom:14, lineHeight:1.2,
           }}>
-            Begin a New Way of Living
+            Begin a new way of living
           </h2>
           <div style={{ width:48, height:1, background:'rgba(255,255,255,0.4)', margin:'0 auto 18px' }}/>
-          <p style={{ ...T.body, color:'rgba(255,255,255,0.75)', marginBottom:36, maxWidth:480 }}>
-            A curated 7-day experience to reset your lifestyle, clarity, and daily rhythm.
-          </p>
+
           <button onClick={() => go(CHECKOUT)} style={{
             fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
             letterSpacing:'0.22em', textTransform:'uppercase',
             padding:'16px 52px', background:WHITE, color:TEAL,
             border:'none', cursor:'pointer',
           }}>
-            START NOW
+            Enter the Experience
           </button>
           <div style={{ marginTop:52, borderTop:'1px solid rgba(255,255,255,0.18)', paddingTop:28, maxWidth:380 }}>
             <p style={{
