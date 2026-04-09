@@ -228,7 +228,6 @@ export default function OceanLivingCertification() {
       ══════════════════════════════════════════ */}
 <section style={{ position:'relative', width:'100%', height:'133vh', overflow:'hidden' }}>
 
-  {/* Background image — Soft Wave Motion (translateY ±10px, 8s, ease-in-out, infinite) */}
   <img
     src="/images/hero.jpg"
     alt="Ocean Living"
@@ -237,26 +236,11 @@ export default function OceanLivingCertification() {
       width:'100%', height:'100%',
       objectFit:'cover', objectPosition:'center center',
       filter:'brightness(1.2) saturate(1.1)',
-      transformOrigin:'center center',
-      animation:'oceanBreathe 8s ease-in-out infinite',
     }}
   />
 
-  {/* Water Reflection — right side only (darya wali side), very subtle shimmer */}
-  <div style={{
-    position:'absolute',
-    top: 0, right: 0,
-    width:'50%', height:'100%',
-    background:'linear-gradient(to left, rgba(160,210,210,0.07) 0%, transparent 100%)',
-    animation:'waterShimmer 9s ease-in-out infinite',
-    pointerEvents:'none',
-    zIndex:1,
-  }}/>
+  <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.2)' }}/>
 
-  {/* Dark overlay */}
-  <div style={{ position:'absolute', inset:0, background:'rgba(0,0,0,0.2)', zIndex:1 }}/>
-
-  {/* Text content */}
   <div style={{
     position:'relative', zIndex:2,
     height:'100%', display:'flex', flexDirection:'column',
@@ -268,7 +252,7 @@ export default function OceanLivingCertification() {
       fontSize:'clamp(2.2rem, 5vw, 3.8rem)', fontWeight:400,
       lineHeight:1.2, color:WHITE,
       margin:'0 auto 32px', maxWidth:620,
-    }}>You are not tired. You are overloaded.</h1>
+    }}>You are not tired.<br></br> You are overloaded.</h1>
 
     <p style={{
       fontFamily:"'Jost', sans-serif",
