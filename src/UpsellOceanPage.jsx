@@ -41,7 +41,7 @@ export default function UpsellOceanPage() {
         borderBottom: `1px solid ${CREAM}`,
       }}>
         <img src="/images/logo.png" alt="Seagloré"
-          style={{ height: 24, objectFit: 'contain', cursor: 'pointer' }}
+          style={{ height: 50, objectFit: 'contain', cursor: 'pointer' }}
           onClick={() => navigate('/')}/>
       </nav>
 

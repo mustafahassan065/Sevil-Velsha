@@ -173,7 +173,7 @@ export default function CoursePage() {
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         <img src="/images/logo.png" alt="Seagloré"
-          style={{ height: 24, objectFit: 'contain', cursor: 'pointer', filter: 'brightness(10)' }}
+          style={{ height: 50, objectFit: 'contain', cursor: 'pointer', filter: 'brightness(10)' }}
           onClick={() => navigate('/')}/>
         {!isMobile && (
           <p style={{ ...T.label, color: 'rgba(255,255,255,0.6)', margin: 0 }}>
