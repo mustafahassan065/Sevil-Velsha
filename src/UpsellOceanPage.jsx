@@ -40,9 +40,20 @@ export default function UpsellOceanPage() {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         borderBottom: `1px solid ${CREAM}`,
       }}>
-        <img src="/images/logo.png" alt="Seagloré"
-          style={{ height: 50, objectFit: 'contain', cursor: 'pointer' }}
-          onClick={() => navigate('/')}/>
+        <span
+  onClick={() => navigate('/')}
+  style={{
+    fontFamily: "'Cormorant Garamond', Georgia, serif",
+    fontSize: '22px',
+    fontWeight: 500,
+    letterSpacing: '0.28em',
+    color: '#c9a84c',
+    cursor: 'pointer',
+    textTransform: 'uppercase',
+  }}
+>
+  SEAGLORÉ
+</span>
       </nav>
 
       <div style={{

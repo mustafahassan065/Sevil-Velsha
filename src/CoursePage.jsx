@@ -172,9 +172,20 @@ export default function CoursePage() {
         background: TEAL, padding: '16px 20px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
-        <img src="/images/logo.png" alt="Seagloré"
-          style={{ height: 50, objectFit: 'contain', cursor: 'pointer', filter: 'brightness(10)' }}
-          onClick={() => navigate('/')}/>
+        <span
+  onClick={() => navigate('/')}
+  style={{
+    fontFamily: "'Cormorant Garamond', Georgia, serif",
+    fontSize: '22px',
+    fontWeight: 500,
+    letterSpacing: '0.28em',
+    color: '#c9a84c',
+    cursor: 'pointer',
+    textTransform: 'uppercase',
+  }}
+>
+  SEAGLORÉ
+</span>
         {!isMobile && (
           <p style={{ ...T.label, color: 'rgba(255,255,255,0.6)', margin: 0 }}>
             Ocean Living Certification
