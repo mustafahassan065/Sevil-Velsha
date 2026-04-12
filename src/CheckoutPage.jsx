@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const PRICE        = '$49';
 const PRICE_NUM    = 49;
 const PRODUCT      = 'Ocean Living Certification Experience';
-const STRIPE_API   = 'http://localhost:3001/api/create-checkout-session';
+const STRIPE_API = '/api/create-checkout-session';
 const BACK_URL     = '/ocean-living-certification';
 // ─────────────────────────────────────────────────────────────────
 

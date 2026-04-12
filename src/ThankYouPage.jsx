@@ -8,7 +8,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 
 // ── CONFIG ────────────────────────────────────────────────────────
 const COURSE_URL  = '/course-ocean-living';
-const VERIFY_API  = '/api/verify-payment'; // your backend to verify session
+const VERIFY_API = '/api/verify-payment';
 // ─────────────────────────────────────────────────────────────────
 
 const TEAL    = '#2d4a47';
