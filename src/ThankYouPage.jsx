@@ -1,15 +1,13 @@
 // src/ThankYouPage.jsx
 // Ocean Living Certification — Thank You Page
 // Route: /thank-you-ocean
-// Stripe redirects here after successful payment with ?session_id=xxx
+// After payment: verify → show upsell → then course
 
 import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-// ── CONFIG ────────────────────────────────────────────────────────
-const COURSE_URL  = '/course-ocean-living';
-const VERIFY_API = '/api/verify-payment';
-// ─────────────────────────────────────────────────────────────────
+const UPSELL_URL  = '/upsell-ocean';
+const VERIFY_API  = '/api/verify-payment';
 
 const TEAL    = '#2d4a47';
 const TEAL_LT = '#4a7c76';
@@ -35,17 +33,16 @@ const T = {
 };
 
 export default function ThankYouPage() {
-  const navigate              = useNavigate();
-  const [searchParams]        = useSearchParams();
-  const [verified, setVerified] = useState(false);
-  const [checking, setChecking] = useState(true);
+  const navigate           = useNavigate();
+  const [searchParams]     = useSearchParams();
+  const [verified, setVerified]       = useState(false);
+  const [checking, setChecking]       = useState(true);
   const [customerEmail, setCustomerEmail] = useState('');
 
   useEffect(() => {
     injectFont();
     const sessionId = searchParams.get('session_id');
 
-    // Verify payment with backend
     const verify = async () => {
       try {
         if (sessionId) {
@@ -54,20 +51,20 @@ export default function ThankYouPage() {
           if (data.paid) {
             setVerified(true);
             setCustomerEmail(data.email || '');
-            // GA4 purchase event
+            // Save session_id for course access protection
+            localStorage.setItem('ol_session', sessionId);
+            // GA4
             if (window.gtag) window.gtag('event', 'purchase_ocean', {
-              transaction_id: sessionId,
-              value: 49, currency: 'USD',
+              transaction_id: sessionId, value: 49, currency: 'USD',
             });
-            // Meta Pixel Purchase
+            // Meta Pixel
             if (window.fbq) window.fbq('track', 'Purchase', { value: 49, currency: 'USD' });
           }
         } else {
-          // If no session_id (direct visit), just show page without verification
           setVerified(true);
         }
       } catch {
-        setVerified(true); // Show page even if verify fails
+        setVerified(true);
       } finally {
         setChecking(false);
       }
@@ -86,19 +83,21 @@ export default function ThankYouPage() {
   return (
     <div style={{ fontFamily: "'Jost', sans-serif", background: CREAM, minHeight: '100vh' }}>
 
-      {/* ── MINIMAL NAV ── */}
+      {/* NAV */}
       <nav style={{
         background: WHITE, padding: '16px 40px',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         borderBottom: `1px solid ${CREAM}`,
       }}>
-        <img src="/images/logo.png" alt="Seagloré" style={{ height: 24, objectFit: 'contain', cursor: 'pointer' }}
+        <img src="/images/logo.png" alt="Seagloré"
+          style={{ height: 24, objectFit: 'contain', cursor: 'pointer' }}
           onClick={() => navigate('/')}/>
       </nav>
 
-      {/* ── MAIN CONTENT ── */}
+      {/* MAIN */}
       <div style={{
-        maxWidth: '640px', margin: '0 auto', padding: 'clamp(40px, 8vw, 80px) 20px',
+        maxWidth: '640px', margin: '0 auto',
+        padding: 'clamp(40px, 8vw, 80px) 20px',
         display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center',
       }}>
 
@@ -114,7 +113,6 @@ export default function ThankYouPage() {
           </svg>
         </div>
 
-        {/* Headline */}
         <p style={{ ...T.label, marginBottom: 16 }}>Order Confirmed</p>
         <h1 style={{ ...T.h1, marginBottom: 16 }}>Welcome.</h1>
         <h2 style={{
@@ -127,26 +125,66 @@ export default function ThankYouPage() {
 
         <p style={{ ...T.body, color: MUTED, marginBottom: 48, maxWidth: 440 }}>
           Thank you for joining the Ocean Living Certification Experience.
-          {customerEmail && (
-            <> Your access details have been sent to <strong style={{ color: TEAL }}>{customerEmail}</strong>.</>
-          )}
-          {!customerEmail && (
-            <> We've also sent your access details to your email.</>
-          )}
+          {customerEmail
+            ? <> Your access details have been sent to <strong style={{ color: TEAL }}>{customerEmail}</strong>.</>
+            : <> We've also sent your access details to your email.</>
+          }
         </p>
 
-        {/* Divider */}
         <div style={{ width: 48, height: 1, background: TEAL, marginBottom: 48 }}/>
+
+        {/* ── UPSELL BLOCK ── */}
+        <div style={{
+          width: '100%', background: TEAL,
+          padding: '36px 32px', marginBottom: 24, textAlign: 'center',
+        }}>
+          <p style={{ ...T.label, color: 'rgba(255,255,255,0.6)', marginBottom: 12 }}>
+            One More Step
+          </p>
+          <p style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: 'clamp(1.3rem,3vw,1.8rem)', fontWeight: 400,
+            color: WHITE, marginBottom: 12, lineHeight: 1.4,
+          }}>
+            Add a Private Coaching Session
+          </p>
+          <p style={{ ...T.sm, color: 'rgba(255,255,255,0.65)', marginBottom: 24, lineHeight: 1.7 }}>
+            Get a 1:1 session with Sevil to accelerate your transformation.<br/>
+            Limited spots — exclusive to new students only.
+          </p>
+          <button
+            onClick={() => navigate(UPSELL_URL)}
+            style={{
+              background: WHITE, color: TEAL, border: 'none',
+              padding: '14px 40px', cursor: 'pointer',
+              fontFamily: "'Jost', sans-serif", fontSize: '11px', fontWeight: 600,
+              letterSpacing: '0.22em', textTransform: 'uppercase',
+              marginBottom: 12, width: '100%',
+            }}
+          >
+            See Coaching Offer →
+          </button>
+          <button
+            onClick={() => navigate('/course-ocean-living')}
+            style={{
+              background: 'transparent', color: 'rgba(255,255,255,0.5)',
+              border: 'none', cursor: 'pointer',
+              fontFamily: "'Jost', sans-serif", fontSize: '11px',
+              letterSpacing: '0.1em', textDecoration: 'underline',
+            }}
+          >
+            No thanks, take me to my course
+          </button>
+        </div>
 
         {/* Access Course CTA */}
         <button
-          onClick={() => navigate(COURSE_URL)}
+          onClick={() => navigate('/course-ocean-living')}
           style={{
             padding: '18px 32px', background: TEAL, color: WHITE, width: '100%',
             border: 'none', cursor: 'pointer',
             fontFamily: "'Jost', sans-serif", fontSize: '11px', fontWeight: 500,
-            letterSpacing: '0.22em', textTransform: 'uppercase',
-            marginBottom: 16,
+            letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: 16,
           }}
         >
           Access Your Course
@@ -156,7 +194,7 @@ export default function ThankYouPage() {
           You can also access the course anytime via the link in your email.
         </p>
 
-        {/* What's next section */}
+        {/* What's next */}
         <div style={{
           marginTop: 60, width: '100%', background: WHITE,
           padding: 'clamp(24px, 4vw, 36px) clamp(20px, 4vw, 32px)', textAlign: 'left',
@@ -180,7 +218,6 @@ export default function ThankYouPage() {
           </div>
         </div>
 
-        {/* Footer note */}
         <p style={{ ...T.sm, marginTop: 40, fontSize: '12px', lineHeight: 1.8 }}>
           Questions? Contact us at{' '}
           <a href="mailto:info@seaglore.com" style={{ color: TEAL, textDecoration: 'none' }}>

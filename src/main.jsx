@@ -8,6 +8,7 @@ import OceanLivingCertification from './OceanLivingCertification.jsx'
 import CheckoutPage from './CheckoutPage.jsx'
 import ThankYouPage from './ThankYouPage.jsx'
 import CoursePage from './CoursePage.jsx'
+import UpsellOceanPage from './UpsellOceanPage.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/checkout-ocean-living" element={<CheckoutPage />} />
         <Route path="/thank-you-ocean" element={<ThankYouPage />} />
         <Route path="/course-ocean-living" element={<CoursePage />} />
+        <Route path="/upsell-ocean" element={<UpsellOceanPage />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
