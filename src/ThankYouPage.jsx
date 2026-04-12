@@ -103,6 +103,7 @@ export default function ThankYouPage() {
 >
   SEAGLORÉ
 </span>
+      </nav>
 
       {/* MAIN */}
       <div style={{
