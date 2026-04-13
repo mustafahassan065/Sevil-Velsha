@@ -57,7 +57,7 @@ const DAYS = [
     title: 'Today is not about watching.',
     subtitle: 'It is about seeing.',
     reflection: null,
-    thumbnail: 'https://drive.google.com/thumbnail?id=1EgsZtur6eH4unhuk0O4YEfdjWW5aGDzC&sz=w800',
+    thumbnail: null,
     pdfUrl: 'https://drive.google.com/file/d/1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI/preview',
     pdfDownload: 'https://drive.google.com/uc?export=download&id=1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI',
     pdfName: 'Ocean-Living-Guide.pdf',
