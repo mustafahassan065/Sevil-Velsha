@@ -1,17 +1,20 @@
 // src/CoursePage.jsx
-// Ocean Living Certification — Protected Course Dashboard
+// Ocean Living Certification — Course Dashboard
 // Route: /course-ocean-living
-// Protected: only accessible after payment (session stored in localStorage)
+// Protected: session check on load
+// Structure: Day 1 (Video) → Day 2 (Brochure) → Day 3 (Video) → Day 4 (Brochure) → Day 5–7 coming
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const VERIFY_API  = '/api/verify-payment';
-const CHECKOUT    = '/checkout-ocean-living';
+const VERIFY_API = '/api/verify-payment';
+const CHECKOUT   = '/checkout-ocean-living';
 
+// ── DESIGN TOKENS ─────────────────────────────────────────────────
 const TEAL    = '#2d4a47';
 const TEAL_LT = '#4a7c76';
 const CREAM   = '#eee9e2';
+const CREAM2  = '#EAE8E5';
 const WHITE   = '#ffffff';
 const BODY    = '#3a3a3a';
 const MUTED   = '#7a8a88';
@@ -25,51 +28,100 @@ const injectFont = () => {
 };
 
 const T = {
-  label: { fontFamily: "'Jost', sans-serif", fontSize: '11px', fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: MUTED },
-  h1:    { fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(2rem,5vw,3rem)', fontWeight: 500, color: TEAL, margin: 0 },
-  h2:    { fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(1.4rem,3vw,2rem)', fontWeight: 500, color: TEAL, margin: 0 },
-  body:  { fontFamily: "'Jost', sans-serif", fontSize: '15px', fontWeight: 400, lineHeight: 1.7, color: BODY },
-  sm:    { fontFamily: "'Jost', sans-serif", fontSize: '13px', color: MUTED, lineHeight: 1.6 },
+  label:  { fontFamily: "'Jost', sans-serif", fontSize: '11px', fontWeight: 500, letterSpacing: '0.22em', textTransform: 'uppercase', color: MUTED },
+  h1:     { fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 'clamp(2rem,5vw,3rem)', fontWeight: 400, color: TEAL, margin: 0 },
+  h2:     { fontFamily: "'Cormorant Garamond', Georgia, serif", fontSize: 'clamp(1.6rem,3.5vw,2.2rem)', fontWeight: 400, color: TEAL, margin: 0 },
+  italic: { fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: 'italic', fontSize: 'clamp(1rem,2vw,1.2rem)', fontWeight: 400, color: MUTED, lineHeight: 1.7 },
+  body:   { fontFamily: "'Jost', sans-serif", fontSize: '15px', fontWeight: 400, lineHeight: 1.8, color: BODY },
+  sm:     { fontFamily: "'Jost', sans-serif", fontSize: '13px', color: MUTED, lineHeight: 1.6 },
 };
 
-const MODULES = [
+// ── COURSE DAYS ────────────────────────────────────────────────────
+const DAYS = [
   {
-    num: '01',
-    title: "Why People Don't Feel Well",
-    lessons: [
-      { title: 'The Root of Modern Disconnection', duration: '8 min' },
-      { title: 'Understanding Mental Fatigue', duration: '6 min' },
-      { title: "Why Information Isn't the Answer", duration: '5 min' },
-    ],
-    description: 'Understand why modern life disconnects people from calm, clarity, and their natural rhythm.',
+    num: 1,
+    label: 'Day 1 — Reset',
+    type: 'video',
+    title: 'You don\'t begin by doing more.',
+    subtitle: 'You begin by slowing down.',
+    reflection: 'Take one moment today to simply observe.',
+    thumbnail: 'https://drive.google.com/thumbnail?id=1QDDX3tbDx8RMl2YURVh4-WgbmBuBGulW&sz=w800',
+    videoEmbed: 'https://drive.google.com/file/d/1sf_euWRxKZt_3Zjm9G2V1YyXPopFl8w2/preview',
+    cta: '→ Continue to Day 2',
+    nextDay: 2,
   },
   {
-    num: '02',
-    title: 'Sustainable Living Made Simple',
-    lessons: [
-      { title: 'Reducing Consumption Intentionally', duration: '7 min' },
-      { title: 'Daily Choices That Matter', duration: '9 min' },
-      { title: 'Building Slower Routines', duration: '6 min' },
-    ],
-    description: 'Practical, elegant approaches to reducing consumption and making daily choices with intention.',
+    num: 2,
+    label: 'Day 2 — Awareness',
+    type: 'brochure',
+    title: 'Today is not about watching.',
+    subtitle: 'It is about seeing.',
+    reflection: null,
+    thumbnail: 'https://drive.google.com/thumbnail?id=1EgsZtur6eH4unhuk0O4YEfdjWW5aGDzC&sz=w800',
+    pdfUrl: 'https://drive.google.com/file/d/1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI/preview',
+    pdfDownload: 'https://drive.google.com/uc?export=download&id=1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI',
+    pdfName: 'Ocean-Living-Guide.pdf',
+    cta: '→ Open Ocean Living Guide',
+    nextDay: 3,
   },
   {
-    num: '03',
-    title: 'The Ocean Living Method',
-    lessons: [
-      { title: 'The Core Framework', duration: '10 min' },
-      { title: 'Rebuilding Your Daily Rhythm', duration: '8 min' },
-      { title: 'Final Practice & Reflection', duration: '7 min' },
-      { title: 'Final Quiz', duration: '10 min' },
-    ],
-    description: 'The complete Ocean Living system for rebuilding rhythm, reducing noise, and returning to clarity.',
+    num: 3,
+    label: 'Day 3 — Slowing Down',
+    type: 'video',
+    title: 'Now you begin to feel the shift.',
+    subtitle: null,
+    reflection: 'What changed in your pace?',
+    thumbnail: 'https://drive.google.com/thumbnail?id=1ovJbJRwdonAw5ZnB1XvpXMsx3l32sJ5Z&sz=w800',
+    videoEmbed: 'https://drive.google.com/file/d/1Y9NrI_0f1AEUvOIPti8h6DiCpwwC-E84/preview',
+    cta: '→ Continue to Day 4',
+    nextDay: 4,
   },
-];
-
-const RESOURCES = [
-  { title: 'Ocean Study Digital Brochure', type: 'PDF', icon: '📄' },
-  { title: 'Daily Rhythm Worksheet', type: 'PDF', icon: '📋' },
-  { title: 'Certificate of Completion', type: 'Certificate', icon: '🏅' },
+  {
+    num: 4,
+    label: 'Day 4 — Clarity',
+    type: 'brochure',
+    title: 'Clarity comes when noise disappears.',
+    subtitle: null,
+    reflection: null,
+    thumbnail: null,
+    pdfUrl: 'https://drive.google.com/file/d/1uZsahpwezi7C4_WR3kPQEShwJwL9etud/preview',
+    pdfDownload: 'https://drive.google.com/uc?export=download&id=1uZsahpwezi7C4_WR3kPQEShwJwL9etud',
+    pdfName: 'Ocean-Studies-Volume-1.pdf',
+    cta: '→ Read Ocean Studies Volume I',
+    nextDay: 5,
+  },
+  {
+    num: 5,
+    label: 'Day 5 — Control',
+    type: 'video',
+    title: 'Build simple, intentional behaviors.',
+    subtitle: null,
+    reflection: null,
+    thumbnail: null,
+    videoEmbed: 'https://drive.google.com/file/d/1duyHOr6dEupCxOQZIeBWEMZOfPZbdE7H/preview',
+    cta: '→ Continue to Day 6',
+    nextDay: 6,
+  },
+  {
+    num: 6,
+    label: 'Day 6 — Integration',
+    type: 'coming',
+    title: 'Apply the system to your daily routine.',
+    subtitle: null,
+    reflection: null,
+    cta: null,
+    nextDay: 7,
+  },
+  {
+    num: 7,
+    label: 'Day 7 — Completion',
+    type: 'coming',
+    title: 'Complete the process and receive your credential.',
+    subtitle: null,
+    reflection: null,
+    cta: null,
+    nextDay: null,
+  },
 ];
 
 function useWindowWidth() {
@@ -85,266 +137,343 @@ function useWindowWidth() {
 export default function CoursePage() {
   const navigate   = useNavigate();
   const isMobile   = useWindowWidth() < 768;
-  const [access, setAccess]     = useState(false);
-  const [checking, setChecking] = useState(true);
-  const [openModule, setOpenModule] = useState(0);
-  const [progress, setProgress] = useState({ lessons: new Set() });
+  const [checking, setChecking]   = useState(true);
+  const [access, setAccess]       = useState(false);
+  const [activeDay, setActiveDay] = useState(1);
+  const [completed, setCompleted] = useState(() => {
+    try {
+      const saved = localStorage.getItem('ol_days');
+      return saved ? new Set(JSON.parse(saved)) : new Set();
+    } catch { return new Set(); }
+  });
+  const [pdfOpen, setPdfOpen]     = useState(false);
 
-  // ── PROTECTION CHECK ──────────────────────────────────────────
+  // ── PROTECTION CHECK ─────────────────────────────────────────
   useEffect(() => {
     injectFont();
-
     const checkAccess = async () => {
       try {
         const sessionId = localStorage.getItem('ol_session');
-
-        if (!sessionId) {
-          // No session — redirect to checkout
-          navigate(CHECKOUT);
-          return;
-        }
-
-        // Verify session with backend
+        if (!sessionId) { navigate(CHECKOUT); return; }
         const res  = await fetch(`${VERIFY_API}?session_id=${sessionId}`);
         const data = await res.json();
-
         if (data.paid) {
           setAccess(true);
-          // Load progress
-          try {
-            const saved = localStorage.getItem('ol_progress');
-            if (saved) setProgress({ lessons: new Set(JSON.parse(saved)) });
-          } catch {}
         } else {
-          // Invalid session — redirect to checkout
           localStorage.removeItem('ol_session');
           navigate(CHECKOUT);
         }
       } catch {
-        // If verify fails, still allow access (graceful fallback)
-        const sessionId = localStorage.getItem('ol_session');
-        if (sessionId) {
-          setAccess(true);
-          try {
-            const saved = localStorage.getItem('ol_progress');
-            if (saved) setProgress({ lessons: new Set(JSON.parse(saved)) });
-          } catch {}
-        } else {
-          navigate(CHECKOUT);
-        }
+        if (localStorage.getItem('ol_session')) setAccess(true);
+        else navigate(CHECKOUT);
       } finally {
         setChecking(false);
       }
     };
-
     checkAccess();
   }, [navigate]);
 
-  const toggleLesson = (key) => {
-    setProgress(prev => {
-      const next = new Set(prev.lessons);
-      next.has(key) ? next.delete(key) : next.add(key);
-      localStorage.setItem('ol_progress', JSON.stringify([...next]));
-      return { lessons: next };
+  const markComplete = (dayNum) => {
+    setCompleted(prev => {
+      const next = new Set(prev);
+      next.add(dayNum);
+      localStorage.setItem('ol_days', JSON.stringify([...next]));
+      return next;
     });
   };
 
-  const totalLessons    = MODULES.reduce((acc, m) => acc + m.lessons.length, 0);
-  const completedCount  = progress.lessons.size;
-  const progressPercent = Math.round((completedCount / totalLessons) * 100);
+  const goToDay = (num) => {
+    setActiveDay(num);
+    setPdfOpen(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
-  // ── LOADING ───────────────────────────────────────────────────
+  const progressPercent = Math.round((completed.size / DAYS.length) * 100);
+  const day = DAYS.find(d => d.num === activeDay);
+
   if (checking) {
     return (
-      <div style={{ minHeight: '100vh', background: CREAM, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <p style={{ ...T.sm, letterSpacing: '0.2em' }}>Verifying access...</p>
+      <div style={{ minHeight:'100vh', background:CREAM, display:'flex', alignItems:'center', justifyContent:'center' }}>
+        <p style={{ ...T.sm, letterSpacing:'0.2em' }}>Verifying access...</p>
       </div>
     );
   }
-
   if (!access) return null;
 
   return (
-    <div style={{ fontFamily: "'Jost', sans-serif", background: CREAM, minHeight: '100vh' }}>
+    <div style={{ fontFamily:"'Jost', sans-serif", background:WHITE, minHeight:'100vh' }}>
 
-      {/* NAV */}
+      {/* ── NAV ── */}
       <nav style={{
-        background: TEAL, padding: '16px 20px',
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+        background:TEAL, padding:'16px 28px',
+        display:'flex', alignItems:'center', justifyContent:'space-between',
+        position:'sticky', top:0, zIndex:100,
       }}>
         <span
-  onClick={() => navigate('/')}
-  style={{
-    fontFamily: "'Cormorant Garamond', Georgia, serif",
-    fontSize: '22px',
-    fontWeight: 500,
-    letterSpacing: '0.28em',
-    color: '#c9a84c',
-    cursor: 'pointer',
-    textTransform: 'uppercase',
-  }}
->
-  SEAGLORÉ
-</span>
+          onClick={() => navigate('/')}
+          style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'18px', fontWeight:500, letterSpacing:'0.2em', color:'rgba(255,255,255,0.9)', cursor:'pointer' }}
+        >
+          SEAGLORÉ
+        </span>
         {!isMobile && (
-          <p style={{ ...T.label, color: 'rgba(255,255,255,0.6)', margin: 0 }}>
-            Ocean Living Certification
-          </p>
+          <p style={{ ...T.label, color:'rgba(255,255,255,0.5)', margin:0 }}>Ocean Living Certification</p>
         )}
-        <p style={{ ...T.sm, color: 'rgba(255,255,255,0.5)', margin: 0, fontSize: '12px' }}>
-          {completedCount}/{totalLessons} completed
+        <p style={{ fontFamily:"'Jost',sans-serif", fontSize:'12px', color:'rgba(255,255,255,0.45)', margin:0 }}>
+          {completed.size}/{DAYS.length} complete
         </p>
       </nav>
 
-      <div style={{ maxWidth: '960px', margin: '0 auto', padding: '48px 24px' }}>
+      {/* ── PROGRESS BAR ── */}
+      <div style={{ height:2, background:'#d8d3cc' }}>
+        <div style={{ height:'100%', background:TEAL_LT, width:`${progressPercent}%`, transition:'width 0.4s' }}/>
+      </div>
 
-        {/* HEADER */}
-        <div style={{ marginBottom: 48 }}>
-          <p style={{ ...T.label, marginBottom: 12 }}>Your Course</p>
-          <h1 style={{ ...T.h1, marginBottom: 16 }}>Ocean Living Certification Experience</h1>
-          <p style={{ ...T.body, color: MUTED, maxWidth: 540, marginBottom: 28 }}>
-            A 7-day guided return to clarity, ecological awareness, and a more intentional life.
-          </p>
-          <div style={{ background: WHITE, borderRadius: 99, height: 6, maxWidth: 380, overflow: 'hidden' }}>
-            <div style={{
-              height: '100%', background: TEAL_LT,
-              width: `${progressPercent}%`, transition: 'width 0.3s', borderRadius: 99,
-            }}/>
-          </div>
-          <p style={{ ...T.sm, fontSize: '12px', marginTop: 8 }}>
-            {progressPercent}% complete — {completedCount} of {totalLessons} lessons done
-          </p>
-        </div>
+      <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '240px 1fr', minHeight:'calc(100vh - 58px)' }}>
 
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 300px', gap: 24, alignItems: 'start' }}>
-
-          {/* MODULES */}
-          <div>
-            <p style={{ ...T.label, marginBottom: 20 }}>Course Modules</p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              {MODULES.map((module, mi) => (
-                <div key={mi} style={{ background: WHITE, border: `1px solid #d8d3cc`, borderRadius: 2, overflow: 'hidden' }}>
-                  <button
-                    onClick={() => setOpenModule(openModule === mi ? null : mi)}
-                    style={{
-                      width: '100%', display: 'flex', alignItems: 'center', gap: 16,
-                      padding: '20px 24px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left',
-                    }}
-                  >
-                    <span style={{ fontFamily: "'Jost', sans-serif", fontSize: '11px', fontWeight: 600, color: TEAL_LT, letterSpacing: '0.1em', minWidth: 24 }}>
-                      {module.num}
-                    </span>
-                    <div style={{ flex: 1 }}>
-                      <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.1rem', fontWeight: 500, color: TEAL, margin: 0 }}>
-                        {module.title}
-                      </p>
-                      <p style={{ ...T.sm, fontSize: '12px', margin: '2px 0 0' }}>
-                        {module.lessons.length} lessons
-                      </p>
-                    </div>
-                    {module.lessons.every((_, li) => progress.lessons.has(`${mi}-${li}`)) && (
-                      <span style={{ ...T.sm, fontSize: '11px', color: TEAL_LT }}>✓ Done</span>
-                    )}
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                      style={{ transform: openModule === mi ? 'rotate(180deg)' : 'none', transition: 'transform .2s' }}>
-                      <path d="M6 9l6 6 6-6" stroke={MUTED} strokeWidth="1.5" strokeLinecap="round"/>
+        {/* ── SIDEBAR ── */}
+        <aside style={{
+          background:CREAM2, borderRight:`1px solid #d8d3cc`,
+          padding:'28px 16px', position: isMobile ? 'static' : 'sticky',
+          top:58, maxHeight: isMobile ? 'auto' : 'calc(100vh - 58px)',
+          overflowY:'auto',
+        }}>
+          <p style={{ ...T.label, marginBottom:16, paddingLeft:8 }}>Your Journey</p>
+          <div style={{ display:'flex', flexDirection:'column', gap:4 }}>
+            {DAYS.map(d => (
+              <button
+                key={d.num}
+                onClick={() => goToDay(d.num)}
+                style={{
+                  display:'flex', gap:10, alignItems:'center',
+                  padding:'10px 12px', background:'none', border:'none',
+                  borderRadius:6, cursor: d.type==='coming' ? 'default' : 'pointer',
+                  textAlign:'left', width:'100%',
+                  backgroundColor: activeDay===d.num ? WHITE : 'transparent',
+                  borderLeft: activeDay===d.num ? `3px solid ${TEAL}` : '3px solid transparent',
+                  opacity: d.type==='coming' ? 0.45 : 1,
+                }}
+              >
+                <div style={{
+                  width:24, height:24, borderRadius:'50%', flexShrink:0,
+                  border:`1.5px solid ${completed.has(d.num) ? TEAL_LT : '#ccc'}`,
+                  background: completed.has(d.num) ? TEAL_LT : 'transparent',
+                  display:'flex', alignItems:'center', justifyContent:'center',
+                }}>
+                  {completed.has(d.num) ? (
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                      <path d="M5 12l5 5 9-10" stroke={WHITE} strokeWidth="2.5" strokeLinecap="round"/>
                     </svg>
-                  </button>
-
-                  {openModule === mi && (
-                    <div style={{ borderTop: `1px solid ${CREAM}`, padding: '16px 24px 20px' }}>
-                      <p style={{ ...T.sm, marginBottom: 16 }}>{module.description}</p>
-                      <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
-                        {module.lessons.map((lesson, li) => {
-                          const key  = `${mi}-${li}`;
-                          const done = progress.lessons.has(key);
-                          return (
-                            <div key={li}
-                              style={{
-                                display: 'flex', alignItems: 'center', gap: 12,
-                                padding: '12px 16px',
-                                background: done ? 'rgba(74,124,118,0.06)' : CREAM,
-                                borderRadius: 2, cursor: 'pointer',
-                              }}
-                              onClick={() => toggleLesson(key)}
-                            >
-                              <div style={{
-                                width: 18, height: 18, borderRadius: '50%', flexShrink: 0,
-                                border: `1.5px solid ${done ? TEAL_LT : '#ccc'}`,
-                                background: done ? TEAL_LT : 'transparent',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                              }}>
-                                {done && (
-                                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
-                                    <path d="M5 12l5 5 9-10" stroke={WHITE} strokeWidth="2.5" strokeLinecap="round"/>
-                                  </svg>
-                                )}
-                              </div>
-                              <div style={{ flex: 1 }}>
-                                <p style={{ ...T.body, fontSize: '14px', margin: 0, color: done ? MUTED : BODY, textDecoration: done ? 'line-through' : 'none' }}>
-                                  {lesson.title}
-                                </p>
-                              </div>
-                              <p style={{ ...T.sm, fontSize: '12px', flexShrink: 0 }}>{lesson.duration}</p>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
+                  ) : (
+                    <span style={{ fontFamily:"'Jost',sans-serif", fontSize:'10px', fontWeight:600, color:'#aaa' }}>{d.num}</span>
                   )}
                 </div>
-              ))}
-            </div>
+                <div>
+                  <p style={{ fontFamily:"'Jost',sans-serif", fontSize:'12px', fontWeight:500, color: activeDay===d.num ? TEAL : BODY, margin:0, lineHeight:1.3 }}>
+                    {d.label}
+                  </p>
+                  <p style={{ fontFamily:"'Jost',sans-serif", fontSize:'10px', color:MUTED, margin:0, textTransform:'uppercase', letterSpacing:'0.1em' }}>
+                    {d.type==='coming' ? 'Coming' : d.type==='video' ? 'Video' : 'Brochure'}
+                  </p>
+                </div>
+              </button>
+            ))}
           </div>
+        </aside>
 
-          {/* SIDEBAR */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <div style={{ background: WHITE, padding: '28px 24px', border: `1px solid #d8d3cc` }}>
-              <p style={{ ...T.label, marginBottom: 16 }}>Your Resources</p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {RESOURCES.map((r, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 12px', background: CREAM, borderRadius: 2, cursor: 'pointer' }}>
-                    <span style={{ fontSize: '18px' }}>{r.icon}</span>
-                    <div>
-                      <p style={{ ...T.body, fontSize: '13px', margin: 0 }}>{r.title}</p>
-                      <p style={{ ...T.sm, fontSize: '11px', margin: 0 }}>{r.type}</p>
+        {/* ── MAIN CONTENT ── */}
+        <main style={{ padding: isMobile ? '32px 20px' : '52px 60px', maxWidth:760 }}>
+
+          {/* Day label */}
+          <p style={{ ...T.label, marginBottom:16 }}>{day.label}</p>
+
+          {/* Title */}
+          <h1 style={{ ...T.h1, marginBottom: day.subtitle ? 8 : 32 }}>{day.title}</h1>
+          {day.subtitle && (
+            <p style={{ ...T.italic, marginBottom:32 }}>{day.subtitle}</p>
+          )}
+
+          {/* ── VIDEO DAY ── */}
+          {day.type === 'video' && (
+            <>
+              {/* Thumbnail → click to play */}
+              {day.thumbnail && !pdfOpen ? (
+                <div
+                  style={{ position:'relative', width:'100%', aspectRatio:'16/9', cursor:'pointer', marginBottom:28, borderRadius:4, overflow:'hidden' }}
+                  onClick={() => setPdfOpen(true)}
+                >
+                  <img
+                    src={day.thumbnail}
+                    alt={day.label}
+                    style={{ width:'100%', height:'100%', objectFit:'cover' }}
+                  />
+                  {/* Play button overlay */}
+                  <div style={{
+                    position:'absolute', inset:0,
+                    display:'flex', alignItems:'center', justifyContent:'center',
+                    background:'rgba(0,0,0,0.3)',
+                  }}>
+                    <div style={{
+                      width:72, height:72, borderRadius:'50%',
+                      background:'rgba(255,255,255,0.9)',
+                      display:'flex', alignItems:'center', justifyContent:'center',
+                    }}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill={TEAL}>
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
+              ) : (
+                <div style={{ width:'100%', aspectRatio:'16/9', marginBottom:28, borderRadius:4, overflow:'hidden', background:'#000' }}>
+                  <iframe
+                    src={day.videoEmbed}
+                    title={day.label}
+                    style={{ width:'100%', height:'100%', border:'none' }}
+                    allow="autoplay"
+                    allowFullScreen
+                  />
+                </div>
+              )}
 
-            {progressPercent === 100 && (
-              <div style={{ background: TEAL, padding: '28px 24px', textAlign: 'center' }}>
-                <p style={{ ...T.label, color: 'rgba(255,255,255,0.6)', marginBottom: 12 }}>Congratulations</p>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '1.3rem', fontWeight: 500, color: WHITE, marginBottom: 16 }}>
-                  You've completed the Ocean Living Certification
-                </p>
-                <button style={{
-                  width: '100%', padding: '14px 20px',
-                  background: WHITE, color: TEAL, border: 'none', cursor: 'pointer',
-                  fontFamily: "'Jost', sans-serif", fontSize: '11px', fontWeight: 500,
-                  letterSpacing: '0.2em', textTransform: 'uppercase',
-                }}>
-                  Download Certificate
-                </button>
-              </div>
-            )}
+              {/* Reflection text */}
+              {day.reflection && (
+                <p style={{ ...T.italic, marginBottom:36, textAlign:'center' }}>{day.reflection}</p>
+              )}
+            </>
+          )}
 
-            <div style={{ background: WHITE, padding: '24px', border: `1px solid #d8d3cc` }}>
-              <p style={{ ...T.label, marginBottom: 10 }}>Need Help?</p>
-              <p style={{ ...T.sm, marginBottom: 12 }}>For any questions about your course, contact us.</p>
-              <a href="mailto:info@seaglore.com" style={{
-                fontFamily: "'Jost', sans-serif", fontSize: '12px', fontWeight: 500,
-                letterSpacing: '0.14em', textTransform: 'uppercase', color: TEAL,
-                textDecoration: 'none', borderBottom: `1px solid ${TEAL}`, paddingBottom: 1,
-              }}>
-                info@seaglore.com
+          {/* ── BROCHURE DAY ── */}
+          {day.type === 'brochure' && (
+            <>
+              {/* Thumbnail preview */}
+              {day.thumbnail && !pdfOpen && (
+                <div style={{ position:'relative', width:'100%', marginBottom:28, borderRadius:4, overflow:'hidden', cursor:'pointer' }}
+                  onClick={() => setPdfOpen(true)}
+                >
+                  <img src={day.thumbnail} alt={day.label} style={{ width:'100%', objectFit:'cover', display:'block' }}/>
+                  <div style={{
+                    position:'absolute', inset:0, background:'rgba(0,0,0,0.25)',
+                    display:'flex', alignItems:'center', justifyContent:'center',
+                  }}>
+                    <div style={{
+                      background:'rgba(255,255,255,0.92)', padding:'12px 28px',
+                      fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
+                      letterSpacing:'0.18em', textTransform:'uppercase', color:TEAL,
+                    }}>
+                      Click to Open →
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* PDF embed — when opened */}
+              {pdfOpen && (
+                <div style={{ width:'100%', height:'70vh', marginBottom:28, borderRadius:4, overflow:'hidden', border:`1px solid #d8d3cc` }}>
+                  <iframe
+                    src={day.pdfUrl}
+                    title={day.label}
+                    style={{ width:'100%', height:'100%', border:'none' }}
+                  />
+                </div>
+              )}
+
+              {/* PDF download button */}
+              <a
+                href={day.pdfDownload}
+                download={day.pdfName}
+                target="_blank"
+                rel="noreferrer"
+                style={{
+                  display:'inline-flex', alignItems:'center', gap:8,
+                  background:WHITE, border:`1.5px solid ${TEAL}`,
+                  color:TEAL, textDecoration:'none',
+                  fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
+                  letterSpacing:'0.18em', textTransform:'uppercase',
+                  padding:'12px 24px', borderRadius:2, marginBottom:28,
+                }}
+              >
+                ↓ Download PDF
               </a>
-            </div>
-          </div>
 
-        </div>
+              {day.reflection && (
+                <p style={{ ...T.italic, marginBottom:36, textAlign:'center' }}>{day.reflection}</p>
+              )}
+            </>
+          )}
+
+          {/* ── COMING SOON ── */}
+          {day.type === 'coming' && (
+            <div style={{
+              background:CREAM2, padding:'48px 32px', textAlign:'center',
+              borderRadius:4, marginBottom:36,
+            }}>
+              <p style={{ ...T.italic, fontSize:'1.1rem', marginBottom:12 }}>This day will be available soon.</p>
+              <p style={{ ...T.sm }}>Complete the previous days first.</p>
+            </div>
+          )}
+
+          {/* ── DIVIDER ── */}
+          <div style={{ width:40, height:1, background:TEAL, margin:'8px 0 32px' }}/>
+
+          {/* ── CTA BUTTON ── */}
+          {day.cta && day.type !== 'coming' && (
+            <button
+              onClick={() => {
+                markComplete(day.num);
+                if (day.type === 'brochure' && !pdfOpen) {
+                  setPdfOpen(true);
+                } else if (day.nextDay) {
+                  goToDay(day.nextDay);
+                }
+              }}
+              style={{
+                background:TEAL, color:WHITE, border:'none', cursor:'pointer',
+                fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
+                letterSpacing:'0.22em', textTransform:'uppercase',
+                padding:'16px 40px', marginBottom:16,
+              }}
+            >
+              {day.type === 'brochure' && !pdfOpen ? day.cta : day.num < 7 ? `→ Continue to Day ${day.nextDay}` : '→ Complete Course'}
+            </button>
+          )}
+
+          {/* Mark complete */}
+          {!completed.has(day.num) && day.type !== 'coming' && (
+            <p
+              onClick={() => markComplete(day.num)}
+              style={{ ...T.sm, cursor:'pointer', textDecoration:'underline', marginTop:8 }}
+            >
+              Mark as complete
+            </p>
+          )}
+          {completed.has(day.num) && (
+            <p style={{ ...T.sm, color:TEAL_LT }}>✓ Day {day.num} complete</p>
+          )}
+
+          {/* Congratulations — all done */}
+          {completed.size === DAYS.length && (
+            <div style={{
+              marginTop:48, background:TEAL, padding:'36px 32px', textAlign:'center',
+            }}>
+              <p style={{ ...T.label, color:'rgba(255,255,255,0.6)', marginBottom:12 }}>Congratulations</p>
+              <p style={{
+                fontFamily:"'Cormorant Garamond',serif",
+                fontSize:'clamp(1.4rem,3vw,2rem)', fontWeight:400,
+                color:WHITE, marginBottom:20, lineHeight:1.4,
+              }}>
+                You have completed the<br/>Ocean Living Certification
+              </p>
+              <button style={{
+                background:WHITE, color:TEAL, border:'none', cursor:'pointer',
+                fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
+                letterSpacing:'0.2em', textTransform:'uppercase', padding:'14px 32px',
+              }}>
+                Download Certificate
+              </button>
+            </div>
+          )}
+
+        </main>
       </div>
     </div>
   );
