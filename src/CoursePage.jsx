@@ -537,117 +537,191 @@ export default function CoursePage() {
           )}
 
           {/* ── COMPLETION DAY 7 ── */}
-          {day.type === 'completion' && (() => {
-            const allPrevDone = [1,2,3,4,5,6].every(n => completed.has(n));
-            if (!allPrevDone) {
-              return (
-                <div style={{ background:CREAM2, padding:'48px 32px', textAlign:'center', borderRadius:4, marginBottom:36 }}>
-                  <p style={{ ...T.italic, fontSize:'1.1rem', marginBottom:12 }}>Please complete previous days to unlock this section.</p>
-                  <p style={{ ...T.sm }}>Days 1–6 must be completed first.</p>
-                </div>
-              );
+          {/* ── COMPLETION DAY 7 ── */}
+{day.type === 'completion' && (() => {
+  const allPrevDone = [1,2,3,4,5,6].every(n => completed.has(n));
+  if (!allPrevDone) {
+    return (
+      <div style={{ background:CREAM2, padding:'48px 32px', textAlign:'center', borderRadius:4, marginBottom:36 }}>
+        <p style={{ ...T.italic, fontSize:'1.1rem', marginBottom:12 }}>Please complete previous days to unlock this section.</p>
+        <p style={{ ...T.sm }}>Days 1–6 must be completed first.</p>
+      </div>
+    );
+  }
+  return (
+    <>
+      {/* Final video */}
+      <div style={{ width:'100%', maxWidth:680, margin:'0 auto 40px', aspectRatio:'16/9', borderRadius:4, overflow:'hidden', background:'#000' }}>
+        <iframe
+          src={day.videoEmbed}
+          title="Final Session"
+          style={{ width:'100%', height:'100%', border:'none' }}
+          allow="autoplay"
+          allowFullScreen
+          loading="lazy"
+        />
+      </div>
+
+      {/* Final text */}
+      <div style={{ maxWidth:560, margin:'0 auto 52px', textAlign:'center' }}>
+        {[
+          'You began on the surface.',
+          'Now you understand depth.',
+          'You have learned to pause before reacting.',
+          'To observe before deciding.',
+          'To return to stillness.',
+          'This is not something you complete.',
+          'It is something you carry.',
+          'From this point forward, move differently.',
+          'Slower when needed.',
+          'Clear when it matters.',
+          'Calm under pressure.',
+          'You are now living with intention.',
+        ].map((line, i) => (
+          <p key={i} style={{
+            fontFamily:"'Cormorant Garamond',Georgia,serif",
+            fontSize:'clamp(1rem,2.2vw,1.25rem)', fontWeight:400,
+            color: i < 2 ? TEAL : BODY,
+            lineHeight:2.2, margin:0,
+            marginTop: i===5 || i===8 ? 24 : 0,
+          }}>{line}</p>
+        ))}
+      </div>
+
+      {/* ─── CERTIFICATE WITH NAME INPUT ─── */}
+      <div style={{ textAlign:'center', marginBottom:60 }}>
+        <div style={{ width:40, height:1, background:TEAL, margin:'0 auto 32px' }}/>
+        
+        {/* Name Input Field */}
+        <div style={{ maxWidth:400, margin:'0 auto 32px' }}>
+          <p style={{ 
+            fontFamily:"'Jost',sans-serif", fontSize:'13px', fontWeight:500,
+            color:MUTED, marginBottom:12, letterSpacing:'0.04em'
+          }}>
+            Enter your full name as it should appear on the certificate:
+          </p>
+          <input
+            type="text"
+            value={userName}
+            onChange={(e) => {
+              setUserName(e.target.value);
+              localStorage.setItem('ol_buyer_name', e.target.value);
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && userName.trim()) {
+                generateOceanCertificate(userName.trim());
+                setCertIssued(true);
+              }
+            }}
+            placeholder="Your Full Name"
+            style={{
+              width:'100%',
+              padding:'15px 16px',
+              fontSize:'15px',
+              border:`1.5px solid #d8d3cc`,
+              background:WHITE,
+              color:TEAL,
+              fontFamily:"'Cormorant Garamond', Georgia, serif",
+              textAlign:'center',
+              outline:'none',
+              borderRadius:2,
+              boxSizing:'border-box',
+              marginBottom:16,
+            }}
+          />
+        </div>
+
+        {/* Generated name preview */}
+        {userName.trim() && (
+          <p style={{ 
+            fontFamily:"'Cormorant Garamond', Georgia, serif",
+            fontSize:'clamp(1.2rem,2.5vw,1.6rem)',
+            fontWeight:500,
+            color:TEAL,
+            marginBottom:24,
+            fontStyle:'italic'
+          }}>
+            Certificate for: {userName.trim()}
+          </p>
+        )}
+
+        {/* Download Button */}
+        <button
+          onClick={() => {
+            if (userName.trim()) {
+              generateOceanCertificate(userName.trim());
+              setCertIssued(true);
             }
-            return (
-              <>
-                {/* Final video */}
-                <div style={{ width:'100%', maxWidth:680, margin:'0 auto 40px', aspectRatio:'16/9', borderRadius:4, overflow:'hidden', background:'#000' }}>
-                  <iframe
-                    src={day.videoEmbed}
-                    title="Final Session"
-                    style={{ width:'100%', height:'100%', border:'none' }}
-                    allow="autoplay"
-                    allowFullScreen
-                    loading="lazy"
-                  />
-                </div>
+          }}
+          disabled={!userName.trim()}
+          style={{
+            display:'inline-block',
+            background: userName.trim() ? TEAL : '#ccc',
+            color:WHITE,
+            fontFamily:"'Jost',sans-serif",
+            fontSize:'11px',
+            fontWeight:500,
+            letterSpacing:'0.22em',
+            textTransform:'uppercase',
+            padding:'16px 48px',
+            border:'none',
+            cursor: userName.trim() ? 'pointer' : 'not-allowed',
+            textDecoration:'none',
+            marginBottom:12,
+            borderRadius:2,
+            transition:'background 0.2s',
+          }}
+        >
+          ↓ Download Certificate
+        </button>
 
-                {/* Final text */}
-                <div style={{ maxWidth:560, margin:'0 auto 52px', textAlign:'center' }}>
-                  {[
-                    'You began on the surface.',
-                    'Now you understand depth.',
-                    'You have learned to pause before reacting.',
-                    'To observe before deciding.',
-                    'To return to stillness.',
-                    'This is not something you complete.',
-                    'It is something you carry.',
-                    'From this point forward, move differently.',
-                    'Slower when needed.',
-                    'Clear when it matters.',
-                    'Calm under pressure.',
-                    'You are now living with intention.',
-                  ].map((line, i) => (
-                    <p key={i} style={{
-                      fontFamily:"'Cormorant Garamond',Georgia,serif",
-                      fontSize:'clamp(1rem,2.2vw,1.25rem)', fontWeight:400,
-                      color: i < 2 ? TEAL : BODY,
-                      lineHeight:2.2, margin:0,
-                      marginTop: i===5 || i===8 ? 24 : 0,
-                    }}>{line}</p>
-                  ))}
-                </div>
+        {!userName.trim() && (
+          <p style={{ ...T.sm, color:'#aaa', marginTop:8 }}>
+            Please enter your name to download
+          </p>
+        )}
 
-                {/* Certificate — UPDATED: Generate using jsPDF with Ocean Living design */}
-                <div style={{ textAlign:'center', marginBottom:60 }}>
-                  <div style={{ width:40, height:1, background:TEAL, margin:'0 auto 32px' }}/>
-                  <p style={{ ...T.italic, marginBottom:16 }}>
-                    Certificate prepared for: <strong style={{ color:TEAL }}>{userName || 'Student'}</strong>
-                  </p>
-                  <button
-                    onClick={() => {
-                      const name = userName || 'Student';
-                      generateOceanCertificate(name);
-                      setCertIssued(true);
-                    }}
-                    style={{
-                      display:'inline-block', background:TEAL, color:WHITE,
-                      fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
-                      letterSpacing:'0.22em', textTransform:'uppercase',
-                      padding:'16px 48px', border:'none', cursor:'pointer',
-                      textDecoration:'none', marginBottom:12,
-                    }}
-                  >
-                    ↓ Download Certificate
-                  </button>
-                  {certIssued && (
-                    <p style={{ ...T.sm, color:TEAL_LT, marginTop:8 }}>✓ Your certificate has been issued.</p>
-                  )}
-                </div>
+        {certIssued && (
+          <p style={{ ...T.sm, color:TEAL_LT, marginTop:8 }}>
+            ✓ Your certificate has been issued.
+          </p>
+        )}
+      </div>
 
-                {/* Continue your journey */}
-                <div style={{ borderTop:`1px solid #d8d3cc`, paddingTop:52, marginBottom:52 }}>
-                  <p style={{ ...T.label, textAlign:'center', marginBottom:12 }}>Continue Your Journey</p>
-                  <p style={{ ...T.italic, textAlign:'center', marginBottom:48 }}>Ocean Living was only the beginning.</p>
-                  <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:20 }}>
-                    <div style={{ background:CREAM2, padding:'36px 28px' }}>
-                      <p style={{ ...T.label, marginBottom:12 }}>SEAGLORÉ Academy</p>
-                      <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.2rem,2.5vw,1.6rem)', fontWeight:400, color:TEAL, marginBottom:12, lineHeight:1.3 }}>
-                        A structured path for long-term clarity, calm, and intentional living.
-                      </p>
-                      <a href="/ocean-living-certification" style={{
-                        display:'inline-block', background:TEAL, color:WHITE,
-                        fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
-                        letterSpacing:'0.18em', textTransform:'uppercase',
-                        padding:'12px 28px', textDecoration:'none', marginTop:8,
-                      }}>Enter the Academy</a>
-                    </div>
-                    <div style={{ background:CREAM2, padding:'36px 28px' }}>
-                      <p style={{ ...T.label, marginBottom:12 }}>Private Experience</p>
-                      <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.2rem,2.5vw,1.6rem)', fontWeight:400, color:TEAL, marginBottom:12, lineHeight:1.3 }}>
-                        A high-level personal experience designed to refine your presence, thinking, and control.
-                      </p>
-                      <a href="/upsell-ocean" style={{
-                        display:'inline-block', background:TEAL, color:WHITE,
-                        fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
-                        letterSpacing:'0.18em', textTransform:'uppercase',
-                        padding:'12px 28px', textDecoration:'none', marginTop:8,
-                      }}>Apply for Private Coaching</a>
-                    </div>
-                  </div>
-                </div>
-              </>
-            );
-          })()}
+      {/* Continue your journey */}
+      <div style={{ borderTop:`1px solid #d8d3cc`, paddingTop:52, marginBottom:52 }}>
+        <p style={{ ...T.label, textAlign:'center', marginBottom:12 }}>Continue Your Journey</p>
+        <p style={{ ...T.italic, textAlign:'center', marginBottom:48 }}>Ocean Living was only the beginning.</p>
+        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:20 }}>
+          <div style={{ background:CREAM2, padding:'36px 28px' }}>
+            <p style={{ ...T.label, marginBottom:12 }}>SEAGLORÉ Academy</p>
+            <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.2rem,2.5vw,1.6rem)', fontWeight:400, color:TEAL, marginBottom:12, lineHeight:1.3 }}>
+              A structured path for long-term clarity, calm, and intentional living.
+            </p>
+            <a href="/ocean-living-certification" style={{
+              display:'inline-block', background:TEAL, color:WHITE,
+              fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
+              letterSpacing:'0.18em', textTransform:'uppercase',
+              padding:'12px 28px', textDecoration:'none', marginTop:8,
+            }}>Enter the Academy</a>
+          </div>
+          <div style={{ background:CREAM2, padding:'36px 28px' }}>
+            <p style={{ ...T.label, marginBottom:12 }}>Private Experience</p>
+            <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.2rem,2.5vw,1.6rem)', fontWeight:400, color:TEAL, marginBottom:12, lineHeight:1.3 }}>
+              A high-level personal experience designed to refine your presence, thinking, and control.
+            </p>
+            <a href="/upsell-ocean" style={{
+              display:'inline-block', background:TEAL, color:WHITE,
+              fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
+              letterSpacing:'0.18em', textTransform:'uppercase',
+              padding:'12px 28px', textDecoration:'none', marginTop:8,
+            }}>Apply for Private Coaching</a>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+})()}
 
           {/* ── DIVIDER ── */}
           <div style={{ width:40, height:1, background:TEAL, margin:'8px 0 32px' }}/>
