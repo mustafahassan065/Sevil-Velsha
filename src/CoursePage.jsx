@@ -2,7 +2,8 @@
 // Ocean Living Certification — Course Dashboard
 // Route: /course-ocean-living
 // Protected: session check on load
-// Structure: Day 1 (Video) → Day 2 (Brochure) → Day 3 (Video) → Day 4 (Brochure) → Day 5–7 coming
+// UPDATED: Email → info@seaglore.com with Gmail direct compose
+// UPDATED: Certificate generation with jsPDF for Ocean Living design
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -35,6 +36,126 @@ const T = {
   body:   { fontFamily: "'Jost', sans-serif", fontSize: '15px', fontWeight: 400, lineHeight: 1.8, color: BODY },
   sm:     { fontFamily: "'Jost', sans-serif", fontSize: '13px', color: MUTED, lineHeight: 1.6 },
 };
+
+// ── CERTIFICATE GENERATOR — Ocean Living Design ─────────────────
+function generateOceanCertificate(userName) {
+  const script = document.createElement('script');
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js';
+  script.onload = () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+    const w = 297; const h = 210;
+    const today = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    const certId = 'SOL-' + Date.now().toString(36).toUpperCase();
+
+    // Background — cream
+    doc.setFillColor(238, 233, 226); // #eee9e2 (CREAM)
+    doc.rect(0, 0, w, h, 'F');
+
+    // Outer border — teal
+    doc.setDrawColor(45, 74, 71); // #2d4a47
+    doc.setLineWidth(1.5);
+    doc.rect(8, 8, w-16, h-16);
+
+    // Inner border — light teal
+    doc.setDrawColor(74, 124, 118); // #4a7c76
+    doc.setLineWidth(0.5);
+    doc.rect(14, 14, w-28, h-28);
+
+    // Corner marks — top-left
+    doc.setDrawColor(180, 180, 170);
+    doc.setLineWidth(0.5);
+    doc.line(20, 20, 35, 20); doc.line(20, 20, 20, 35);
+    // top-right
+    doc.line(w-35, 20, w-20, 20); doc.line(w-20, 20, w-20, 35);
+    // bottom-left
+    doc.line(20, h-35, 20, h-20); doc.line(20, h-20, 35, h-20);
+    // bottom-right
+    doc.line(w-35, h-20, w-20, h-20); doc.line(w-20, h-35, w-20, h-20);
+
+    // SEAGLORÉ header
+    doc.setFontSize(10);
+    doc.setTextColor(45, 74, 71);
+    doc.setFont('helvetica', 'bold');
+    doc.text('S E A G L O R É   A C A D E M Y', w/2, 32, { align:'center' });
+
+    // Gold accent line
+    doc.setDrawColor(201, 169, 110);
+    doc.setLineWidth(0.6);
+    doc.line(60, 38, w-60, 38);
+
+    // Title
+    doc.setFontSize(26);
+    doc.setTextColor(45, 74, 71);
+    doc.text('Certification in Ocean Living Systems', w/2, 52, { align:'center' });
+
+    // This certifies that
+    doc.setFontSize(11);
+    doc.setTextColor(90, 108, 109);
+    doc.setFont('helvetica', 'normal');
+    doc.text('This certifies that', w/2, 68, { align:'center' });
+
+    // NAME — large prominent
+    doc.setFontSize(36);
+    doc.setTextColor(45, 74, 71);
+    doc.setFont('helvetica', 'bolditalic');
+    doc.text(userName, w/2, 88, { align:'center' });
+
+    // Line under name
+    const nameWidth = doc.getTextWidth(userName);
+    doc.setDrawColor(45, 74, 71);
+    doc.setLineWidth(0.4);
+    doc.line(w/2 - nameWidth/2 - 8, 94, w/2 + nameWidth/2 + 8, 94);
+
+    // Description
+    doc.setFontSize(10);
+    doc.setTextColor(90, 108, 109);
+    doc.setFont('helvetica', 'normal');
+    doc.text('has successfully completed the SEAGLORÉ Academy program', w/2, 104, { align:'center' });
+    doc.text('and demonstrated applied understanding of:', w/2, 112, { align:'center' });
+
+    // Skills
+    doc.setFontSize(10);
+    doc.setTextColor(45, 74, 71);
+    const skills = ['Sustainable Living Systems', 'Environmental Awareness', 'Personal Wellbeing Through Natural Alignment'];
+    skills.forEach((skill, i) => {
+      doc.text('•  ' + skill, w/2 - 60 + (i < 2 ? 0 : 80), 124 + (i % 2) * 8, { align:'left' });
+    });
+
+    // Gold divider
+    doc.setDrawColor(201, 169, 110);
+    doc.setLineWidth(0.5);
+    doc.line(24, 140, w-24, 140);
+
+    // Quote
+    doc.setFontSize(12);
+    doc.setTextColor(74, 156, 148);
+    doc.setFont('helvetica', 'italic');
+    doc.text('"Where Nature Becomes Couture"', w/2, 152, { align:'center' });
+
+    // Footer
+    doc.setFontSize(11);
+    doc.setTextColor(45, 74, 71);
+    doc.setFont('helvetica', 'bold');
+    doc.text('SEAGLORÉ ACADEMY', w/2, 168, { align:'center' });
+
+    doc.setFontSize(9);
+    doc.setTextColor(122, 138, 136);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Issued: ' + today + '    |    Certificate ID: ' + certId, w/2, 176, { align:'center' });
+    doc.text('Verify: seaglore.com/verify', w/2, 184, { align:'center' });
+
+    // Save
+    doc.save(`Ocean-Living-Certificate-${userName.replace(/\s+/g,'-')}.pdf`);
+  };
+  if (!document.querySelector('script[src*="jspdf"]')) {
+    document.head.appendChild(script);
+  } else if (window.jspdf) {
+    script.onload();
+  } else {
+    document.head.appendChild(script);
+  }
+}
 
 // ── COURSE DAYS ────────────────────────────────────────────────────
 const DAYS = [
@@ -152,6 +273,13 @@ export default function CoursePage() {
   });
   const [pdfOpen, setPdfOpen]     = useState(false);
   const [certIssued, setCertIssued] = useState(false);
+  const [userName, setUserName]   = useState('');
+
+  // Load user name from localStorage (set during checkout or form)
+  useEffect(() => {
+    const saved = localStorage.getItem('ol_buyer_name') || localStorage.getItem('ol_lead_name') || '';
+    if (saved) setUserName(saved);
+  }, []);
 
   // Mark day 7 complete when all previous days done
   useEffect(() => {
@@ -308,7 +436,6 @@ export default function CoursePage() {
           {/* ── VIDEO DAY ── */}
           {day.type === 'video' && (
             <>
-              {/* Thumbnail → click to play */}
               {day.thumbnail && !pdfOpen ? (
                 <div
                   style={{ position:'relative', width:'100%', aspectRatio:'16/9', cursor:'pointer', marginBottom:28, borderRadius:4, overflow:'hidden' }}
@@ -319,7 +446,6 @@ export default function CoursePage() {
                     alt={day.label}
                     style={{ width:'100%', height:'100%', objectFit:'cover' }}
                   />
-                  {/* Play button overlay */}
                   <div style={{
                     position:'absolute', inset:0,
                     display:'flex', alignItems:'center', justifyContent:'center',
@@ -348,7 +474,6 @@ export default function CoursePage() {
                 </div>
               )}
 
-              {/* Reflection text */}
               {day.reflection && (
                 <p style={{ ...T.italic, marginBottom:36, textAlign:'center' }}>{day.reflection}</p>
               )}
@@ -358,7 +483,6 @@ export default function CoursePage() {
           {/* ── BROCHURE DAY ── */}
           {day.type === 'brochure' && (
             <>
-              {/* Thumbnail preview */}
               {day.thumbnail && !pdfOpen && (
                 <div style={{ position:'relative', width:'100%', marginBottom:28, borderRadius:4, overflow:'hidden', cursor:'pointer' }}
                   onClick={() => setPdfOpen(true)}
@@ -379,7 +503,6 @@ export default function CoursePage() {
                 </div>
               )}
 
-              {/* PDF embed — when opened */}
               {pdfOpen && (
                 <div style={{ width:'100%', height:'70vh', marginBottom:28, borderRadius:4, overflow:'hidden', border:`1px solid #d8d3cc` }}>
                   <iframe
@@ -390,7 +513,6 @@ export default function CoursePage() {
                 </div>
               )}
 
-              {/* PDF download button */}
               <a
                 href={day.pdfDownload}
                 download={day.pdfName}
@@ -465,24 +587,30 @@ export default function CoursePage() {
                   ))}
                 </div>
 
-                {/* Certificate */}
+                {/* Certificate — UPDATED: Generate using jsPDF with Ocean Living design */}
                 <div style={{ textAlign:'center', marginBottom:60 }}>
                   <div style={{ width:40, height:1, background:TEAL, margin:'0 auto 32px' }}/>
-                  <a
-                    href="/pdfs/ocean-living-certificate.pdf"
-                    download="Ocean-Living-Certificate.pdf"
-                    onClick={() => setCertIssued(true)}
+                  <p style={{ ...T.italic, marginBottom:16 }}>
+                    Certificate prepared for: <strong style={{ color:TEAL }}>{userName || 'Student'}</strong>
+                  </p>
+                  <button
+                    onClick={() => {
+                      const name = userName || 'Student';
+                      generateOceanCertificate(name);
+                      setCertIssued(true);
+                    }}
                     style={{
                       display:'inline-block', background:TEAL, color:WHITE,
                       fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
                       letterSpacing:'0.22em', textTransform:'uppercase',
-                      padding:'16px 48px', textDecoration:'none', marginBottom:12,
+                      padding:'16px 48px', border:'none', cursor:'pointer',
+                      textDecoration:'none', marginBottom:12,
                     }}
                   >
-                    Download Certificate
-                  </a>
+                    ↓ Download Certificate
+                  </button>
                   {certIssued && (
-                    <p style={{ ...T.sm, color:TEAL_LT, marginTop:8 }}>Your certificate has been issued.</p>
+                    <p style={{ ...T.sm, color:TEAL_LT, marginTop:8 }}>✓ Your certificate has been issued.</p>
                   )}
                 </div>
 
@@ -559,20 +687,20 @@ export default function CoursePage() {
             <p style={{ ...T.sm, color:TEAL_LT }}>✓ Day {day.num} complete</p>
           )}
 
-          {/* ── SUPPORT SECTION — visible on all days ── */}
+          {/* ── SUPPORT SECTION — UPDATED EMAIL ── */}
           <div style={{ marginTop:64, borderTop:`1px solid #d8d3cc`, paddingTop:48, display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:24 }}>
 
-            {/* Email support */}
+            {/* Email support — UPDATED: info@seaglore.com + Gmail direct compose */}
             <div style={{ background:CREAM2, padding:'28px 24px' }}>
               <p style={{ ...T.label, marginBottom:12 }}>Need Assistance?</p>
               <p style={{ ...T.body, fontSize:'14px', color:MUTED, marginBottom:16, lineHeight:1.7 }}>
                 If you have any questions or need support, please contact us:
               </p>
-              <a href="mailto:seaglore@gmail.com" style={{
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@seaglore.com" style={{
                 fontFamily:"'Jost',sans-serif", fontSize:'13px', fontWeight:500,
                 color:TEAL, textDecoration:'none', borderBottom:`1px solid ${TEAL}`, paddingBottom:2,
               }}>
-                seaglore@gmail.com
+                info@seaglore.com
               </a>
             </div>
 
