@@ -166,7 +166,7 @@ const DAYS = [
     title: 'You don\'t begin by doing more.',
     subtitle: 'You begin by slowing down.',
     reflection: 'Take one moment today to simply observe.',
-    thumbnail: 'https://drive.google.com/thumbnail?id=1QDDX3tbDx8RMl2YURVh4-WgbmBuBGulW&sz=w800',  // ← wahi thumbnail
+    thumbnail: null,  // ← wahi thumbnail
     videoEmbed: 'https://drive.google.com/file/d/19rRsJhNClFaXJ3J3Y5tJGu-AjCRRC_lb/preview',   // ← new Module 1
     cta: '→ Continue to Day 2',
     nextDay: 2,
@@ -192,7 +192,7 @@ const DAYS = [
     title: 'Now you begin to feel the shift.',
     subtitle: null,
     reflection: 'What changed in your pace?',
-    thumbnail: 'https://drive.google.com/thumbnail?id=1EgsZtur6eH4unhuk0O4YEfdjWW5aGDzC&sz=w800',  // ← wahi thumbnail
+    thumbnail: null,  // ← wahi thumbnail
     videoEmbed: 'https://drive.google.com/file/d/1zugcewAC39jCNrXfPdU3Fm7IKEY9k3H2/preview',   // ← new Module 2
     cta: '→ Continue to Day 4',
     nextDay: 4,
@@ -218,7 +218,7 @@ const DAYS = [
     title: 'Build simple, intentional behaviors.',
     subtitle: null,
     reflection: null,
-    thumbnail: 'https://drive.google.com/thumbnail?id=1ovJbJRwdonAw5ZnB1XvpXMsx3l32sJ5Z&sz=w800',  // ← wahi thumbnail
+    thumbnail: null,  // ← wahi thumbnail
     videoEmbed: 'https://drive.google.com/file/d/1cVo54mKYoOZV1Zwo7He6LmKFLGaKgmUo/preview',   // ← new Module 3
     cta: '→ Continue to Day 6',
     nextDay: 6,
