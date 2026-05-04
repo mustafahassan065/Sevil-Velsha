@@ -157,17 +157,17 @@ function generateOceanCertificate(userName) {
   }
 }
 
-
+// ── COURSE DAYS ────────────────────────────────────────────────────
 const DAYS = [
   {
     num: 1,
-    label: 'Module 1',
+    label: 'Day 1 — Reset',
     type: 'video',
-    title: 'Module 1',
-    subtitle: null,
-    reflection: null,
-    thumbnail: null,
-    videoEmbed: 'https://drive.google.com/file/d/19rRsJhNClFaXJ3J3Y5tJGu-AjCRRC_lb/preview',
+    title: 'You don\'t begin by doing more.',
+    subtitle: 'You begin by slowing down.',
+    reflection: 'Take one moment today to simply observe.',
+    thumbnail: 'https://drive.google.com/thumbnail?id=1QDDX3tbDx8RMl2YURVh4-WgbmBuBGulW&sz=w800',  // ← wahi thumbnail
+    videoEmbed: 'https://drive.google.com/file/d/19rRsJhNClFaXJ3J3Y5tJGu-AjCRRC_lb/preview',   // ← new Module 1
     cta: '→ Continue to Day 2',
     nextDay: 2,
   },
@@ -179,21 +179,21 @@ const DAYS = [
     subtitle: 'It is about seeing.',
     reflection: null,
     thumbnail: null,
-    pdfUrl: 'https://drive.google.com/file/d/1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI/preview',
-    pdfDownload: 'https://drive.google.com/uc?export=download&id=1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI',
+    pdfUrl: 'https://drive.google.com/file/d/1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI/preview',       // ← unchanged
+    pdfDownload: 'https://drive.google.com/uc?export=download&id=1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI', // ← unchanged
     pdfName: 'Ocean-Living-Guide.pdf',
     cta: '→ Open Ocean Living Guide',
     nextDay: 3,
   },
   {
     num: 3,
-    label: 'Module 2',
+    label: 'Day 3 — Slowing Down',
     type: 'video',
-    title: 'Module 2',
+    title: 'Now you begin to feel the shift.',
     subtitle: null,
-    reflection: null,
-    thumbnail: null,
-    videoEmbed: 'https://drive.google.com/file/d/1zugcewAC39jCNrXfPdU3Fm7IKEY9k3H2/preview',
+    reflection: 'What changed in your pace?',
+    thumbnail: 'https://drive.google.com/thumbnail?id=1EgsZtur6eH4unhuk0O4YEfdjWW5aGDzC&sz=w800',  // ← wahi thumbnail
+    videoEmbed: 'https://drive.google.com/file/d/1zugcewAC39jCNrXfPdU3Fm7IKEY9k3H2/preview',   // ← new Module 2
     cta: '→ Continue to Day 4',
     nextDay: 4,
   },
@@ -205,33 +205,33 @@ const DAYS = [
     subtitle: null,
     reflection: null,
     thumbnail: null,
-    pdfUrl: 'https://drive.google.com/file/d/1uZsahpwezi7C4_WR3kPQEShwJwL9etud/preview',
-    pdfDownload: 'https://drive.google.com/uc?export=download&id=1uZsahpwezi7C4_WR3kPQEShwJwL9etud',
+    pdfUrl: 'https://drive.google.com/file/d/1uZsahpwezi7C4_WR3kPQEShwJwL9etud/preview',       // ← unchanged
+    pdfDownload: 'https://drive.google.com/uc?export=download&id=1uZsahpwezi7C4_WR3kPQEShwJwL9etud', // ← unchanged
     pdfName: 'Ocean-Studies-Volume-1.pdf',
     cta: '→ Read Ocean Studies Volume I',
     nextDay: 5,
   },
   {
     num: 5,
-    label: 'Module 3',
+    label: 'Day 5 — Control',
     type: 'video',
-    title: 'Module 3',
+    title: 'Build simple, intentional behaviors.',
     subtitle: null,
     reflection: null,
-    thumbnail: null,
-    videoEmbed: 'https://drive.google.com/file/d/1cVo54mKYoOZV1Zwo7He6LmKFLGaKgmUo/preview',
-    cta: '→ Continue to Final',
+    thumbnail: 'https://drive.google.com/thumbnail?id=1ovJbJRwdonAw5ZnB1XvpXMsx3l32sJ5Z&sz=w800',  // ← wahi thumbnail
+    videoEmbed: 'https://drive.google.com/file/d/1cVo54mKYoOZV1Zwo7He6LmKFLGaKgmUo/preview',   // ← new Module 3
+    cta: '→ Continue to Day 6',
     nextDay: 6,
   },
   {
     num: 6,
-    label: 'Final',
+    label: 'Day 6 — Integration',
     type: 'video',
-    title: 'Final Session',
+    title: 'Apply the system to your daily routine.',
     subtitle: null,
-    reflection: null,
+    reflection: 'How will you move differently from here?',
     thumbnail: null,
-    videoEmbed: 'https://drive.google.com/file/d/1WfDRUxZ528dvVCQfw3Hbty2E9Td3hRf5/preview',
+    videoEmbed: 'https://drive.google.com/file/d/1WfDRUxZ528dvVCQfw3Hbty2E9Td3hRf5/preview',   // ← new Final
     cta: '→ Continue to Day 7',
     nextDay: 7,
   },
@@ -243,14 +243,13 @@ const DAYS = [
     subtitle: null,
     reflection: null,
     thumbnail: null,
-    pdfUrl: 'https://drive.google.com/file/d/1uZsahpwezi7C4_WR3kPQEShwJwL9etud/preview',
+    pdfUrl: 'https://drive.google.com/file/d/1uZsahpwezi7C4_WR3kPQEShwJwL9etud/preview',       // ← new brochure
     pdfDownload: 'https://drive.google.com/uc?export=download&id=1uZsahpwezi7C4_WR3kPQEShwJwL9etud',
     pdfName: 'Ocean-Studies-Brochure.pdf',
     cta: null,
     nextDay: null,
   },
 ];
-
 function useWindowWidth() {
   const [w, setW] = React.useState(window.innerWidth);
   React.useEffect(() => {
