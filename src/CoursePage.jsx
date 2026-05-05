@@ -2,8 +2,7 @@
 // Ocean Living Certification — Course Dashboard
 // Route: /course-ocean-living
 // Protected: session check on load
-// UPDATED: Email → info@seaglore.com with Gmail direct compose
-// UPDATED: Certificate generation with jsPDF for Ocean Living design
+// UPDATED: Brochure days auto-open full preview
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -48,104 +47,69 @@ function generateOceanCertificate(userName) {
     const today = new Date().toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
     const certId = 'SOL-' + Date.now().toString(36).toUpperCase();
 
-    // Background — cream
-    doc.setFillColor(238, 233, 226); // #eee9e2 (CREAM)
+    doc.setFillColor(238, 233, 226);
     doc.rect(0, 0, w, h, 'F');
-
-    // Outer border — teal
-    doc.setDrawColor(45, 74, 71); // #2d4a47
+    doc.setDrawColor(45, 74, 71);
     doc.setLineWidth(1.5);
     doc.rect(8, 8, w-16, h-16);
-
-    // Inner border — light teal
-    doc.setDrawColor(74, 124, 118); // #4a7c76
+    doc.setDrawColor(74, 124, 118);
     doc.setLineWidth(0.5);
     doc.rect(14, 14, w-28, h-28);
-
-    // Corner marks — top-left
     doc.setDrawColor(180, 180, 170);
     doc.setLineWidth(0.5);
     doc.line(20, 20, 35, 20); doc.line(20, 20, 20, 35);
-    // top-right
     doc.line(w-35, 20, w-20, 20); doc.line(w-20, 20, w-20, 35);
-    // bottom-left
     doc.line(20, h-35, 20, h-20); doc.line(20, h-20, 35, h-20);
-    // bottom-right
     doc.line(w-35, h-20, w-20, h-20); doc.line(w-20, h-35, w-20, h-20);
-
-    // SEAGLORÉ header
     doc.setFontSize(10);
     doc.setTextColor(45, 74, 71);
     doc.setFont('helvetica', 'bold');
     doc.text('S E A G L O R É   A C A D E M Y', w/2, 32, { align:'center' });
-
-    // Gold accent line
     doc.setDrawColor(201, 169, 110);
     doc.setLineWidth(0.6);
     doc.line(60, 38, w-60, 38);
-
-    // Title
     doc.setFontSize(26);
     doc.setTextColor(45, 74, 71);
     doc.text('Certification in Ocean Living Systems', w/2, 52, { align:'center' });
-
-    // This certifies that
     doc.setFontSize(11);
     doc.setTextColor(90, 108, 109);
     doc.setFont('helvetica', 'normal');
     doc.text('This certifies that', w/2, 68, { align:'center' });
-
-    // NAME — large prominent
     doc.setFontSize(36);
     doc.setTextColor(45, 74, 71);
     doc.setFont('helvetica', 'bolditalic');
     doc.text(userName, w/2, 88, { align:'center' });
-
-    // Line under name
     const nameWidth = doc.getTextWidth(userName);
     doc.setDrawColor(45, 74, 71);
     doc.setLineWidth(0.4);
     doc.line(w/2 - nameWidth/2 - 8, 94, w/2 + nameWidth/2 + 8, 94);
-
-    // Description
     doc.setFontSize(10);
     doc.setTextColor(90, 108, 109);
     doc.setFont('helvetica', 'normal');
     doc.text('has successfully completed the SEAGLORÉ Academy program', w/2, 104, { align:'center' });
     doc.text('and demonstrated applied understanding of:', w/2, 112, { align:'center' });
-
-    // Skills
     doc.setFontSize(10);
     doc.setTextColor(45, 74, 71);
     const skills = ['Sustainable Living Systems', 'Environmental Awareness', 'Personal Wellbeing Through Natural Alignment'];
     skills.forEach((skill, i) => {
       doc.text('•  ' + skill, w/2 - 60 + (i < 2 ? 0 : 80), 124 + (i % 2) * 8, { align:'left' });
     });
-
-    // Gold divider
     doc.setDrawColor(201, 169, 110);
     doc.setLineWidth(0.5);
     doc.line(24, 140, w-24, 140);
-
-    // Quote
     doc.setFontSize(12);
     doc.setTextColor(74, 156, 148);
     doc.setFont('helvetica', 'italic');
     doc.text('"Where Nature Becomes Couture"', w/2, 152, { align:'center' });
-
-    // Footer
     doc.setFontSize(11);
     doc.setTextColor(45, 74, 71);
     doc.setFont('helvetica', 'bold');
     doc.text('SEAGLORÉ ACADEMY', w/2, 168, { align:'center' });
-
     doc.setFontSize(9);
     doc.setTextColor(122, 138, 136);
     doc.setFont('helvetica', 'normal');
     doc.text('Issued: ' + today + '    |    Certificate ID: ' + certId, w/2, 176, { align:'center' });
     doc.text('Verify: seaglore.com/verify', w/2, 184, { align:'center' });
-
-    // Save
     doc.save(`Ocean-Living-Certificate-${userName.replace(/\s+/g,'-')}.pdf`);
   };
   if (!document.querySelector('script[src*="jspdf"]')) {
@@ -166,8 +130,8 @@ const DAYS = [
     title: 'You don\'t begin by doing more.',
     subtitle: 'You begin by slowing down.',
     reflection: 'Take one moment today to simply observe.',
-    thumbnail: null,  // ← wahi thumbnail
-    videoEmbed: 'https://drive.google.com/file/d/19rRsJhNClFaXJ3J3Y5tJGu-AjCRRC_lb/preview',   // ← new Module 1
+    thumbnail: null,
+    videoEmbed: 'https://drive.google.com/file/d/19rRsJhNClFaXJ3J3Y5tJGu-AjCRRC_lb/preview',
     cta: '→ Continue to Day 2',
     nextDay: 2,
   },
@@ -179,10 +143,10 @@ const DAYS = [
     subtitle: 'It is about seeing.',
     reflection: null,
     thumbnail: null,
-    pdfUrl: 'https://drive.google.com/file/d/1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI/preview',       // ← unchanged
-    pdfDownload: 'https://drive.google.com/uc?export=download&id=1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI', // ← unchanged
+    pdfUrl: 'https://drive.google.com/file/d/1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI/preview',
+    pdfDownload: 'https://drive.google.com/uc?export=download&id=1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI',
     pdfName: 'Ocean-Living-Guide.pdf',
-    cta: '→ Open Ocean Living Guide',
+    cta: '→ Continue to Day 3',
     nextDay: 3,
   },
   {
@@ -192,8 +156,8 @@ const DAYS = [
     title: 'Now you begin to feel the shift.',
     subtitle: null,
     reflection: 'What changed in your pace?',
-    thumbnail: null,  // ← wahi thumbnail
-    videoEmbed: 'https://drive.google.com/file/d/1zugcewAC39jCNrXfPdU3Fm7IKEY9k3H2/preview',   // ← new Module 2
+    thumbnail: null,
+    videoEmbed: 'https://drive.google.com/file/d/1zugcewAC39jCNrXfPdU3Fm7IKEY9k3H2/preview',
     cta: '→ Continue to Day 4',
     nextDay: 4,
   },
@@ -205,10 +169,10 @@ const DAYS = [
     subtitle: null,
     reflection: null,
     thumbnail: null,
-    pdfUrl: 'https://drive.google.com/file/d/1uZsahpwezi7C4_WR3kPQEShwJwL9etud/preview',       // ← unchanged
-    pdfDownload: 'https://drive.google.com/uc?export=download&id=1uZsahpwezi7C4_WR3kPQEShwJwL9etud', // ← unchanged
+    pdfUrl: 'https://drive.google.com/file/d/1uZsahpwezi7C4_WR3kPQEShwJwL9etud/preview',
+    pdfDownload: 'https://drive.google.com/uc?export=download&id=1uZsahpwezi7C4_WR3kPQEShwJwL9etud',
     pdfName: 'Ocean-Studies-Volume-1.pdf',
-    cta: '→ Read Ocean Studies Volume I',
+    cta: '→ Continue to Day 5',
     nextDay: 5,
   },
   {
@@ -218,8 +182,8 @@ const DAYS = [
     title: 'Build simple, intentional behaviors.',
     subtitle: null,
     reflection: null,
-    thumbnail: null,  // ← wahi thumbnail
-    videoEmbed: 'https://drive.google.com/file/d/1cVo54mKYoOZV1Zwo7He6LmKFLGaKgmUo/preview',   // ← new Module 3
+    thumbnail: null,
+    videoEmbed: 'https://drive.google.com/file/d/1cVo54mKYoOZV1Zwo7He6LmKFLGaKgmUo/preview',
     cta: '→ Continue to Day 6',
     nextDay: 6,
   },
@@ -231,7 +195,7 @@ const DAYS = [
     subtitle: null,
     reflection: 'How will you move differently from here?',
     thumbnail: null,
-    videoEmbed: 'https://drive.google.com/file/d/1WfDRUxZ528dvVCQfw3Hbty2E9Td3hRf5/preview',   // ← new Final
+    videoEmbed: 'https://drive.google.com/file/d/1WfDRUxZ528dvVCQfw3Hbty2E9Td3hRf5/preview',
     cta: '→ Continue to Day 7',
     nextDay: 7,
   },
@@ -243,13 +207,14 @@ const DAYS = [
     subtitle: null,
     reflection: null,
     thumbnail: null,
-    pdfUrl: 'https://drive.google.com/file/d/1uZsahpwezi7C4_WR3kPQEShwJwL9etud/preview',       // ← new brochure
+    pdfUrl: 'https://drive.google.com/file/d/1uZsahpwezi7C4_WR3kPQEShwJwL9etud/preview',
     pdfDownload: 'https://drive.google.com/uc?export=download&id=1uZsahpwezi7C4_WR3kPQEShwJwL9etud',
     pdfName: 'Ocean-Studies-Brochure.pdf',
     cta: null,
     nextDay: null,
   },
 ];
+
 function useWindowWidth() {
   const [w, setW] = React.useState(window.innerWidth);
   React.useEffect(() => {
@@ -276,11 +241,21 @@ export default function CoursePage() {
   const [certIssued, setCertIssued] = useState(false);
   const [userName, setUserName]   = useState('');
 
-  // Load user name from localStorage (set during checkout or form)
+  // Load user name from localStorage
   useEffect(() => {
     const saved = localStorage.getItem('ol_buyer_name') || localStorage.getItem('ol_lead_name') || '';
     if (saved) setUserName(saved);
   }, []);
+
+  // 🔥 Brochure days auto-open full preview
+  useEffect(() => {
+    const day = DAYS.find(d => d.num === activeDay);
+    if (day && day.type === 'brochure') {
+      setPdfOpen(true);
+    } else {
+      setPdfOpen(false);
+    }
+  }, [activeDay]);
 
   // Mark day 7 complete when all previous days done
   useEffect(() => {
@@ -326,7 +301,6 @@ export default function CoursePage() {
 
   const goToDay = (num) => {
     setActiveDay(num);
-    setPdfOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -425,100 +399,42 @@ export default function CoursePage() {
         {/* ── MAIN CONTENT ── */}
         <main style={{ padding: isMobile ? '32px 20px' : '52px 60px', maxWidth:760 }}>
 
-          {/* Day label */}
           <p style={{ ...T.label, marginBottom:16 }}>{day.label}</p>
-
-          {/* Title */}
           <h1 style={{ ...T.h1, marginBottom: day.subtitle ? 8 : 32 }}>{day.title}</h1>
-          {day.subtitle && (
-            <p style={{ ...T.italic, marginBottom:32 }}>{day.subtitle}</p>
-          )}
+          {day.subtitle && <p style={{ ...T.italic, marginBottom:32 }}>{day.subtitle}</p>}
 
           {/* ── VIDEO DAY ── */}
           {day.type === 'video' && (
             <>
               {day.thumbnail && !pdfOpen ? (
-                <div
-                  style={{ position:'relative', width:'100%', aspectRatio:'16/9', cursor:'pointer', marginBottom:28, borderRadius:4, overflow:'hidden' }}
-                  onClick={() => setPdfOpen(true)}
-                >
-                  <img
-                    src={day.thumbnail}
-                    alt={day.label}
-                    style={{ width:'100%', height:'100%', objectFit:'cover' }}
-                  />
-                  <div style={{
-                    position:'absolute', inset:0,
-                    display:'flex', alignItems:'center', justifyContent:'center',
-                    background:'rgba(0,0,0,0.3)',
-                  }}>
-                    <div style={{
-                      width:72, height:72, borderRadius:'50%',
-                      background:'rgba(255,255,255,0.9)',
-                      display:'flex', alignItems:'center', justifyContent:'center',
-                    }}>
-                      <svg width="28" height="28" viewBox="0 0 24 24" fill={TEAL}>
-                        <path d="M8 5v14l11-7z"/>
-                      </svg>
+                <div style={{ position:'relative', width:'100%', aspectRatio:'16/9', cursor:'pointer', marginBottom:28, borderRadius:4, overflow:'hidden' }}
+                  onClick={() => setPdfOpen(true)}>
+                  <img src={day.thumbnail} alt={day.label} style={{ width:'100%', height:'100%', objectFit:'cover' }}/>
+                  <div style={{ position:'absolute', inset:0, display:'flex', alignItems:'center', justifyContent:'center', background:'rgba(0,0,0,0.3)' }}>
+                    <div style={{ width:72, height:72, borderRadius:'50%', background:'rgba(255,255,255,0.9)', display:'flex', alignItems:'center', justifyContent:'center' }}>
+                      <svg width="28" height="28" viewBox="0 0 24 24" fill={TEAL}><path d="M8 5v14l11-7z"/></svg>
                     </div>
                   </div>
                 </div>
               ) : (
                 <div style={{ width:'100%', aspectRatio:'16/9', marginBottom:28, borderRadius:4, overflow:'hidden', background:'#000' }}>
-                  <iframe
-                    src={day.videoEmbed}
-                    title={day.label}
-                    style={{ width:'100%', height:'100%', border:'none' }}
-                    allow="autoplay"
-                    allowFullScreen
-                  />
+                  <iframe src={day.videoEmbed} title={day.label} style={{ width:'100%', height:'100%', border:'none' }} allow="autoplay" allowFullScreen/>
                 </div>
               )}
-
-              {day.reflection && (
-                <p style={{ ...T.italic, marginBottom:36, textAlign:'center' }}>{day.reflection}</p>
-              )}
+              {day.reflection && <p style={{ ...T.italic, marginBottom:36, textAlign:'center' }}>{day.reflection}</p>}
             </>
           )}
 
-          {/* ── BROCHURE DAY ── */}
+          {/* ── BROCHURE DAY — AUTO-OPEN FULL PREVIEW ── */}
           {day.type === 'brochure' && (
             <>
-              {day.thumbnail && !pdfOpen && (
-                <div style={{ position:'relative', width:'100%', marginBottom:28, borderRadius:4, overflow:'hidden', cursor:'pointer' }}
-                  onClick={() => setPdfOpen(true)}
-                >
-                  <img src={day.thumbnail} alt={day.label} style={{ width:'100%', objectFit:'cover', display:'block' }}/>
-                  <div style={{
-                    position:'absolute', inset:0, background:'rgba(0,0,0,0.25)',
-                    display:'flex', alignItems:'center', justifyContent:'center',
-                  }}>
-                    <div style={{
-                      background:'rgba(255,255,255,0.92)', padding:'12px 28px',
-                      fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
-                      letterSpacing:'0.18em', textTransform:'uppercase', color:TEAL,
-                    }}>
-                      Click to Open →
-                    </div>
-                  </div>
-                </div>
-              )}
-
               {pdfOpen && (
-                <div style={{ width:'100%', height:'70vh', marginBottom:28, borderRadius:4, overflow:'hidden', border:`1px solid #d8d3cc` }}>
-                  <iframe
-                    src={day.pdfUrl}
-                    title={day.label}
-                    style={{ width:'100%', height:'100%', border:'none' }}
-                  />
+                <div style={{ width:'100%', height:'75vh', marginBottom:20, borderRadius:4, overflow:'hidden', border:`1px solid #d8d3cc` }}>
+                  <iframe src={day.pdfUrl} title={day.label} style={{ width:'100%', height:'100%', border:'none' }}/>
                 </div>
               )}
 
-              <a
-                href={day.pdfDownload}
-                download={day.pdfName}
-                target="_blank"
-                rel="noreferrer"
+              <a href={day.pdfDownload} download={day.pdfName} target="_blank" rel="noreferrer"
                 style={{
                   display:'inline-flex', alignItems:'center', gap:8,
                   background:WHITE, border:`1.5px solid ${TEAL}`,
@@ -526,276 +442,107 @@ export default function CoursePage() {
                   fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
                   letterSpacing:'0.18em', textTransform:'uppercase',
                   padding:'12px 24px', borderRadius:2, marginBottom:28,
-                }}
-              >
+                }}>
                 ↓ Download PDF
               </a>
-
-              {day.reflection && (
-                <p style={{ ...T.italic, marginBottom:36, textAlign:'center' }}>{day.reflection}</p>
-              )}
+              {day.reflection && <p style={{ ...T.italic, marginBottom:36, textAlign:'center' }}>{day.reflection}</p>}
             </>
           )}
 
-          {/* ── COMPLETION DAY 7 ── */}
-          {/* ── COMPLETION DAY 7 ── */}
-{day.type === 'completion' && (() => {
-  const allPrevDone = [1,2,3,4,5,6].every(n => completed.has(n));
-  if (!allPrevDone) {
-    return (
-      <div style={{ background:CREAM2, padding:'48px 32px', textAlign:'center', borderRadius:4, marginBottom:36 }}>
-        <p style={{ ...T.italic, fontSize:'1.1rem', marginBottom:12 }}>Please complete previous days to unlock this section.</p>
-        <p style={{ ...T.sm }}>Days 1–6 must be completed first.</p>
-      </div>
-    );
-  }
-  return (
-    <>
-      {/* Final video */}
-      <div style={{ width:'100%', maxWidth:680, margin:'0 auto 40px', aspectRatio:'16/9', borderRadius:4, overflow:'hidden', background:'#000' }}>
-        <iframe
-          src={day.videoEmbed}
-          title="Final Session"
-          style={{ width:'100%', height:'100%', border:'none' }}
-          allow="autoplay"
-          allowFullScreen
-          loading="lazy"
-        />
-      </div>
-
-      {/* Final text */}
-      <div style={{ maxWidth:560, margin:'0 auto 52px', textAlign:'center' }}>
-        {[
-          'You began on the surface.',
-          'Now you understand depth.',
-          'You have learned to pause before reacting.',
-          'To observe before deciding.',
-          'To return to stillness.',
-          'This is not something you complete.',
-          'It is something you carry.',
-          'From this point forward, move differently.',
-          'Slower when needed.',
-          'Clear when it matters.',
-          'Calm under pressure.',
-          'You are now living with intention.',
-        ].map((line, i) => (
-          <p key={i} style={{
-            fontFamily:"'Cormorant Garamond',Georgia,serif",
-            fontSize:'clamp(1rem,2.2vw,1.25rem)', fontWeight:400,
-            color: i < 2 ? TEAL : BODY,
-            lineHeight:2.2, margin:0,
-            marginTop: i===5 || i===8 ? 24 : 0,
-          }}>{line}</p>
-        ))}
-      </div>
-
-      {/* ─── CERTIFICATE WITH NAME INPUT ─── */}
-      <div style={{ textAlign:'center', marginBottom:60 }}>
-        <div style={{ width:40, height:1, background:TEAL, margin:'0 auto 32px' }}/>
-        
-        {/* Name Input Field */}
-        <div style={{ maxWidth:400, margin:'0 auto 32px' }}>
-          <p style={{ 
-            fontFamily:"'Jost',sans-serif", fontSize:'13px', fontWeight:500,
-            color:MUTED, marginBottom:12, letterSpacing:'0.04em'
-          }}>
-            Enter your full name as it should appear on the certificate:
-          </p>
-          <input
-            type="text"
-            value={userName}
-            onChange={(e) => {
-              setUserName(e.target.value);
-              localStorage.setItem('ol_buyer_name', e.target.value);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && userName.trim()) {
-                generateOceanCertificate(userName.trim());
-                setCertIssued(true);
-              }
-            }}
-            placeholder="Your Full Name"
-            style={{
-              width:'100%',
-              padding:'15px 16px',
-              fontSize:'15px',
-              border:`1.5px solid #d8d3cc`,
-              background:WHITE,
-              color:TEAL,
-              fontFamily:"'Cormorant Garamond', Georgia, serif",
-              textAlign:'center',
-              outline:'none',
-              borderRadius:2,
-              boxSizing:'border-box',
-              marginBottom:16,
-            }}
-          />
-        </div>
-
-        {/* Generated name preview */}
-        {userName.trim() && (
-          <p style={{ 
-            fontFamily:"'Cormorant Garamond', Georgia, serif",
-            fontSize:'clamp(1.2rem,2.5vw,1.6rem)',
-            fontWeight:500,
-            color:TEAL,
-            marginBottom:24,
-            fontStyle:'italic'
-          }}>
-            Certificate for: {userName.trim()}
-          </p>
-        )}
-
-        {/* Download Button */}
-        <button
-          onClick={() => {
-            if (userName.trim()) {
-              generateOceanCertificate(userName.trim());
-              setCertIssued(true);
+          {/* ── COMPLETION ── */}
+          {day.type === 'completion' && (() => {
+            const allPrevDone = [1,2,3,4,5,6].every(n => completed.has(n));
+            if (!allPrevDone) {
+              return (
+                <div style={{ background:CREAM2, padding:'48px 32px', textAlign:'center', borderRadius:4, marginBottom:36 }}>
+                  <p style={{ ...T.italic, fontSize:'1.1rem', marginBottom:12 }}>Please complete previous days to unlock this section.</p>
+                  <p style={{ ...T.sm }}>Days 1–6 must be completed first.</p>
+                </div>
+              );
             }
-          }}
-          disabled={!userName.trim()}
-          style={{
-            display:'inline-block',
-            background: userName.trim() ? TEAL : '#ccc',
-            color:WHITE,
-            fontFamily:"'Jost',sans-serif",
-            fontSize:'11px',
-            fontWeight:500,
-            letterSpacing:'0.22em',
-            textTransform:'uppercase',
-            padding:'16px 48px',
-            border:'none',
-            cursor: userName.trim() ? 'pointer' : 'not-allowed',
-            textDecoration:'none',
-            marginBottom:12,
-            borderRadius:2,
-            transition:'background 0.2s',
-          }}
-        >
-          ↓ Download Certificate
-        </button>
+            return (
+              <>
+                <div style={{ maxWidth:560, margin:'0 auto 52px', textAlign:'center' }}>
+                  {['You began on the surface.','Now you understand depth.','You have learned to pause before reacting.','To observe before deciding.','To return to stillness.','This is not something you complete.','It is something you carry.','From this point forward, move differently.','Slower when needed.','Clear when it matters.','Calm under pressure.','You are now living with intention.'].map((line, i) => (
+                    <p key={i} style={{ fontFamily:"'Cormorant Garamond',Georgia,serif", fontSize:'clamp(1rem,2.2vw,1.25rem)', fontWeight:400, color: i < 2 ? TEAL : BODY, lineHeight:2.2, margin:0, marginTop: i===5 || i===8 ? 24 : 0 }}>{line}</p>
+                  ))}
+                </div>
 
-        {!userName.trim() && (
-          <p style={{ ...T.sm, color:'#aaa', marginTop:8 }}>
-            Please enter your name to download
-          </p>
-        )}
+                {/* Certificate */}
+                <div style={{ textAlign:'center', marginBottom:60 }}>
+                  <div style={{ width:40, height:1, background:TEAL, margin:'0 auto 32px' }}/>
+                  <div style={{ maxWidth:400, margin:'0 auto 32px' }}>
+                    <p style={{ fontFamily:"'Jost',sans-serif", fontSize:'13px', fontWeight:500, color:MUTED, marginBottom:12, letterSpacing:'0.04em' }}>
+                      Enter your full name as it should appear on the certificate:
+                    </p>
+                    <input type="text" value={userName}
+                      onChange={(e) => { setUserName(e.target.value); localStorage.setItem('ol_buyer_name', e.target.value); }}
+                      onKeyDown={(e) => { if (e.key === 'Enter' && userName.trim()) { generateOceanCertificate(userName.trim()); setCertIssued(true); } }}
+                      placeholder="Your Full Name"
+                      style={{ width:'100%', padding:'15px 16px', fontSize:'15px', border:`1.5px solid #d8d3cc`, background:WHITE, color:TEAL, fontFamily:"'Cormorant Garamond', Georgia, serif", textAlign:'center', outline:'none', borderRadius:2, boxSizing:'border-box', marginBottom:16 }}/>
+                  </div>
+                  {userName.trim() && (
+                    <p style={{ fontFamily:"'Cormorant Garamond', Georgia, serif", fontSize:'clamp(1.2rem,2.5vw,1.6rem)', fontWeight:500, color:TEAL, marginBottom:24, fontStyle:'italic' }}>
+                      Certificate for: {userName.trim()}
+                    </p>
+                  )}
+                  <button onClick={() => { if (userName.trim()) { generateOceanCertificate(userName.trim()); setCertIssued(true); } }}
+                    disabled={!userName.trim()}
+                    style={{ display:'inline-block', background: userName.trim() ? TEAL : '#ccc', color:WHITE, fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500, letterSpacing:'0.22em', textTransform:'uppercase', padding:'16px 48px', border:'none', cursor: userName.trim() ? 'pointer' : 'not-allowed', borderRadius:2, transition:'background 0.2s' }}>
+                    ↓ Download Certificate
+                  </button>
+                  {!userName.trim() && <p style={{ ...T.sm, color:'#aaa', marginTop:8 }}>Please enter your name to download</p>}
+                  {certIssued && <p style={{ ...T.sm, color:TEAL_LT, marginTop:8 }}>✓ Your certificate has been issued.</p>}
+                </div>
 
-        {certIssued && (
-          <p style={{ ...T.sm, color:TEAL_LT, marginTop:8 }}>
-            ✓ Your certificate has been issued.
-          </p>
-        )}
-      </div>
-
-      {/* Continue your journey */}
-      <div style={{ borderTop:`1px solid #d8d3cc`, paddingTop:52, marginBottom:52 }}>
-        <p style={{ ...T.label, textAlign:'center', marginBottom:12 }}>Continue Your Journey</p>
-        <p style={{ ...T.italic, textAlign:'center', marginBottom:48 }}>Ocean Living was only the beginning.</p>
-        <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:20 }}>
-          <div style={{ background:CREAM2, padding:'36px 28px' }}>
-            <p style={{ ...T.label, marginBottom:12 }}>SEAGLORÉ Academy</p>
-            <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.2rem,2.5vw,1.6rem)', fontWeight:400, color:TEAL, marginBottom:12, lineHeight:1.3 }}>
-              A structured path for long-term clarity, calm, and intentional living.
-            </p>
-            <a href="/ocean-living-certification" style={{
-              display:'inline-block', background:TEAL, color:WHITE,
-              fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
-              letterSpacing:'0.18em', textTransform:'uppercase',
-              padding:'12px 28px', textDecoration:'none', marginTop:8,
-            }}>Enter the Academy</a>
-          </div>
-          <div style={{ background:CREAM2, padding:'36px 28px' }}>
-            <p style={{ ...T.label, marginBottom:12 }}>Private Experience</p>
-            <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.2rem,2.5vw,1.6rem)', fontWeight:400, color:TEAL, marginBottom:12, lineHeight:1.3 }}>
-              A high-level personal experience designed to refine your presence, thinking, and control.
-            </p>
-            <a href="/upsell-ocean" style={{
-              display:'inline-block', background:TEAL, color:WHITE,
-              fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
-              letterSpacing:'0.18em', textTransform:'uppercase',
-              padding:'12px 28px', textDecoration:'none', marginTop:8,
-            }}>Apply for Private Coaching</a>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-})()}
+                <div style={{ borderTop:`1px solid #d8d3cc`, paddingTop:52, marginBottom:52 }}>
+                  <p style={{ ...T.label, textAlign:'center', marginBottom:12 }}>Continue Your Journey</p>
+                  <p style={{ ...T.italic, textAlign:'center', marginBottom:48 }}>Ocean Living was only the beginning.</p>
+                  <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:20 }}>
+                    <div style={{ background:CREAM2, padding:'36px 28px' }}>
+                      <p style={{ ...T.label, marginBottom:12 }}>SEAGLORÉ Academy</p>
+                      <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.2rem,2.5vw,1.6rem)', fontWeight:400, color:TEAL, marginBottom:12, lineHeight:1.3 }}>A structured path for long-term clarity, calm, and intentional living.</p>
+                      <a href="/ocean-living-certification" style={{ display:'inline-block', background:TEAL, color:WHITE, fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500, letterSpacing:'0.18em', textTransform:'uppercase', padding:'12px 28px', textDecoration:'none', marginTop:8 }}>Enter the Academy</a>
+                    </div>
+                    <div style={{ background:CREAM2, padding:'36px 28px' }}>
+                      <p style={{ ...T.label, marginBottom:12 }}>Private Experience</p>
+                      <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'clamp(1.2rem,2.5vw,1.6rem)', fontWeight:400, color:TEAL, marginBottom:12, lineHeight:1.3 }}>A high-level personal experience designed to refine your presence, thinking, and control.</p>
+                      <a href="/upsell-ocean" style={{ display:'inline-block', background:TEAL, color:WHITE, fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500, letterSpacing:'0.18em', textTransform:'uppercase', padding:'12px 28px', textDecoration:'none', marginTop:8 }}>Apply for Private Coaching</a>
+                    </div>
+                  </div>
+                </div>
+              </>
+            );
+          })()}
 
           {/* ── DIVIDER ── */}
           <div style={{ width:40, height:1, background:TEAL, margin:'8px 0 32px' }}/>
 
           {/* ── CTA BUTTON ── */}
-          {day.cta && day.type !== 'coming' && (
-            <button
-              onClick={() => {
-                markComplete(day.num);
-                if (day.type === 'brochure' && !pdfOpen) {
-                  setPdfOpen(true);
-                } else if (day.nextDay) {
-                  goToDay(day.nextDay);
-                }
-              }}
-              style={{
-                background:TEAL, color:WHITE, border:'none', cursor:'pointer',
-                fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
-                letterSpacing:'0.22em', textTransform:'uppercase',
-                padding:'16px 40px', marginBottom:16,
-              }}
-            >
-              {day.type === 'brochure' && !pdfOpen ? day.cta : day.num < 7 ? `→ Continue to Day ${day.nextDay}` : '→ Complete Course'}
+          {day.cta && (
+            <button onClick={() => { markComplete(day.num); if (day.nextDay) goToDay(day.nextDay); }}
+              style={{ background:TEAL, color:WHITE, border:'none', cursor:'pointer', fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500, letterSpacing:'0.22em', textTransform:'uppercase', padding:'16px 40px', marginBottom:16 }}>
+              {day.cta}
             </button>
           )}
 
-          {/* Mark complete */}
-          {!completed.has(day.num) && day.type !== 'coming' && (
-            <p
-              onClick={() => markComplete(day.num)}
-              style={{ ...T.sm, cursor:'pointer', textDecoration:'underline', marginTop:8 }}
-            >
-              Mark as complete
-            </p>
+          {!completed.has(day.num) && day.type !== 'completion' && (
+            <p onClick={() => markComplete(day.num)} style={{ ...T.sm, cursor:'pointer', textDecoration:'underline', marginTop:8 }}>Mark as complete</p>
           )}
-          {completed.has(day.num) && (
-            <p style={{ ...T.sm, color:TEAL_LT }}>✓ Day {day.num} complete</p>
-          )}
+          {completed.has(day.num) && <p style={{ ...T.sm, color:TEAL_LT }}>✓ Day {day.num} complete</p>}
 
-          {/* ── SUPPORT SECTION — UPDATED EMAIL ── */}
+          {/* ── SUPPORT ── */}
           <div style={{ marginTop:64, borderTop:`1px solid #d8d3cc`, paddingTop:48, display:'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap:24 }}>
-
-            {/* Email support — UPDATED: info@seaglore.com + Gmail direct compose */}
             <div style={{ background:CREAM2, padding:'28px 24px' }}>
               <p style={{ ...T.label, marginBottom:12 }}>Need Assistance?</p>
-              <p style={{ ...T.body, fontSize:'14px', color:MUTED, marginBottom:16, lineHeight:1.7 }}>
-                If you have any questions or need support, please contact us:
-              </p>
-              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@seaglore.com" style={{
-                fontFamily:"'Jost',sans-serif", fontSize:'13px', fontWeight:500,
-                color:TEAL, textDecoration:'none', borderBottom:`1px solid ${TEAL}`, paddingBottom:2,
-              }}>
-                info@seaglore.com
-              </a>
+              <p style={{ ...T.body, fontSize:'14px', color:MUTED, marginBottom:16, lineHeight:1.7 }}>If you have any questions or need support, please contact us:</p>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=info@seaglore.com" style={{ fontFamily:"'Jost',sans-serif", fontSize:'13px', fontWeight:500, color:TEAL, textDecoration:'none', borderBottom:`1px solid ${TEAL}`, paddingBottom:2 }}>info@seaglore.com</a>
             </div>
-
-            {/* WhatsApp */}
             <div style={{ background:CREAM2, padding:'28px 24px' }}>
               <p style={{ ...T.label, marginBottom:12 }}>Private Assistance</p>
-              <p style={{ ...T.body, fontSize:'14px', color:MUTED, marginBottom:16, lineHeight:1.7 }}>
-                For a more personalized experience, contact us directly.
-              </p>
-              <a
-                href="https://wa.me/17786366633"
-                target="_blank"
-                rel="noreferrer"
-                style={{
-                  display:'inline-block', background:'#25D366', color:WHITE,
-                  fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
-                  letterSpacing:'0.16em', textTransform:'uppercase',
-                  padding:'10px 24px', textDecoration:'none', borderRadius:2,
-                }}
-              >
+              <p style={{ ...T.body, fontSize:'14px', color:MUTED, marginBottom:16, lineHeight:1.7 }}>For a more personalized experience, contact us directly.</p>
+              <a href="https://wa.me/17786366633" target="_blank" rel="noreferrer"
+                style={{ display:'inline-block', background:'#25D366', color:WHITE, fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500, letterSpacing:'0.16em', textTransform:'uppercase', padding:'10px 24px', textDecoration:'none', borderRadius:2 }}>
                 Message on WhatsApp
               </a>
             </div>
