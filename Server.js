@@ -136,6 +136,156 @@ app.post('/api/ocean-lead', async (req, res) => {
 });
 
 // ═══════════════════════════════════════════════════════════════
+// POST /api/ocean-living-leads
+// Free Ocean Living Guide PDF form submit hone par
+// ═══════════════════════════════════════════════════════════════
+app.post('/api/ocean-living-leads', async (req, res) => {
+  try {
+    const { name, email } = req.body;
+    if (!email || !email.includes('@')) {
+      return res.status(400).json({ error: 'Valid email required.' });
+    }
+
+    // 1. Brevo leads list mein add karo
+    await addToBrevo({
+      email,
+      firstName: name?.split(' ')[0] || '',
+      lastName:  name?.split(' ').slice(1).join(' ') || '',
+      listId: parseInt(process.env.BREVO_LEADS_LIST_ID),
+      attributes: {
+        SOURCE: 'free_ocean_living_guide',
+        TAG: 'seaglore-free-pdf',
+      },
+    });
+
+    // 2. Customer ko PDF guide email bhejo
+    await sendBrevoEmail({
+      to: email,
+      subject: '📖 Your Free Ocean Living Guide is Ready!',
+      html: `
+        <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 40px 24px; color: #3a3a3a;">
+          <p style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #7a8a88; margin-bottom: 32px;">SEAGLORÉ</p>
+          <h1 style="font-size: 2rem; font-weight: 400; color: #2d4a47; margin-bottom: 8px;">Your Free Ocean Living Guide</h1>
+          <p style="font-size: 15px; line-height: 1.8; color: #7a8a88; margin-bottom: 24px; font-style: italic;">"Where Nature Becomes Couture"</p>
+          
+          <p style="font-size: 16px; line-height: 1.9; color: #3a3a3a; margin-bottom: 20px;">
+            ${name ? 'Hi ' + name.split(' ')[0] + ',' : 'Hello,'}
+          </p>
+          <p style="font-size: 16px; line-height: 1.9; color: #3a3a3a; margin-bottom: 20px;">
+            Thank you for requesting the <strong>Ocean Living Guide</strong>. Your free PDF is ready for download below.
+          </p>
+          <p style="font-size: 16px; line-height: 1.9; color: #3a3a3a; margin-bottom: 24px;">
+            This guide introduces you to calm, clarity, and intentional living — inspired by the rhythm of the ocean.
+          </p>
+          
+          <div style="text-align: center; margin: 36px 0;">
+            <a href="https://drive.google.com/uc?export=download&id=1uZsahpwezi7C4_WR3kPQEShwJwL9etud"
+               style="display: inline-block; padding: 16px 44px; background: #2d4a47; color: #ffffff; text-decoration: none; font-family: sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">
+              ↓ Download Your Free Guide
+            </a>
+          </div>
+
+          <div style="background: #ffffff; border: 1px solid #d8d3cc; padding: 24px; margin: 28px 0; text-align: center;">
+            <p style="font-size: 15px; font-weight: 600; color: #2d4a47; margin-bottom: 8px;">🌊 Ready for the Full Experience?</p>
+            <p style="font-size: 14px; line-height: 1.7; color: #5a6a68; margin-bottom: 16px;">
+              Join the complete 7-Day Ocean Reset Program and earn your Ocean Living Certification.
+            </p>
+            <a href="${process.env.CLIENT_URL}/checkout-ocean-living"
+               style="display: inline-block; padding: 14px 36px; background: #2d4a47; color: #ffffff; text-decoration: none; font-family: sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;">
+              Explore the 7-Day Reset — $49
+            </a>
+          </div>
+
+          <hr style="border: none; border-top: 1px solid #d8d3cc; margin: 32px 0;" />
+          <p style="font-size: 11px; color: #aaa; text-align: center;">
+            SEAGLORÉ · Where Nature Becomes Couture<br>
+            © ${new Date().getFullYear()} SEAGLORÉ. All rights reserved.
+          </p>
+        </div>
+      `,
+    });
+
+    // 3. Admin ko notification bhejo
+    await sendBrevoEmail({
+      to: 'info@seaglore.com',
+      subject: `🌊 New Ocean Living Guide Download — ${name || 'No Name'}`,
+      html: `
+        <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 40px 24px; color: #3a3a3a;">
+          <p style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #7a8a88; margin-bottom: 32px;">SEAGLORÉ</p>
+          <h1 style="font-size: 1.5rem; font-weight: 400; color: #2d4a47; margin-bottom: 16px;">New Lead — Free Ocean Living Guide</h1>
+          <table style="width: 100%; border-collapse: collapse; font-family: sans-serif;">
+            <tr><td style="padding: 10px; background: #eee9e2; font-weight: bold; font-size: 12px; color: #7a8a88;">Name</td><td style="padding: 10px; font-size: 14px;">${name || 'Not Provided'}</td></tr>
+            <tr><td style="padding: 10px; background: #eee9e2; font-weight: bold; font-size: 12px; color: #7a8a88;">Email</td><td style="padding: 10px; font-size: 14px;">${email}</td></tr>
+            <tr><td style="padding: 10px; background: #eee9e2; font-weight: bold; font-size: 12px; color: #7a8a88;">Date</td><td style="padding: 10px; font-size: 14px;">${new Date().toLocaleString()}</td></tr>
+            <tr><td style="padding: 10px; background: #eee9e2; font-weight: bold; font-size: 12px; color: #7a8a88;">Source</td><td style="padding: 10px; font-size: 14px;">Free Ocean Living Guide Page</td></tr>
+          </table>
+        </div>
+      `,
+    });
+
+    res.json({ success: true, message: 'Guide sent to your email!' });
+  } catch (err) {
+    console.error('Ocean Living lead error:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// ═══════════════════════════════════════════════════════════════
+// POST /api/send-contact
+// Contact form submit hone par
+// ═══════════════════════════════════════════════════════════════
+app.post('/api/send-contact', async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+    if (!name || !email || !email.includes('@') || !message) {
+      return res.status(400).json({ error: 'All fields required.' });
+    }
+
+    // 1. Admin ko notification bhejo
+    await sendBrevoEmail({
+      to: 'seaglore@gmail.com',
+      subject: `New Contact Message — ${name}`,
+      html: `
+        <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 40px; background: #fff;">
+          <h1 style="font-size: 24px; letter-spacing: 4px; text-transform: uppercase; color: #111; border-bottom: 2px solid #111; padding-bottom: 16px;">SEAGLORÉ</h1>
+          <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #999; margin-top: 24px;">New Contact Message</p>
+          <div style="background: #f8f5f0; padding: 24px; margin: 24px 0; border-left: 3px solid #c9a84c;">
+            <p style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin: 0 0 4px;">Name</p>
+            <p style="font-size: 16px; color: #111; margin: 0 0 16px;">${name}</p>
+            <p style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin: 0 0 4px;">Email</p>
+            <p style="font-size: 16px; color: #111; margin: 0 0 16px;">${email}</p>
+            <p style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin: 0 0 4px;">Message</p>
+            <p style="font-size: 15px; color: #333; margin: 0; line-height: 1.7;">${message.replace(/\n/g, '<br/>')}</p>
+          </div>
+          <p style="font-size: 11px; color: #999; font-style: italic; text-align: right; margin-top: 32px;">"We send beauty, not clutter."</p>
+        </div>
+      `,
+    });
+
+    // 2. Customer ko confirmation bhejo
+    await sendBrevoEmail({
+      to: email,
+      subject: 'Your Message — Seagloré',
+      html: `
+        <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 40px; background: #fff;">
+          <h1 style="font-size: 24px; letter-spacing: 4px; text-transform: uppercase; color: #111; border-bottom: 2px solid #111; padding-bottom: 16px;">SEAGLORÉ</h1>
+          <p style="font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #999; margin-top: 24px;">Message Received</p>
+          <p style="font-size: 20px; font-style: italic; color: #c9a84c; margin: 8px 0 24px;">Thank you, ${name}.</p>
+          <p style="font-size: 14px; color: #555; line-height: 1.8;">We have received your message and will be in touch shortly.</p>
+          <div style="border-top: 1px solid #eee; margin-top: 32px; padding-top: 24px;">
+            <p style="font-size: 11px; color: #999; font-style: italic; text-align: right;">"We send beauty, not clutter."</p>
+          </div>
+        </div>
+      `,
+    });
+
+    res.json({ success: true, message: 'Message sent successfully!' });
+  } catch (err) {
+    console.error('Contact form error:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+// ═══════════════════════════════════════════════════════════════
 // POST /api/stripe-webhook
 // Stripe payment complete hone par automatically call hota hai
 // ═══════════════════════════════════════════════════════════════
