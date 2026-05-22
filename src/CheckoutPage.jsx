@@ -210,6 +210,9 @@ export default function CheckoutPage() {
       {/* ═══════════════════════════════════════════════
           VIDEO — Moved down, optional
       ═══════════════════════════════════════════════ */}
+            {/* ═══════════════════════════════════════════════
+          VIDEO — Moved down, optional
+      ═══════════════════════════════════════════════ */}
       <section style={{ ...sectionPad, background: CREAM, textAlign: 'center' }}>
         <div style={{ ...container, maxWidth: '640px' }}>
           <p style={{ ...T.label, marginBottom: 12 }}>Watch a short introduction (optional)</p>
@@ -218,6 +221,11 @@ export default function CheckoutPage() {
               style={{ position:'relative', width:'100%', aspectRatio:'16/9', cursor:'pointer', borderRadius:4, overflow:'hidden', background:'#000' }}
               onClick={() => setShowIntroVideo(true)}
             >
+              <img
+                src="https://drive.google.com/thumbnail?id=1AVnr9OwUchvQhl2oqDhxCiR5dcg1zKgK"
+                alt="Introduction Video"
+                style={{ width:'100%', height:'100%', objectFit:'cover' }}
+              />
               <div style={{
                 position:'absolute', inset:0,
                 display:'flex', alignItems:'center', justifyContent:'center',
