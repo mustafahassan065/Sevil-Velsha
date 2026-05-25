@@ -116,15 +116,27 @@ export default function FreeOceanGuide() {
     <div style={{ fontFamily: "'Jost', sans-serif", background: CREAM, minHeight: '100vh' }}>
 
       {/* NAV */}
+            {/* NAV */}
       <nav style={{
         background: WHITE, padding: '14px 24px',
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
         borderBottom: `1px solid ${CREAM}`,
         position: 'sticky', top: 0, zIndex: 100,
       }}>
-        <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', fontWeight: 500, letterSpacing: '0.2em', color: TEAL }}>
+        <a 
+          href="/"
+          style={{ 
+            fontFamily: "'Cormorant Garamond', serif", 
+            fontSize: '18px', 
+            fontWeight: 500, 
+            letterSpacing: '0.2em', 
+            color: TEAL,
+            textDecoration: 'none',
+            cursor: 'pointer',
+          }}
+        >
           SEAGLORÉ
-        </span>
+        </a>
         <span style={{ ...T.xs, letterSpacing: '0.1em' }}>Free Ocean Guide</span>
       </nav>
 
