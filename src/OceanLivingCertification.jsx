@@ -279,6 +279,140 @@ export default function OceanLivingCertification() {
 
 </section>
 
+{/* ══════════════════════════════════════════════════════════
+    FREE EXPERIENCE BANNER
+    Place this RIGHT AFTER the hero section in OceanLivingCertification.jsx
+    Requires: useNavigate already imported (it is in this file)
+══════════════════════════════════════════════════════════ */}
+
+<section style={{
+  background: 'linear-gradient(135deg, #1a3330 0%, #2d4a47 60%, #1e3d3a 100%)',
+  padding: 'clamp(48px,7vw,72px) clamp(24px,5vw,80px)',
+  position: 'relative',
+  overflow: 'hidden',
+}}>
+  {/* Subtle decorative wave background */}
+  <svg
+    style={{ position: 'absolute', bottom: 0, left: 0, right: 0, opacity: 0.06, pointerEvents: 'none' }}
+    viewBox="0 0 1440 120" preserveAspectRatio="none" height="120" xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M0,60 C240,110 480,10 720,60 C960,110 1200,10 1440,60 L1440,120 L0,120 Z" fill="#eee9e2"/>
+    <path d="M0,80 C360,30 720,130 1080,80 C1260,55 1380,95 1440,80 L1440,120 L0,120 Z" fill="#eee9e2" opacity="0.5"/>
+  </svg>
+
+  {/* Glowing orb accent */}
+  <div style={{
+    position: 'absolute', top: -60, right: -60,
+    width: 300, height: 300, borderRadius: '50%',
+    background: 'radial-gradient(circle, rgba(74,124,118,0.25) 0%, transparent 70%)',
+    pointerEvents: 'none',
+  }} />
+
+  <div style={{
+    maxWidth: 1000, margin: '0 auto', position: 'relative', zIndex: 1,
+    display: 'grid', gridTemplateColumns: '1fr auto', gap: 'clamp(32px,5vw,60px)',
+    alignItems: 'center',
+  }}>
+
+    {/* Left — content */}
+    <div>
+      {/* Eyebrow label */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
+        <div style={{ width: 28, height: 1, background: 'rgba(238,233,226,0.4)' }} />
+        <p style={{
+          fontFamily: "'Jost', sans-serif", fontSize: '10px', fontWeight: 600,
+          letterSpacing: '0.26em', textTransform: 'uppercase',
+          color: 'rgba(238,233,226,0.55)', margin: 0,
+        }}>Free Access — No Commitment</p>
+      </div>
+
+      {/* Main headline */}
+      <h2 style={{
+        fontFamily: "'Cormorant Garamond', Georgia, serif",
+        fontSize: 'clamp(1.6rem,3.5vw,2.4rem)',
+        fontWeight: 500, lineHeight: 1.2,
+        color: '#eee9e2', margin: '0 0 10px',
+      }}>
+        Not ready to commit?<br/>
+        <span style={{ fontStyle: 'italic', color: '#a8c5c2' }}>Experience Ocean Living free first.</span>
+      </h2>
+
+      {/* Sub text */}
+      <p style={{
+        fontFamily: "'Jost', sans-serif", fontSize: '14px', fontWeight: 300,
+        color: 'rgba(238,233,226,0.6)', margin: '0 0 24px', lineHeight: 1.7,
+        maxWidth: 480,
+      }}>
+        Get an honest feel for the programme before you invest — a curated preview designed to move you.
+      </p>
+
+      {/* 3 checkmarks */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 28px' }}>
+        {[
+          'One complete lesson',
+          'One guided audio experience',
+          'One downloadable guide',
+        ].map((item, i) => (
+          <span key={i} style={{
+            display: 'flex', alignItems: 'center', gap: 8,
+            fontFamily: "'Jost', sans-serif",
+            fontSize: '13px', fontWeight: 400,
+            color: 'rgba(238,233,226,0.75)',
+          }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+              <circle cx="12" cy="12" r="11" stroke="rgba(168,197,194,0.4)" strokeWidth="1"/>
+              <path d="M7 12l3.5 3.5L17 8" stroke="#a8c5c2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    {/* Right — CTA block */}
+    <div style={{
+      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12,
+      minWidth: 200,
+    }}>
+      <button
+        onClick={() => navigate('/checkout-ocean-living')}
+        style={{
+          background: '#eee9e2',
+          color: '#2d4a47',
+          fontFamily: "'Jost', sans-serif",
+          fontSize: '12px', fontWeight: 700,
+          letterSpacing: '0.16em', textTransform: 'uppercase',
+          padding: '18px 36px',
+          border: 'none', cursor: 'pointer',
+          whiteSpace: 'nowrap', width: '100%',
+          transition: 'background 0.2s, transform 0.15s',
+          boxShadow: '0 4px 24px rgba(0,0,0,0.2)',
+        }}
+        onMouseEnter={e => {
+          e.currentTarget.style.background = '#ffffff';
+          e.currentTarget.style.transform = 'translateY(-2px)';
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.background = '#eee9e2';
+          e.currentTarget.style.transform = 'translateY(0)';
+        }}
+      >
+        Try the Free Experience →
+      </button>
+      <p style={{
+        fontFamily: "'Jost', sans-serif",
+        fontSize: '11px', fontWeight: 300,
+        color: 'rgba(238,233,226,0.35)',
+        margin: 0, textAlign: 'center',
+        letterSpacing: '0.04em',
+      }}>
+        No sign-up required
+      </p>
+    </div>
+
+  </div>
+</section>
+
 
       {/* ══════════════════════════════════════════
           WHAT THIS IS — New section

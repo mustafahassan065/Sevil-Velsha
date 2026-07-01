@@ -213,7 +213,7 @@ export default function CheckoutPage() {
             {/* ═══════════════════════════════════════════════
           VIDEO — Moved down, optional
       ═══════════════════════════════════════════════ */}
-      <section style={{ ...sectionPad, background: CREAM, textAlign: 'center' }}>
+      <section id="free-preview" style={{ ...sectionPad, background: CREAM, textAlign: 'center' }}>
         <div style={{ ...container, maxWidth: '640px' }}>
           <p style={{ ...T.label, marginBottom: 12 }}>Watch a short introduction (optional)</p>
           {!showIntroVideo ? (
