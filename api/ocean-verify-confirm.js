@@ -126,7 +126,7 @@ export default async function handler(req, res) {
     });
 
     // Redirect to thank you page
-    return res.redirect(302, `${process.env.NEXT_PUBLIC_BASE_URL}/ocean-free-confirmed`);
+    return res.redirect(302, `${process.env.CLIENT_URL}/ocean-free-confirmed`);
 
   } catch (err) {
     console.error('ocean-verify-confirm error:', err);

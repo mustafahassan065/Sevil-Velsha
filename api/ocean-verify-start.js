@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
   // Encode email as base64 token — no DB needed
   const token = Buffer.from(email.trim().toLowerCase()).toString('base64');
-  const verifyUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/ocean-verify-confirm?token=${token}`;
+  const verifyUrl = `${process.env.CLIENT_URL}/api/ocean-verify-confirm?token=${token}`;
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
