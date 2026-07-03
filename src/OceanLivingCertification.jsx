@@ -184,6 +184,41 @@ function useWindowWidth() {
 
 export default function OceanLivingCertification() {
   const navigate  = useNavigate();
+  const [freeModal, setFreeModal]       = useState(false);
+  const [freeEmail, setFreeEmail]       = useState('');
+  const [freeEmailErr, setFreeEmailErr] = useState('');
+  const [freeSending, setFreeSending]   = useState(false);
+  const [freeSent, setFreeSent]         = useState(false);
+ 
+  const handleFreeSubmit = async () => {
+    if (!freeEmail.trim() || !/\S+@\S+\.\S+/.test(freeEmail)) {
+      setFreeEmailErr('Please enter a valid email address.');
+      return;
+    }
+    setFreeEmailErr('');
+    setFreeSending(true);
+    try {
+      const res = await fetch('/api/ocean-verify-start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: freeEmail.trim() }),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setFreeSent(true);
+    } catch {
+      setFreeEmailErr('Something went wrong. Please try again.');
+    } finally {
+      setFreeSending(false);
+    }
+  };
+ 
+  const closeFreeModal = () => {
+    setFreeModal(false);
+    setFreeEmail('');
+    setFreeEmailErr('');
+    setFreeSent(false);
+  };
+ 
   const isMobile = useWindowWidth() < 768;
   const [scrolled, setScrolled] = useState(false);
   const [faq, setFaq]           = useState(null);
@@ -284,82 +319,49 @@ export default function OceanLivingCertification() {
     Place this RIGHT AFTER the hero section in OceanLivingCertification.jsx
     Requires: useNavigate already imported (it is in this file)
 ══════════════════════════════════════════════════════════ */}
-
 <section style={{
   background: 'linear-gradient(135deg, #1a3330 0%, #2d4a47 60%, #1e3d3a 100%)',
   padding: 'clamp(48px,7vw,72px) clamp(24px,5vw,80px)',
-  position: 'relative',
-  overflow: 'hidden',
+  position: 'relative', overflow: 'hidden',
 }}>
-  {/* Subtle decorative wave background */}
-  <svg
-    style={{ position: 'absolute', bottom: 0, left: 0, right: 0, opacity: 0.06, pointerEvents: 'none' }}
-    viewBox="0 0 1440 120" preserveAspectRatio="none" height="120" xmlns="http://www.w3.org/2000/svg"
-  >
+  {/* Decorative wave */}
+  <svg style={{ position:'absolute', bottom:0, left:0, right:0, opacity:0.06, pointerEvents:'none' }}
+    viewBox="0 0 1440 120" preserveAspectRatio="none" height="120">
     <path d="M0,60 C240,110 480,10 720,60 C960,110 1200,10 1440,60 L1440,120 L0,120 Z" fill="#eee9e2"/>
     <path d="M0,80 C360,30 720,130 1080,80 C1260,55 1380,95 1440,80 L1440,120 L0,120 Z" fill="#eee9e2" opacity="0.5"/>
   </svg>
-
-  {/* Glowing orb accent */}
-  <div style={{
-    position: 'absolute', top: -60, right: -60,
-    width: 300, height: 300, borderRadius: '50%',
-    background: 'radial-gradient(circle, rgba(74,124,118,0.25) 0%, transparent 70%)',
-    pointerEvents: 'none',
-  }} />
-
-  <div style={{
-    maxWidth: 1000, margin: '0 auto', position: 'relative', zIndex: 1,
-    display: 'grid', gridTemplateColumns: '1fr auto', gap: 'clamp(32px,5vw,60px)',
-    alignItems: 'center',
-  }}>
-
-    {/* Left — content */}
+  {/* Orb */}
+  <div style={{ position:'absolute', top:-60, right:-60, width:300, height:300, borderRadius:'50%',
+    background:'radial-gradient(circle, rgba(74,124,118,0.25) 0%, transparent 70%)', pointerEvents:'none' }} />
+ 
+  <div style={{ maxWidth:1000, margin:'0 auto', position:'relative', zIndex:1,
+    display:'grid', gridTemplateColumns:'1fr auto', gap:'clamp(32px,5vw,60px)', alignItems:'center' }}>
+ 
+    {/* Left */}
     <div>
-      {/* Eyebrow label */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-        <div style={{ width: 28, height: 1, background: 'rgba(238,233,226,0.4)' }} />
-        <p style={{
-          fontFamily: "'Jost', sans-serif", fontSize: '10px', fontWeight: 600,
-          letterSpacing: '0.26em', textTransform: 'uppercase',
-          color: 'rgba(238,233,226,0.55)', margin: 0,
-        }}>Free Access — No Commitment</p>
+      <div style={{ display:'flex', alignItems:'center', gap:10, marginBottom:16 }}>
+        <div style={{ width:28, height:1, background:'rgba(238,233,226,0.4)' }} />
+        <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'10px', fontWeight:600,
+          letterSpacing:'0.26em', textTransform:'uppercase', color:'rgba(238,233,226,0.55)', margin:0 }}>
+          Free Access — No Commitment
+        </p>
       </div>
-
-      {/* Main headline */}
-      <h2 style={{
-        fontFamily: "'Cormorant Garamond', Georgia, serif",
-        fontSize: 'clamp(1.6rem,3.5vw,2.4rem)',
-        fontWeight: 500, lineHeight: 1.2,
-        color: '#eee9e2', margin: '0 0 10px',
-      }}>
+      <h2 style={{ fontFamily:"'Cormorant Garamond', Georgia, serif",
+        fontSize:'clamp(1.6rem,3.5vw,2.4rem)', fontWeight:500, lineHeight:1.2,
+        color:'#eee9e2', margin:'0 0 10px' }}>
         Not ready to commit?<br/>
-        <span style={{ fontStyle: 'italic', color: '#a8c5c2' }}>Experience Ocean Living free first.</span>
+        <span style={{ fontStyle:'italic', color:'#a8c5c2' }}>Experience Ocean Living free first.</span>
       </h2>
-
-      {/* Sub text */}
-      <p style={{
-        fontFamily: "'Jost', sans-serif", fontSize: '14px', fontWeight: 300,
-        color: 'rgba(238,233,226,0.6)', margin: '0 0 24px', lineHeight: 1.7,
-        maxWidth: 480,
-      }}>
+      <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'14px', fontWeight:300,
+        color:'rgba(238,233,226,0.6)', margin:'0 0 24px', lineHeight:1.7, maxWidth:480 }}>
         Get an honest feel for the programme before you invest — a curated preview designed to move you.
       </p>
-
-      {/* 3 checkmarks */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px 28px' }}>
-        {[
-          'One complete lesson',
-          'One guided audio experience',
-          'One downloadable guide',
-        ].map((item, i) => (
-          <span key={i} style={{
-            display: 'flex', alignItems: 'center', gap: 8,
-            fontFamily: "'Jost', sans-serif",
-            fontSize: '13px', fontWeight: 400,
-            color: 'rgba(238,233,226,0.75)',
-          }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ flexShrink: 0 }}>
+      <div style={{ display:'flex', flexWrap:'wrap', gap:'10px 28px' }}>
+        {['One complete lesson', 'One guided audio experience', 'One downloadable guide'].map((item, i) => (
+          <span key={i} style={{ display:'flex', alignItems:'center', gap:8,
+            fontFamily:"'Jost', sans-serif", fontSize:'13px', fontWeight:400,
+            color:'rgba(238,233,226,0.75)' }}>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" style={{ flexShrink:0 }}>
               <circle cx="12" cy="12" r="11" stroke="rgba(168,197,194,0.4)" strokeWidth="1"/>
               <path d="M7 12l3.5 3.5L17 8" stroke="#a8c5c2" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -368,48 +370,25 @@ export default function OceanLivingCertification() {
         ))}
       </div>
     </div>
-
-    {/* Right — CTA block */}
-    <div style={{
-      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 12,
-      minWidth: 200,
-    }}>
+ 
+    {/* Right — CTA */}
+    <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:12, minWidth:200 }}>
       <button
-        onClick={() => navigate('/checkout-ocean-living')}
-        style={{
-          background: '#eee9e2',
-          color: '#2d4a47',
-          fontFamily: "'Jost', sans-serif",
-          fontSize: '12px', fontWeight: 700,
-          letterSpacing: '0.16em', textTransform: 'uppercase',
-          padding: '18px 36px',
-          border: 'none', cursor: 'pointer',
-          whiteSpace: 'nowrap', width: '100%',
-          transition: 'background 0.2s, transform 0.15s',
-          boxShadow: '0 4px 24px rgba(0,0,0,0.2)',
-        }}
-        onMouseEnter={e => {
-          e.currentTarget.style.background = '#ffffff';
-          e.currentTarget.style.transform = 'translateY(-2px)';
-        }}
-        onMouseLeave={e => {
-          e.currentTarget.style.background = '#eee9e2';
-          e.currentTarget.style.transform = 'translateY(0)';
-        }}
+        onClick={() => setFreeModal(true)}
+        style={{ background:'#eee9e2', color:'#2d4a47', fontFamily:"'Jost', sans-serif",
+          fontSize:'12px', fontWeight:700, letterSpacing:'0.16em', textTransform:'uppercase',
+          padding:'18px 36px', border:'none', cursor:'pointer', whiteSpace:'nowrap', width:'100%',
+          transition:'background 0.2s, transform 0.15s', boxShadow:'0 4px 24px rgba(0,0,0,0.2)' }}
+        onMouseEnter={e => { e.currentTarget.style.background='#ffffff'; e.currentTarget.style.transform='translateY(-2px)'; }}
+        onMouseLeave={e => { e.currentTarget.style.background='#eee9e2'; e.currentTarget.style.transform='translateY(0)'; }}
       >
         Try the Free Experience →
       </button>
-      <p style={{
-        fontFamily: "'Jost', sans-serif",
-        fontSize: '11px', fontWeight: 300,
-        color: 'rgba(238,233,226,0.35)',
-        margin: 0, textAlign: 'center',
-        letterSpacing: '0.04em',
-      }}>
-        No sign-up required
+      <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'11px', fontWeight:300,
+        color:'rgba(238,233,226,0.35)', margin:0, textAlign:'center', letterSpacing:'0.04em' }}>
+        Free — no credit card needed
       </p>
     </div>
-
   </div>
 </section>
 
@@ -1095,7 +1074,120 @@ export default function OceanLivingCertification() {
           </p>
         </div>
       </footer>
-
+{freeModal && (
+  <div
+    onClick={e => e.target === e.currentTarget && closeFreeModal()}
+    style={{ position:'fixed', inset:0, zIndex:1000,
+      background:'rgba(13,27,42,0.75)', backdropFilter:'blur(4px)',
+      display:'flex', alignItems:'center', justifyContent:'center', padding:20 }}
+  >
+    <div style={{ background:'#ffffff', maxWidth:440, width:'100%',
+      padding:'clamp(36px,5vw,52px)', position:'relative', borderRadius:4 }}>
+ 
+      {/* Close */}
+      <button onClick={closeFreeModal} style={{ position:'absolute', top:16, right:18,
+        background:'none', border:'none', fontSize:24, cursor:'pointer', color:'#999', lineHeight:1 }}>×</button>
+ 
+      {freeSent ? (
+        // ── Success state ──
+        <div style={{ textAlign:'center' }}>
+          <svg width="52" height="52" viewBox="0 0 24 24" fill="none"
+            style={{ margin:'0 auto 20px', display:'block' }}>
+            <circle cx="12" cy="12" r="10" stroke="#4a7c76" strokeWidth="1.5"/>
+            <path d="M7 12l3.5 3.5L17 8" stroke="#4a7c76" strokeWidth="2"
+              strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+          <h3 style={{ fontFamily:"'Cormorant Garamond', serif",
+            fontSize:'1.6rem', fontWeight:500, color:'#2d4a47', margin:'0 0 12px' }}>
+            Check your inbox
+          </h3>
+          <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'14px',
+            color:'#7a8a88', margin:'0 0 8px', lineHeight:1.7 }}>
+            We've sent a verification link to
+          </p>
+          <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'14px',
+            fontWeight:600, color:'#2d4a47', margin:'0 0 24px' }}>
+            {freeEmail}
+          </p>
+          <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'13px',
+            color:'#aaa', margin:0, lineHeight:1.6 }}>
+            Click the link in the email to verify your address and receive your free lesson.
+          </p>
+        </div>
+      ) : (
+        // ── Form state ──
+        <>
+          {/* Ocean wave icon */}
+          <div style={{ textAlign:'center', marginBottom:24 }}>
+            <svg width="48" height="24" viewBox="0 0 48 24" fill="none"
+              style={{ display:'block', margin:'0 auto 16px' }}>
+              <path d="M0,12 C6,4 12,4 18,12 C24,20 30,20 36,12 C42,4 46,4 48,10"
+                stroke="#4a7c76" strokeWidth="2" fill="none" strokeLinecap="round"/>
+              <path d="M0,17 C8,10 16,22 24,17 C32,12 40,22 48,17"
+                stroke="#4a7c76" strokeWidth="1" fill="none" strokeLinecap="round" opacity="0.4"/>
+            </svg>
+            <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'10px', fontWeight:600,
+              letterSpacing:'0.24em', textTransform:'uppercase', color:'#4a7c76', margin:0 }}>
+              Ocean Living — Free Experience
+            </p>
+          </div>
+ 
+          <h2 style={{ fontFamily:"'Cormorant Garamond', Georgia, serif",
+            fontSize:'clamp(1.5rem,3vw,2rem)', fontWeight:500, color:'#2d4a47',
+            margin:'0 0 8px', textAlign:'center', lineHeight:1.2 }}>
+            Begin your free journey
+          </h2>
+          <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'14px',
+            color:'#7a8a88', margin:'0 0 28px', lineHeight:1.7, textAlign:'center' }}>
+            Enter your email and we'll send you a quick verification link — then your free lesson arrives instantly.
+          </p>
+ 
+          {/* Email input */}
+          <label style={{ display:'block', fontFamily:"'Jost', sans-serif",
+            fontSize:'11px', fontWeight:600, letterSpacing:'0.14em',
+            textTransform:'uppercase', color:'#7a8a88', marginBottom:8 }}>
+            Your Email Address
+          </label>
+          <input
+            type="email"
+            placeholder="you@example.com"
+            value={freeEmail}
+            onChange={e => { setFreeEmail(e.target.value); setFreeEmailErr(''); }}
+            onKeyDown={e => e.key === 'Enter' && handleFreeSubmit()}
+            style={{ width:'100%', padding:'14px 16px', boxSizing:'border-box',
+              border:`1.5px solid ${freeEmailErr ? '#c0392b' : '#ddd'}`,
+              borderRadius:4, fontSize:'14px', color:'#2d4a47',
+              fontFamily:"'Jost', sans-serif", outline:'none', marginBottom:freeEmailErr ? 6 : 16 }}
+          />
+          {freeEmailErr && (
+            <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'12px',
+              color:'#c0392b', margin:'0 0 14px' }}>{freeEmailErr}</p>
+          )}
+ 
+          {/* Submit */}
+          <button
+            onClick={handleFreeSubmit}
+            disabled={freeSending}
+            style={{ width:'100%', background:'#2d4a47', color:'#eee9e2',
+              fontFamily:"'Jost', sans-serif", fontSize:'12px', fontWeight:700,
+              letterSpacing:'0.16em', textTransform:'uppercase',
+              padding:'16px 24px', border:'none', borderRadius:4,
+              cursor: freeSending ? 'not-allowed' : 'pointer',
+              opacity: freeSending ? 0.65 : 1 }}
+          >
+            {freeSending ? 'Sending...' : 'Send My Verification Link →'}
+          </button>
+ 
+          <p style={{ fontFamily:"'Jost', sans-serif", fontSize:'11px',
+            color:'#bbb', textAlign:'center', margin:'14px 0 0', lineHeight:1.6 }}>
+            No credit card. No commitment. Unsubscribe anytime.
+          </p>
+        </>
+      )}
+    </div>
+  </div>
+)}
+ 
     </div>
   );
 }

@@ -136,6 +136,23 @@ export default function CheckoutPage() {
         </button>
       </nav>
 
+<div style={{
+  background: '#2d4a47',
+  padding: 'clamp(20px,3vw,28px) clamp(24px,5vw,60px)',
+  textAlign: 'center',
+}}>
+  <p style={{
+    fontFamily: "'Cormorant Garamond', Georgia, serif",
+    fontSize: 'clamp(1.2rem,2.5vw,1.7rem)',
+    fontWeight: 500,
+    fontStyle: 'italic',
+    color: '#eee9e2',
+    margin: 0,
+    letterSpacing: '0.02em',
+  }}>
+    Start Your Ocean Living Journey for Free
+  </p>
+</div>
       {/* ═══════════════════════════════════════════════
           HERO — Text-first, NO video, breathing space
       ═══════════════════════════════════════════════ */}
