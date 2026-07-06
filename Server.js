@@ -492,6 +492,23 @@ app.get('/api/ocean-verify-confirm', async (req, res) => {
       `,
     });
 
+    // Admin ko notify karo — sirf verified emails
+    await sendBrevoEmail({
+      to: 'info@seaglore.com',
+      subject: `✓ Verified Free Signup — ${email}`,
+      html: `
+        <div style="font-family: Georgia, serif; max-width: 600px; margin: 0 auto; padding: 40px; background: #fff;">
+          <h1 style="font-size: 20px; letter-spacing: 3px; text-transform: uppercase; color: #2d4a47; border-bottom: 1px solid #e8e4dc; padding-bottom: 16px; margin-bottom: 24px;">SEAGLORÉ</h1>
+          <p style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #4a7c76; margin: 0 0 16px;">New Verified Free Experience Signup</p>
+          <div style="background: #f0ede8; padding: 20px; border-left: 3px solid #4a7c76;">
+            <p style="font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin: 0 0 6px;">Verified Email</p>
+            <p style="font-size: 16px; color: #2d4a47; margin: 0;">${email}</p>
+          </div>
+          <p style="font-size: 12px; color: #aaa; margin-top: 24px; font-style: italic;">This user has verified their email and received the free lesson.</p>
+        </div>
+      `,
+    });
+
     // Redirect to thank you page
     return res.redirect(302, `${process.env.CLIENT_URL}/ocean-free-confirmed`);
   } catch (err) {
