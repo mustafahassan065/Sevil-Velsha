@@ -170,59 +170,12 @@ export default function CheckoutPage() {
       {/* ═══════════════════════════════════════════════
           TRANSFORMATION — Before / After
       ═══════════════════════════════════════════════ */}
-      <section style={{ ...sectionPad, background: CREAM }}>
-        <div style={{ ...container, textAlign: 'center' }}>
-          <h2 style={{ ...T.h2, marginBottom: 52 }}>What changes in 7 days</h2>
-          <div style={{
-            display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-            gap: isMobile ? 32 : 24, maxWidth: '700px', margin: '0 auto',
-          }}>
-            {/* Before */}
-            <div style={{ ...card, textAlign: 'left' }}>
-              <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'1.4rem', fontWeight:500, color:MUTED, marginBottom:28, textAlign:'center' }}>Before</p>
-              {['Stressed','Distracted','Overthinking','No clarity'].map((item,i) => (
-                <div key={i} style={{ display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
-                  <div style={{ width:6, height:6, borderRadius:'50%', backgroundColor:'#ccc', flexShrink:0 }}/>
-                  <p style={{ ...T.body, color: MUTED, margin:0 }}>{item}</p>
-                </div>
-              ))}
-            </div>
-            {/* After */}
-            <div style={{ ...card, background: TEAL, textAlign: 'left' }}>
-              <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:'1.4rem', fontWeight:500, color:WHITE, marginBottom:28, textAlign:'center' }}>After</p>
-              {['Calm','Focused','Clear decisions','In control'].map((item,i) => (
-                <div key={i} style={{ display:'flex', alignItems:'center', gap:10, marginBottom:14 }}>
-                  <div style={{ width:6, height:6, borderRadius:'50%', backgroundColor:'rgba(255,255,255,0.5)', flexShrink:0 }}/>
-                  <p style={{ ...T.body, color:'rgba(255,255,255,0.85)', margin:0 }}>{item}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      
 
       {/* ═══════════════════════════════════════════════
           WHAT'S INCLUDED
       ═══════════════════════════════════════════════ */}
-      <section style={{ ...sectionPad, background: WHITE }}>
-        <div style={{ ...container, textAlign: 'center' }}>
-          <h2 style={{ ...T.h3, marginBottom: 40 }}>What's Included</h2>
-          <div style={{ maxWidth: 460, margin: '0 auto', display:'flex', flexDirection:'column', gap:16 }}>
-            {[
-              '7-day structured reset system',
-              'Daily guided videos',
-              'Ocean Living digital guide',
-              'Final certification',
-              'Lifetime access',
-            ].map((item,i) => (
-              <div key={i} style={{ display:'flex', gap:14, alignItems:'flex-start', textAlign:'left' }}>
-                <LineCheck/>
-                <p style={{ ...T.body, fontSize:'15px', margin:0 }}>{item}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+     
 
       {/* ═══════════════════════════════════════════════
           VIDEO — Moved down, optional
@@ -267,32 +220,7 @@ export default function CheckoutPage() {
 
           {/* Free Brochure Download */}
         {/* Free Brochure — Full Preview + Download */}
-<div style={{ marginTop: 40, paddingTop: 40, borderTop: `1px solid #d8d3cc` }}>
-  <p style={{ ...T.label, marginBottom: 16 }}>📖 Free Ocean Living Guide</p>
-  <p style={{ ...T.body, fontSize:'14px', color: MUTED, marginBottom: 20 }}>
-    Preview the full brochure below or download for later.
-  </p>
-  
-  {/* Full Brochure Embed */}
-  <div style={{ width:'100%', height:'65vh', borderRadius:4, overflow:'hidden', border:`1px solid #d8d3cc`, marginBottom:20 }}>
-    <iframe
-      src="https://drive.google.com/file/d/1F3LXJjYFQ97ZkSQMTRyG7S9VvYsK2oqI/preview"
-      title="Ocean Living Guide"
-      style={{ width:'100%', height:'100%', border:'none' }}
-    />
-  </div>
 
-  {/* Download Button */}
-  <a href={INTRO_BROCHURE} download="Ocean-Living-Guide.pdf" target="_blank" rel="noreferrer"
-    style={{
-      display:'inline-block', background:TEAL, color:WHITE,
-      fontFamily:"'Jost',sans-serif", fontSize:'11px', fontWeight:500,
-      letterSpacing:'0.18em', textTransform:'uppercase',
-      padding:'12px 28px', textDecoration:'none', borderRadius:2,
-    }}>
-    ↓ Download Brochure
-  </a>
-</div>
         </div>
       </section>
 
