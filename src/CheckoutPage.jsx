@@ -156,16 +156,7 @@ export default function CheckoutPage() {
       {/* ═══════════════════════════════════════════════
           HERO — Text-first, NO video, breathing space
       ═══════════════════════════════════════════════ */}
-      <section style={{ ...sectionPad, background: WHITE, textAlign: 'center' }}>
-        <div style={{ ...container, maxWidth: '640px' }}>
-          <h1 style={{ ...T.hero, marginBottom: 24 }}>
-            You feel overwhelmed.<br/>Disconnected.<br/>Constantly rushing.
-          </h1>
-          <p style={{ ...T.bodyLg, maxWidth: 480, margin: '0 auto 40px' }}>
-            In 7 days, reset your mind, slow your life, and feel calm, clear, and in control again.
-          </p>
-        </div>
-      </section>
+      
 
       {/* ═══════════════════════════════════════════════
           TRANSFORMATION — Before / After
