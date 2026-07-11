@@ -11,6 +11,7 @@ import CoursePage from './CoursePage.jsx'
 import UpsellOceanPage from './UpsellOceanPage.jsx'
 import FreeOceanGuide from './FreeOceanGuide';
 import OceanFreeConfirmed from './OceanFreeConfirmed';
+import SeagloreCollection from './SeagloreCollection';
 
 
 
@@ -27,6 +28,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/upsell-ocean" element={<UpsellOceanPage />} />
         <Route path="/free-ocean-living-guide" element={<FreeOceanGuide />} />
         <Route path="/ocean-free-confirmed" element={<OceanFreeConfirmed />} />
+        <Route path="/collection" element={<SeagloreCollection />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
