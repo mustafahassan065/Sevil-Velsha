@@ -23,11 +23,35 @@ const MUTED   = '#7a8a88';
 
 const injectFont = () => {
   if (document.getElementById('ol-fonts')) return;
+
+  // Preconnect first so the font-file download starts sooner
+  const preconnect1 = document.createElement('link');
+  preconnect1.rel = 'preconnect';
+  preconnect1.href = 'https://fonts.googleapis.com';
+  document.head.appendChild(preconnect1);
+
+  const preconnect2 = document.createElement('link');
+  preconnect2.rel = 'preconnect';
+  preconnect2.href = 'https://fonts.gstatic.com';
+  preconnect2.crossOrigin = 'anonymous';
+  document.head.appendChild(preconnect2);
+
   const link = document.createElement('link');
   link.id   = 'ol-fonts';
   link.rel  = 'stylesheet';
   link.href = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap';
   document.head.appendChild(link);
+
+  // Preload the hero background image so it starts downloading immediately
+  if (!document.getElementById('ol-hero-preload')) {
+    const heroPreload = document.createElement('link');
+    heroPreload.id = 'ol-hero-preload';
+    heroPreload.rel = 'preload';
+    heroPreload.as = 'image';
+    heroPreload.href = '/images/hero.jpg';
+    heroPreload.fetchPriority = 'high';
+    document.head.appendChild(heroPreload);
+  }
 
   // Hero wave animation keyframes
   if (document.getElementById('ol-anim')) return;
@@ -266,6 +290,9 @@ export default function OceanLivingCertification() {
   <img
     src="/images/hero.jpg"
     alt="Ocean Living"
+    fetchpriority="high"
+    loading="eager"
+    decoding="async"
     style={{
       position:'absolute', inset:0,
       width:'100%', height:'100%',
@@ -449,6 +476,8 @@ export default function OceanLivingCertification() {
   <img
     src="/images/profile.png"
     alt="Sevil Velsha"
+    loading="lazy"
+    decoding="async"
     style={{
       width: '100%',
       height: '100%',
@@ -557,6 +586,7 @@ export default function OceanLivingCertification() {
         </div>
         <div style={{ maxWidth:820, margin:'0 auto', padding:'0 36px' }}>
           <img src="/images/oceanliving.jpg" alt="Ocean Living"
+            loading="lazy" decoding="async"
             style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'center', display:'block' }}/>
         </div>
         <div style={{ display:'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, minmax(0, 350px))', marginBottom:48, justifyContent:'center' }}>
@@ -796,6 +826,7 @@ export default function OceanLivingCertification() {
         {/* Photo */}
         <div style={{ maxWidth:820, margin:'0 auto', padding:'0 36px' }}>
           <img src="/images/ocean3.jpg" alt="After"
+            loading="lazy" decoding="async"
             style={{ width:'100%', height:'100%', objectFit:'cover', objectPosition:'center top', display:'block' }}/>
         </div>
 
@@ -1017,6 +1048,7 @@ export default function OceanLivingCertification() {
       ══════════════════════════════════════════ */}
       <section style={{ position:'relative', overflow:'hidden' }}>
         <img src="/images/oceanCta.png" alt="Begin"
+          loading="lazy" decoding="async"
           style={{ width:'100%', height:'700px', objectFit:'cover', objectPosition:'center', display:'block' }}/>
         <div style={{ position:'absolute', inset:0, background:'rgba(25,42,40,0.55)' }}/>
         <div style={{
