@@ -1,25 +1,6 @@
 import React, { useState } from 'react';
 import './index.css';
 
-const imgHero = "/images/hero-woman.jpg";
-const imgProblem1 = "/images/problem-notifications.jpg";
-const imgProblem2 = "/images/problem-stress.jpg";
-const imgProblem3 = "/images/problem-overthinking.jpg";
-const imgProblem4 = "/images/problem-exhaustion.jpg";
-const imgStep1 = "/images/step-assessment.jpg";
-const imgStep2 = "/images/step-score.jpg";
-const imgStep3 = "/images/step-ritual.jpg";
-const imgFreeCard1 = "/images/free-stress-assessment.jpg";
-const imgFreeCard2 = "/images/free-guided-breathing.jpg";
-const imgFreeCard3 = "/images/free-ocean-sound.jpg";
-const imgFreeCard4 = "/images/free-personalized-ritual.jpg";
-const imgFreeCard5 = "/images/free-reset-guide.jpg";
-const imgFullReset = "/images/full-reset-woman.jpg";
-const imgContinueJourney = "/images/continue-journey-woman.jpg";
-const imgTestimonial1 = "/images/testimonial-sarah.jpg";
-const imgTestimonial2 = "/images/testimonial-james.jpg";
-const imgTestimonial3 = "/images/testimonial-maya.jpg";
-const imgFinalCta = "/images/final-cta-woman.jpg";
 
 export default function OceanReset() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -99,7 +80,7 @@ export default function OceanReset() {
         <section id="hero" className="w-full flex justify-center bg-[#FAF5EC] pt-10 pb-16 px-6 lg:px-0">
           <div className="max-w-[1180px] w-full">
             <div className="relative rounded-[28px] overflow-hidden min-h-[560px] flex items-end">
-              <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgHero} />
+              <img alt="" className="absolute inset-0 w-full h-full object-cover" src="/images/oceanreset/oceanhero.png" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#1E4D6B]/40 via-[#1E4D6B]/10 to-transparent" />
 
               <div className="relative z-10 p-8 lg:p-16 max-w-[560px]">
@@ -157,10 +138,10 @@ export default function OceanReset() {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 w-full mb-12">
               {[
-                { title: 'Constant Notifications', desc: 'Your attention is pulled in every direction, all day long.', img: imgProblem1 },
-                { title: 'Daily Stress', desc: 'Deadlines, responsibilities, and pressure keep your body in overdrive.', img: imgProblem2 },
-                { title: 'Overthinking', desc: 'Mental clutter makes it hard to focus, decide, and move forward.', img: imgProblem3 },
-                { title: 'Mental Exhaustion', desc: 'You feel tired, unmotivated, and like you\u2019re running on empty.', img: imgProblem4 },
+                { title: 'Constant Notifications', desc: 'Your attention is pulled in every direction, all day long.', img: "/images/oceanreset/oceanproblem1.png" },
+                { title: 'Daily Stress', desc: 'Deadlines, responsibilities, and pressure keep your body in overdrive.', img: "/images/oceanreset/oceanproblem2.png" },
+                { title: 'Overthinking', desc: 'Mental clutter makes it hard to focus, decide, and move forward.', img: "/images/oceanreset/oceanproblem3.png" },
+                { title: 'Mental Exhaustion', desc: 'You feel tired, unmotivated, and like you\u2019re running on empty.', img: "/images/oceanreset/oceanproblem4.png" },
               ].map((p) => (
                 <div key={p.title} className="bg-white rounded-2xl p-4 flex flex-col items-center text-center shadow-sm">
                   <div className="w-full aspect-square rounded-xl overflow-hidden mb-4">
@@ -172,8 +153,15 @@ export default function OceanReset() {
               ))}
             </div>
 
-            <div className="w-full rounded-2xl overflow-hidden relative min-h-[110px] flex items-center px-8" style={{ background: '#1E4D6B' }}>
-              <div className="absolute inset-0 opacity-20 bg-[url('/images/wave-texture.png')] bg-cover" />
+            <div
+  className="w-full rounded-2xl overflow-hidden relative min-h-[110px] flex items-center px-8"
+  style={{
+    backgroundImage: "url('/images/oceanreset/oceanwater.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }}
+>
               <div className="relative z-10 flex items-center justify-between w-full flex-wrap gap-4">
                 <p style={{ fontFamily: "'Cormorant Garamond', serif" }} className="italic text-white text-[18px] lg:text-[22px]">
                   You deserve a reset. You deserve to feel like yourself again.
@@ -208,9 +196,9 @@ export default function OceanReset() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full mb-12">
               {[
-                { title: 'Take the Ocean Reset Assessment', desc: 'Answer a few simple questions about your stress, mood, and daily habits. It only takes 2 minutes.', img: imgStep1 },
-                { title: 'Receive Your Ocean Reset Score', desc: 'Discover your stress level and get personalized insights to help you understand what you need most.', img: imgStep2 },
-                { title: 'Start Your Personalized Ocean Ritual', desc: 'Receive a custom ritual, guided practices, and resources to help you feel calmer, clearer, and more connected.', img: imgStep3 },
+                { title: 'Take the Ocean Reset Assessment', desc: 'Answer a few simple questions about your stress, mood, and daily habits. It only takes 2 minutes.', img: "/images/oceanreset/oceanreset1.png" },
+                { title: 'Receive Your Ocean Reset Score', desc: 'Discover your stress level and get personalized insights to help you understand what you need most.', img: "/images/oceanreset/oceanreset2.png" },
+                { title: 'Start Your Personalized Ocean Ritual', desc: 'Receive a custom ritual, guided practices, and resources to help you feel calmer, clearer, and more connected.', img: "/images/oceanreset/oceanreset3.png" },
               ].map((s) => (
                 <div key={s.title} className="flex flex-col items-center">
                   <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden mb-6 shadow-sm">
@@ -232,7 +220,16 @@ export default function OceanReset() {
         </section>
 
         {/* ══════════════ FREE 3-MIN RESET OFFER ══════════════ */}
-        <section id="free-reset" className="w-full flex justify-center py-24 px-6 relative overflow-hidden" style={{ background: 'linear-gradient(180deg, #E9EEF1 0%, #DCE7EC 100%)' }}>
+        <section
+  id="free-reset"
+  className="w-full flex justify-center py-24 px-6 relative overflow-hidden"
+  style={{
+    backgroundImage: "url('/images/oceanreset/cloudbg.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }}
+>
           <div className="max-w-[1080px] w-full flex flex-col items-center text-center relative z-10">
             <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#1E4D6B] text-[11px] tracking-[4px] uppercase mb-4">
               Your Free Experience
@@ -246,11 +243,11 @@ export default function OceanReset() {
 
             <div className="grid grid-cols-2 md:grid-cols-5 gap-5 w-full mb-12">
               {[
-                { title: 'Ocean Stress Assessment', desc: 'Answer a few simple questions about your current stress.', img: imgFreeCard1 },
-                { title: 'Guided Ocean Breathing', desc: 'A 3-minute guided breathing practice to calm your mind and body.', img: imgFreeCard2 },
-                { title: 'Ocean Sound Experience', desc: 'Immerse yourself in soothing ocean waves and nature sounds.', img: imgFreeCard3 },
-                { title: 'Personalized Ocean Ritual', desc: 'Receive a custom ritual designed for you based on your results.', img: imgFreeCard4 },
-                { title: 'Ocean Reset Guide PDF', desc: 'Get your free guide with practical tips to bring more calm into your daily life.', img: imgFreeCard5 },
+                { title: 'Ocean Stress Assessment', desc: 'Answer a few simple questions about your current stress.', img: "/images/oceanreset/exp1.png" },
+                { title: 'Guided Ocean Breathing', desc: 'A 3-minute guided breathing practice to calm your mind and body.', img: "/images/oceanreset/exp2.png" },
+                { title: 'Ocean Sound Experience', desc: 'Immerse yourself in soothing ocean waves and nature sounds.', img: "/images/oceanreset/exp3.png" },
+                { title: 'Personalized Ocean Ritual', desc: 'Receive a custom ritual designed for you based on your results.', img: "/images/oceanreset/exp4.png" },
+                { title: 'Ocean Reset Guide PDF', desc: 'Get your free guide with practical tips to bring more calm into your daily life.', img: "/images/oceanreset/exp5.png" },
               ].map((c) => (
                 <div key={c.title} className="bg-white rounded-2xl p-4 flex flex-col items-center text-center shadow-sm">
                   <div className="w-full aspect-square rounded-xl overflow-hidden mb-4">
@@ -345,7 +342,7 @@ export default function OceanReset() {
 
         {/* ══════════════ FULL RESET (7-DAY) ══════════════ */}
         <section id="full-reset" className="w-full relative overflow-hidden min-h-[720px] flex items-center px-6 lg:px-16 py-20">
-          <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgFullReset} />
+          <img alt="" className="absolute inset-0 w-full h-full object-cover" src="/images/oceanreset/journeybg.png" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1E4D6B]/70 via-[#1E4D6B]/20 to-transparent" />
 
           <div className="relative z-10 max-w-[1180px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -398,7 +395,7 @@ export default function OceanReset() {
         <section id="continue-journey" className="w-full flex justify-center bg-[#FAF5EC] py-20 px-6">
           <div className="max-w-[1180px] w-full grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
             <div className="rounded-2xl overflow-hidden aspect-[4/5] shadow-sm">
-              <img alt="" className="w-full h-full object-cover" src={imgContinueJourney} />
+              <img alt="" className="w-full h-full object-cover" src="/images/oceanreset/continue-journey-woman.jpg" />
             </div>
 
             <div>
@@ -454,9 +451,9 @@ export default function OceanReset() {
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-16">
               {[
-                { name: 'Sarah M.', loc: 'California, USA', text: 'The 3-minute Ocean Reset completely changed my mornings. I feel calmer, more focused, and ready for the day.', img: imgTestimonial1 },
-                { name: 'James T.', loc: 'London, UK', text: 'I was skeptical at first, but the guided breathing and ocean sounds made such a difference in just one week.', img: imgTestimonial2 },
-                { name: 'Maya L.', loc: 'Manila, PH', text: 'The 7-day program gave me simple rituals that fit perfectly into my busy life. I feel lighter and more in control.', img: imgTestimonial3 },
+                { name: 'Sarah M.', loc: 'California, USA', text: 'The 3-minute Ocean Reset completely changed my mornings. I feel calmer, more focused, and ready for the day.', img: "/images/oceanreset/review1.png" },
+                { name: 'James T.', loc: 'London, UK', text: 'I was skeptical at first, but the guided breathing and ocean sounds made such a difference in just one week.', img: "/images/oceanreset/review2.png" },
+                { name: 'Maya L.', loc: 'Manila, PH', text: 'The 7-day program gave me simple rituals that fit perfectly into my busy life. I feel lighter and more in control.', img: "/images/oceanreset/review3.png" },
               ].map((t) => (
                 <div key={t.name} className="bg-white rounded-2xl p-7 text-left shadow-sm">
                   <p style={{ fontFamily: "'Cormorant Garamond', serif" }} className="italic text-[#1E4D6B] text-[22px] leading-none mb-4">“</p>
@@ -474,7 +471,15 @@ export default function OceanReset() {
               ))}
             </div>
 
-            <div className="w-full rounded-2xl p-10 lg:p-14 flex flex-col items-center text-center" style={{ background: '#1E4D6B' }}>
+            <div
+  className="w-full rounded-2xl p-10 lg:p-14 flex flex-col items-center text-center"
+  style={{
+    backgroundImage: "url('/images/oceanreset/oceanwater2.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }}
+>
               <h3 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-white font-medium text-[26px] lg:text-[32px] mb-3">
                 Your Reset Starts Now.
               </h3>
@@ -497,7 +502,7 @@ export default function OceanReset() {
 
         {/* ══════════════ FINAL CTA ══════════════ */}
         <section id="final-cta" className="w-full relative overflow-hidden min-h-[520px] flex items-center px-6 lg:px-16 py-24">
-          <img alt="" className="absolute inset-0 w-full h-full object-cover" src={imgFinalCta} />
+          <img alt="" className="absolute inset-0 w-full h-full object-cover" src="/images/oceanreset/autopilotbg.png" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1E4D6B]/75 via-[#1E4D6B]/30 to-transparent" />
 
           <div className="relative z-10 max-w-[1180px] w-full mx-auto">
@@ -524,7 +529,16 @@ export default function OceanReset() {
         </section>
 
         {/* ══════════════ FOOTER ══════════════ */}
-        <footer id="footer" className="w-full py-16 px-6 flex justify-center" style={{ background: '#1E4D6B' }}>
+        <footer
+  id="footer"
+  className="w-full py-16 px-6 flex justify-center"
+  style={{
+    backgroundImage: "url('/images/oceanreset/oceanwater3.png')",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }}
+>
           <div className="max-w-[1180px] w-full flex flex-col items-center text-center gap-6">
             <p style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-white text-[20px] tracking-[3px] uppercase">
               Seagloré
