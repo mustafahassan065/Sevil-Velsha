@@ -393,46 +393,81 @@ export default function OceanReset() {
 
         {/* ══════════════ CONTINUE YOUR JOURNEY ══════════════ */}
         <section id="continue-journey" className="w-full flex justify-center bg-[#FAF5EC] py-20 px-6">
-          <div className="max-w-[1180px] w-full grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-            <div className="rounded-2xl overflow-hidden aspect-[4/5] shadow-sm">
-              <img alt="" className="w-full h-full object-cover" src="/images/oceanreset/continue-journey-woman.jpg" />
-            </div>
+          <div className="max-w-[1180px] w-full">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+              <div className="rounded-2xl overflow-hidden aspect-[4/5] shadow-sm">
+                <img alt="" className="w-full h-full object-cover" src="/images/oceanreset/continue-journey-woman.jpg" />
+              </div>
 
-            <div>
-              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[11px] tracking-[4px] uppercase mb-4">
-                Ready For More?
-              </p>
-              <h2 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-[#1E4D6B] font-medium text-[32px] lg:text-[38px] leading-tight mb-6">
-                Continue Your Journey With The Full Reset.
-              </h2>
-              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[14px] leading-relaxed mb-10 max-w-[440px]">
-                Go deeper with our 7-day Ocean Reset Program and transform daily stress into lasting calm and clarity.
-              </p>
+              <div>
+                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[11px] tracking-[4px] uppercase mb-4">
+                  Ready For More?
+                </p>
+                <h2 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-[#1E4D6B] font-medium text-[32px] lg:text-[38px] leading-tight mb-8">
+                  Continue Your Journey With The Full Reset.
+                </h2>
 
-              <div className="grid grid-cols-2 gap-x-10 gap-y-8">
-                {[
-                  { title: 'Daily Ocean Rituals', desc: 'Simple daily practices designed for your mind and body.' },
-                  { title: 'Guided Breathing', desc: 'Calm your nervous system with guided breathing exercises.' },
-                  { title: 'Ocean Soundscapes', desc: 'Immersive ocean sounds to relax, restore, and refocus.' },
-                  { title: 'Reflection Exercises', desc: 'Thoughtful prompts to help you gain clarity and deeper self-awareness.' },
-                  { title: 'Progress Tracking', desc: 'Track your progress and celebrate every small win.' },
-                  { title: 'Ocean Living Certificate', desc: 'Earn your completion certificate at the end of your journey.' },
-                ].map((f) => (
-                  <div key={f.title}>
-                    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#1E4D6B] text-[13px] font-semibold mb-1">{f.title}</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[12px] leading-snug">{f.desc}</p>
-                  </div>
-                ))}
+                {/* Trust badges row */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8 pb-8 border-b border-[#1E4D6B]/10">
+                  {[
+                    { label: '30-Day Guarantee', icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#1E4D6B" strokeWidth="1.6"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" /><path d="M9 12l2 2 4-4" /></svg>
+                    ) },
+                    { label: 'Secure Payment', icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#1E4D6B" strokeWidth="1.6"><rect x="4" y="10" width="16" height="10" rx="2" /><path d="M8 10V7a4 4 0 018 0v3" /></svg>
+                    ) },
+                    { label: 'Instant Access', icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#1E4D6B" strokeWidth="1.6"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" /></svg>
+                    ) },
+                    { label: 'Backed By Nature', icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#1E4D6B" strokeWidth="1.6"><path d="M12 22s7-4.5 7-11a7 7 0 10-14 0c0 6.5 7 11 7 11z" /><path d="M12 11v6" /></svg>
+                    ) },
+                  ].map((b) => (
+                    <div key={b.label} className="flex flex-col items-start gap-2">
+                      <span className="w-6 h-6">{b.icon}</span>
+                      <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#1E4D6B] text-[11px] font-semibold leading-snug">{b.label}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[14px] leading-relaxed mb-10 max-w-[440px]">
+                  Go deeper with our 7-day Ocean Reset Program and transform daily stress into lasting calm and clarity.
+                </p>
+
+                <div className="grid grid-cols-2 gap-x-10 gap-y-8">
+                  {[
+                    { title: 'Daily Ocean Rituals', desc: 'Simple daily practices designed for your mind and body.', icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><path d="M12 2c3 4 5 7 5 10a5 5 0 11-10 0c0-3 2-6 5-10z" /></svg>
+                    ) },
+                    { title: 'Guided Breathing', desc: 'Calm your nervous system with guided breathing exercises.', icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><circle cx="12" cy="12" r="4" /><circle cx="12" cy="12" r="8" strokeDasharray="2 3" /></svg>
+                    ) },
+                    { title: 'Ocean Soundscapes', desc: 'Immersive ocean sounds to relax, restore, and refocus.', icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0" /><path d="M2 17c2-3 4-3 6 0s4 3 6 0 4-3 6 0" /></svg>
+                    ) },
+                    { title: 'Reflection Exercises', desc: 'Thoughtful prompts to help you gain clarity and deeper self-awareness.', icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" /></svg>
+                    ) },
+                    { title: 'Progress Tracking', desc: 'Track your progress and celebrate every small win.', icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><path d="M4 20V10M12 20V4M20 20v-7" /></svg>
+                    ) },
+                    { title: 'Ocean Living Certificate', desc: 'Earn your completion certificate at the end of your journey.', icon: (
+                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><circle cx="12" cy="9" r="5" /><path d="M9 13.5L7 21l5-2.5 5 2.5-2-7.5" /></svg>
+                    ) },
+                  ].map((f) => (
+                    <div key={f.title} className="flex gap-3">
+                      <span className="w-8 h-8 rounded-full bg-[#B8A07A]/10 flex items-center justify-center shrink-0">
+                        <span className="w-4 h-4">{f.icon}</span>
+                      </span>
+                      <div>
+                        <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#1E4D6B] text-[13px] font-semibold mb-1">{f.title}</p>
+                        <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[12px] leading-snug">{f.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="max-w-[1180px] w-full mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-[#1E4D6B]/10 pt-10">
-            {['30-Day Guarantee', 'Secure Payment', 'Instant Access', 'Backed By Nature'].map((t) => (
-              <p key={t} style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#1E4D6B] text-[12px] font-semibold text-center">
-                {t}
-              </p>
-            ))}
           </div>
         </section>
 
