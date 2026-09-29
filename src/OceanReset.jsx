@@ -401,7 +401,7 @@ export default function OceanReset() {
           <div className="max-w-[1180px] w-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
               <div className="rounded-2xl overflow-hidden aspect-[4/5] shadow-sm">
-                <img alt="" className="w-full h-full object-cover" src="/images/oceanreset/continue-journey-woman.jpg" />
+                <img alt="" className="w-full h-full object-cover" src="/images/oceanreset/readybg.png" />
               </div>
 
               <div>
@@ -441,12 +441,12 @@ export default function OceanReset() {
 
                 <div className="grid grid-cols-2 gap-x-10 gap-y-8">
                   {[
-                    { title: 'Daily Ocean Rituals', desc: 'Simple daily practices designed for your mind and body.', img: '/images/oceanreset/feature-daily-rituals.png' },
-                    { title: 'Guided Breathing', desc: 'Calm your nervous system with guided breathing exercises.', img: '/images/oceanreset/feature-guided-breathing.png' },
-                    { title: 'Ocean Soundscapes', desc: 'Immersive ocean sounds to relax, restore, and refocus.', img: '/images/oceanreset/feature-ocean-soundscapes.png' },
-                    { title: 'Reflection Exercises', desc: 'Thoughtful prompts to help you gain clarity and deeper self-awareness.', img: '/images/oceanreset/feature-reflection-exercises.png' },
-                    { title: 'Progress Tracking', desc: 'Track your progress and celebrate every small win.', img: '/images/oceanreset/feature-progress-tracking.png' },
-                    { title: 'Ocean Living Certificate', desc: 'Earn your completion certificate at the end of your journey.', img: '/images/oceanreset/feature-certificate.png' },
+                    { title: 'Daily Ocean Rituals', desc: 'Simple daily practices designed for your mind and body.', img: '/images/oceanreset/ready1.png' },
+                    { title: 'Guided Breathing', desc: 'Calm your nervous system with guided breathing exercises.', img: '/images/oceanreset/ready2.png' },
+                    { title: 'Ocean Soundscapes', desc: 'Immersive ocean sounds to relax, restore, and refocus.', img: '/images/oceanreset/ready3.png' },
+                    { title: 'Reflection Exercises', desc: 'Thoughtful prompts to help you gain clarity and deeper self-awareness.', img: '/images/oceanreset/ready4.png' },
+                    { title: 'Progress Tracking', desc: 'Track your progress and celebrate every small win.', img: '/images/oceanreset/ready5.png' },
+                    { title: 'Ocean Living Certificate', desc: 'Earn your completion certificate at the end of your journey.', img: '/images/oceanreset/ready6.png' },
                   ].map((f) => (
                     <div key={f.title} className="flex gap-3">
                       <span className="w-9 h-9 rounded-full overflow-hidden shrink-0">
