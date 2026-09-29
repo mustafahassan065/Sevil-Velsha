@@ -12,6 +12,7 @@ import UpsellOceanPage from './UpsellOceanPage.jsx'
 import FreeOceanGuide from './FreeOceanGuide';
 import OceanFreeConfirmed from './OceanFreeConfirmed';
 import SeagloreCollection from './SeagloreCollection';
+import OceanReset from './OceanReset.jsx'
 
 
 
@@ -29,6 +30,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/free-ocean-living-guide" element={<FreeOceanGuide />} />
         <Route path="/ocean-free-confirmed" element={<OceanFreeConfirmed />} />
         <Route path="/collection" element={<SeagloreCollection />} />
+        <Route path="/ocean-reset" element={<OceanReset />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,
