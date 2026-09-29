@@ -371,10 +371,15 @@ export default function OceanReset() {
               <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[13px] leading-relaxed mb-6">
                 A complete guided program to help you reset, recharge, and reconnect.
               </p>
-              <div className="flex items-end gap-3 mb-6">
-                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[14px] line-through">$40</p>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-[#1E4D6B] text-[32px] font-medium leading-none">$19</p>
-                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[11px] mb-1">today only</p>
+              <div className="flex items-end gap-6 mb-6">
+                <div>
+                  <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[10px] tracking-[1px] uppercase mb-1">Regular price</p>
+                  <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[16px] line-through">$49</p>
+                </div>
+                <div>
+                  <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[10px] tracking-[1px] uppercase mb-1">Today only</p>
+                  <p style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-[#1E4D6B] text-[32px] font-medium leading-none">$19</p>
+                </div>
               </div>
               <button
                 style={{ fontFamily: "'Inter', sans-serif" }}
@@ -436,28 +441,16 @@ export default function OceanReset() {
 
                 <div className="grid grid-cols-2 gap-x-10 gap-y-8">
                   {[
-                    { title: 'Daily Ocean Rituals', desc: 'Simple daily practices designed for your mind and body.', icon: (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><path d="M12 2c3 4 5 7 5 10a5 5 0 11-10 0c0-3 2-6 5-10z" /></svg>
-                    ) },
-                    { title: 'Guided Breathing', desc: 'Calm your nervous system with guided breathing exercises.', icon: (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><circle cx="12" cy="12" r="4" /><circle cx="12" cy="12" r="8" strokeDasharray="2 3" /></svg>
-                    ) },
-                    { title: 'Ocean Soundscapes', desc: 'Immersive ocean sounds to relax, restore, and refocus.', icon: (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><path d="M2 12c2-3 4-3 6 0s4 3 6 0 4-3 6 0" /><path d="M2 17c2-3 4-3 6 0s4 3 6 0 4-3 6 0" /></svg>
-                    ) },
-                    { title: 'Reflection Exercises', desc: 'Thoughtful prompts to help you gain clarity and deeper self-awareness.', icon: (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><circle cx="12" cy="12" r="8" /><path d="M12 8v4l3 2" /></svg>
-                    ) },
-                    { title: 'Progress Tracking', desc: 'Track your progress and celebrate every small win.', icon: (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><path d="M4 20V10M12 20V4M20 20v-7" /></svg>
-                    ) },
-                    { title: 'Ocean Living Certificate', desc: 'Earn your completion certificate at the end of your journey.', icon: (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><circle cx="12" cy="9" r="5" /><path d="M9 13.5L7 21l5-2.5 5 2.5-2-7.5" /></svg>
-                    ) },
+                    { title: 'Daily Ocean Rituals', desc: 'Simple daily practices designed for your mind and body.', img: '/images/oceanreset/feature-daily-rituals.png' },
+                    { title: 'Guided Breathing', desc: 'Calm your nervous system with guided breathing exercises.', img: '/images/oceanreset/feature-guided-breathing.png' },
+                    { title: 'Ocean Soundscapes', desc: 'Immersive ocean sounds to relax, restore, and refocus.', img: '/images/oceanreset/feature-ocean-soundscapes.png' },
+                    { title: 'Reflection Exercises', desc: 'Thoughtful prompts to help you gain clarity and deeper self-awareness.', img: '/images/oceanreset/feature-reflection-exercises.png' },
+                    { title: 'Progress Tracking', desc: 'Track your progress and celebrate every small win.', img: '/images/oceanreset/feature-progress-tracking.png' },
+                    { title: 'Ocean Living Certificate', desc: 'Earn your completion certificate at the end of your journey.', img: '/images/oceanreset/feature-certificate.png' },
                   ].map((f) => (
                     <div key={f.title} className="flex gap-3">
-                      <span className="w-8 h-8 rounded-full bg-[#B8A07A]/10 flex items-center justify-center shrink-0">
-                        <span className="w-4 h-4">{f.icon}</span>
+                      <span className="w-9 h-9 rounded-full overflow-hidden shrink-0">
+                        <img alt="" className="w-full h-full object-cover" src={f.img} />
                       </span>
                       <div>
                         <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#1E4D6B] text-[13px] font-semibold mb-1">{f.title}</p>
@@ -536,7 +529,7 @@ export default function OceanReset() {
         </section>
 
         {/* ══════════════ FINAL CTA ══════════════ */}
-        <section id="final-cta" className="w-full relative overflow-hidden min-h-[520px] flex items-center px-6 lg:px-16 py-24">
+        <section id="final-cta" className="w-full relative overflow-hidden min-h-[560px] flex flex-col justify-between px-6 lg:px-16 pt-24 pb-10">
           <img alt="" className="absolute inset-0 w-full h-full object-cover" src="/images/oceanreset/autopilotbg.png" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1E4D6B]/75 via-[#1E4D6B]/30 to-transparent" />
 
@@ -551,7 +544,7 @@ export default function OceanReset() {
               The ocean never rushes.
             </p>
             <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white/80 text-[14px] leading-relaxed mb-8 max-w-[440px]">
-              Yet it transforms everything it touches. Perhaps it's time for you to do the same.
+              Yet it transforms everything it touches. Perhaps it's time for your reset too.
             </p>
             <button
               onClick={() => scrollToSection('free-reset')}
@@ -560,6 +553,17 @@ export default function OceanReset() {
             >
               Start Your Free Ocean Reset →
             </button>
+            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white/60 text-[11px] mt-3 tracking-[1px]">
+              No credit card required • Takes just 3 minutes
+            </p>
+          </div>
+
+          <div className="relative z-10 max-w-[1180px] w-full mx-auto mt-16 pt-8 border-t border-white/20 grid grid-cols-2 md:grid-cols-4 gap-6">
+            {['3-Minute Experience', 'Reduce Stress & Mental Noise', 'Reconnect with Yourself', 'Feel Calmer, Clearer, Lighter'].map((t) => (
+              <p key={t} style={{ fontFamily: "'Inter', sans-serif" }} className="text-white text-[12px] font-medium text-center leading-snug">
+                {t}
+              </p>
+            ))}
           </div>
         </section>
 
