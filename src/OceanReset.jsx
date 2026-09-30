@@ -77,49 +77,54 @@ export default function OceanReset() {
         )}
 
         {/* ══════════════ HERO ══════════════ */}
-        <section id="hero" className="w-full flex justify-center bg-[#FAF5EC] pt-10 pb-16 px-6 lg:px-0">
-          <div className="max-w-[1180px] w-full">
-            <div className="relative rounded-[28px] overflow-hidden min-h-[560px] flex items-end">
-              <img alt="" className="absolute inset-0 w-full h-full object-cover" src="/images/oceanreset/oceanhero.png" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#1E4D6B]/40 via-[#1E4D6B]/10 to-transparent" />
+        <section id="hero" className="w-full relative overflow-hidden min-h-[640px] flex items-end">
+          <img alt="" className="absolute inset-0 w-full h-full object-cover object-center" src="/images/oceanreset/oceanhero.png" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1E4D6B]/50 via-[#1E4D6B]/15 to-transparent" />
 
-              <div className="relative z-10 p-8 lg:p-16 max-w-[560px]">
-                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white text-[11px] tracking-[3px] uppercase mb-4 opacity-90">
-                  The 3-Minute Ocean Reset
-                </p>
-                <h1 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-white font-medium leading-[1.05] text-[48px] lg:text-[64px] mb-6">
-                  Feeling<br /><span className="italic">Overwhelmed?</span>
-                </h1>
-                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white/90 text-[16px] leading-relaxed mb-8 max-w-[440px]">
-                  Take a breath. Reset in just 3 minutes. Try our Free 3-Minute Ocean Reset and feel calmer, clearer, and more like yourself.
-                </p>
-                <button
-                  onClick={() => scrollToSection('free-reset')}
-                  style={{ fontFamily: "'Inter', sans-serif" }}
-                  className="inline-flex items-center gap-2 bg-[#1E4D6B] text-white text-[13px] font-medium tracking-[1px] px-8 py-4 rounded-full hover:bg-[#163a51] transition-colors"
-                >
-                  ⏱ Try for Free →
-                </button>
-                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white/70 text-[11px] mt-3 tracking-[1px]">
-                  No credit card required
-                </p>
-              </div>
+          <div className="relative z-10 w-full max-w-[1180px] mx-auto px-6 lg:px-0 pb-16 pt-24">
+            <div className="max-w-[560px]">
+              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white text-[11px] tracking-[3px] uppercase mb-4 opacity-90">
+                The 3-Minute Ocean Reset
+              </p>
+              <h1 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-white font-medium leading-[1.05] text-[48px] lg:text-[64px] mb-6">
+                Feeling<br /><span className="italic">Overwhelmed?</span>
+              </h1>
+              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white/90 text-[16px] leading-relaxed mb-8 max-w-[440px]">
+                Take a breath. Reset in just 3 minutes. Try our Free 3-Minute Ocean Reset and feel calmer, clearer, and more like yourself.
+              </p>
+              <button
+                onClick={() => scrollToSection('free-reset')}
+                style={{ fontFamily: "'Inter', sans-serif" }}
+                className="inline-flex items-center gap-2 bg-[#1E4D6B] text-white text-[13px] font-medium tracking-[1px] px-8 py-4 rounded-full hover:bg-[#163a51] transition-colors"
+              >
+                ⏱ Try for Free →
+              </button>
+              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white/70 text-[11px] mt-3 tracking-[1px]">
+                No credit card required
+              </p>
             </div>
+          </div>
+        </section>
 
-            {/* Feature strip */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-10">
-              {[
-                { title: 'Free Assessment', desc: 'Discover your stress level' },
-                { title: '3-Minute Experience', desc: 'Quick, guided reset for your mind' },
-                { title: 'Personalized Ocean Ritual', desc: 'Get a ritual that fits your needs' },
-                { title: 'Instant Access', desc: 'Start your reset right away' },
-              ].map((f) => (
-                <div key={f.title} className="flex flex-col gap-1">
+        {/* Feature strip */}
+        <section className="w-full flex justify-center bg-[#FAF5EC] py-10 px-6">
+          <div className="max-w-[1180px] w-full grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { title: 'Free Assessment', desc: 'Discover your stress level', icon: '/images/oceanreset/icon-assessment.png' },
+              { title: '3-Minute Experience', desc: 'Quick, guided reset for your mind', icon: '/images/oceanreset/icon-clock.png' },
+              { title: 'Personalized Ocean Ritual', desc: 'Get a ritual that fits your needs', icon: '/images/oceanreset/icon-ritual.png' },
+              { title: 'Instant Access', desc: 'Start your reset right away', icon: '/images/oceanreset/icon-access.png' },
+            ].map((f) => (
+              <div key={f.title} className="flex items-start gap-3">
+                <span className="w-9 h-9 rounded-full overflow-hidden shrink-0">
+                  <img alt="" className="w-full h-full object-cover" src={f.icon} />
+                </span>
+                <div className="flex flex-col gap-1">
                   <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#1E4D6B] text-[13px] font-semibold">{f.title}</p>
                   <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[12px] leading-snug">{f.desc}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -341,11 +346,11 @@ export default function OceanReset() {
         </section>
 
         {/* ══════════════ FULL RESET (7-DAY) ══════════════ */}
-        <section id="full-reset" className="w-full relative overflow-hidden min-h-[720px] flex items-center px-6 lg:px-16 py-20">
-          <img alt="" className="absolute inset-0 w-full h-full object-cover" src="/images/oceanreset/journeybg.png" />
+        <section id="full-reset" className="w-full relative overflow-hidden min-h-[760px] flex items-start px-6 lg:px-16 pt-28 pb-20">
+          <img alt="" className="absolute inset-0 w-full h-full object-cover object-[center_20%]" src="/images/oceanreset/journeybg.png" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1E4D6B]/70 via-[#1E4D6B]/20 to-transparent" />
 
-          <div className="relative z-10 max-w-[1180px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+          <div className="relative z-10 max-w-[1180px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             <div>
               <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[11px] tracking-[4px] uppercase mb-4">
                 Ready For More?
@@ -401,7 +406,7 @@ export default function OceanReset() {
           <div className="max-w-[1180px] w-full">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
               <div className="rounded-2xl overflow-hidden aspect-[4/5] shadow-sm">
-                <img alt="" className="w-full h-full object-cover" src="/images/oceanreset/readybg.png" />
+                <img alt="" className="w-full h-full object-cover object-right" src="/images/oceanreset/readybg.png" />
               </div>
 
               <div>
