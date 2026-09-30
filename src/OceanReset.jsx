@@ -86,7 +86,7 @@ export default function OceanReset() {
               <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white text-[11px] tracking-[3px] uppercase mb-4 opacity-90">
                 The 3-Minute Ocean Reset
               </p>
-              <h1 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-white font-medium leading-[1.05] text-[48px] lg:text-[64px] mb-6">
+              <h1 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-[#1E4D6B] font-medium leading-[1.05] text-[48px] lg:text-[64px] mb-6">
                 Feeling<br /><span className="italic">Overwhelmed?</span>
               </h1>
               <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white/90 text-[16px] leading-relaxed mb-8 max-w-[440px]">
@@ -110,14 +110,22 @@ export default function OceanReset() {
         <section className="w-full flex justify-center bg-[#FAF5EC] py-10 px-6">
           <div className="max-w-[1180px] w-full grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { title: 'Free Assessment', desc: 'Discover your stress level', icon: '/images/oceanreset/icon-assessment.png' },
-              { title: '3-Minute Experience', desc: 'Quick, guided reset for your mind', icon: '/images/oceanreset/icon-clock.png' },
-              { title: 'Personalized Ocean Ritual', desc: 'Get a ritual that fits your needs', icon: '/images/oceanreset/icon-ritual.png' },
-              { title: 'Instant Access', desc: 'Start your reset right away', icon: '/images/oceanreset/icon-access.png' },
+              { title: 'Free Assessment', desc: 'Discover your stress level', icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#1E4D6B" strokeWidth="1.6"><path d="M9 11l2 2 4-4" /><circle cx="12" cy="12" r="9" /></svg>
+              ) },
+              { title: '3-Minute Experience', desc: 'Quick, guided reset for your mind', icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#1E4D6B" strokeWidth="1.6"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+              ) },
+              { title: 'Personalized Ocean Ritual', desc: 'Get a ritual that fits your needs', icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#1E4D6B" strokeWidth="1.6"><path d="M12 2c3 4 5 7 5 10a5 5 0 11-10 0c0-3 2-6 5-10z" /></svg>
+              ) },
+              { title: 'Instant Access', desc: 'Start your reset right away', icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#1E4D6B" strokeWidth="1.6"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" /></svg>
+              ) },
             ].map((f) => (
               <div key={f.title} className="flex items-start gap-3">
-                <span className="w-9 h-9 rounded-full overflow-hidden shrink-0">
-                  <img alt="" className="w-full h-full object-cover" src={f.icon} />
+                <span className="w-9 h-9 rounded-full bg-[#1E4D6B]/8 flex items-center justify-center shrink-0">
+                  <span className="w-[18px] h-[18px]">{f.icon}</span>
                 </span>
                 <div className="flex flex-col gap-1">
                   <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#1E4D6B] text-[13px] font-semibold">{f.title}</p>
@@ -350,8 +358,8 @@ export default function OceanReset() {
           <img alt="" className="absolute inset-0 w-full h-full object-cover object-[center_20%]" src="/images/oceanreset/journeybg.png" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1E4D6B]/70 via-[#1E4D6B]/20 to-transparent" />
 
-          <div className="relative z-10 max-w-[1180px] w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-            <div>
+          <div className="relative z-10 max-w-[1180px] w-full mx-auto">
+            <div className="max-w-[440px]">
               <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[11px] tracking-[4px] uppercase mb-4">
                 Ready For More?
               </p>
@@ -361,41 +369,41 @@ export default function OceanReset() {
               <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white/85 text-[14px] leading-relaxed mb-8 max-w-[420px]">
                 Go deeper with our 7-day Ocean Reset Program and transform daily stress into lasting calm and clarity.
               </p>
-              <div className="grid grid-cols-2 gap-x-8 gap-y-3 max-w-[420px]">
+              <div className="grid grid-cols-2 gap-x-8 gap-y-3 max-w-[420px] mb-10">
                 {['Daily ocean rituals', 'Guided breathing', 'Ocean soundscapes', 'Reflection exercises', 'Progress tracking', 'Ocean Living certificate'].map((f) => (
                   <p key={f} style={{ fontFamily: "'Inter', sans-serif" }} className="text-white text-[12px] flex items-center gap-2">
                     <span className="text-[#B8A07A]">✓</span> {f}
                   </p>
                 ))}
               </div>
-            </div>
 
-            <div className="bg-white rounded-2xl p-8 max-w-[380px] w-full justify-self-end shadow-2xl">
-              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[10px] tracking-[3px] uppercase mb-3">Ocean Reset</p>
-              <h3 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-[#1E4D6B] font-medium text-[26px] mb-2">7-Day Experience</h3>
-              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[13px] leading-relaxed mb-6">
-                A complete guided program to help you reset, recharge, and reconnect.
-              </p>
-              <div className="flex items-end gap-6 mb-6">
-                <div>
-                  <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[10px] tracking-[1px] uppercase mb-1">Regular price</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[16px] line-through">$49</p>
+              <div className="bg-white rounded-2xl p-7 max-w-[340px] w-full shadow-2xl">
+                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[10px] tracking-[3px] uppercase mb-2">Ocean Reset</p>
+                <h3 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-[#1E4D6B] font-medium text-[22px] mb-2">7-Day Experience</h3>
+                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[12px] leading-relaxed mb-5">
+                  A complete guided program to help you reset, recharge, and reconnect.
+                </p>
+                <div className="flex items-end gap-5 mb-5">
+                  <div>
+                    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[9px] tracking-[1px] uppercase mb-1">Regular price</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[14px] line-through">$49</p>
+                  </div>
+                  <div>
+                    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[9px] tracking-[1px] uppercase mb-1">Today only</p>
+                    <p style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-[#1E4D6B] text-[28px] font-medium leading-none">$19</p>
+                  </div>
                 </div>
-                <div>
-                  <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[10px] tracking-[1px] uppercase mb-1">Today only</p>
-                  <p style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-[#1E4D6B] text-[32px] font-medium leading-none">$19</p>
+                <button
+                  style={{ fontFamily: "'Inter', sans-serif" }}
+                  className="w-full bg-[#1E4D6B] text-white text-[12px] font-medium tracking-[1px] py-3.5 rounded-full hover:bg-[#163a51] transition-colors mb-3"
+                >
+                  Start my 7-day reset →
+                </button>
+                <div className="flex items-center justify-between text-[9px]" style={{ fontFamily: "'Inter', sans-serif" }}>
+                  <p className="text-[#6E767D]">30-day guarantee</p>
+                  <p className="text-[#6E767D]">Secure payment</p>
+                  <p className="text-[#6E767D]">Instant access</p>
                 </div>
-              </div>
-              <button
-                style={{ fontFamily: "'Inter', sans-serif" }}
-                className="w-full bg-[#1E4D6B] text-white text-[13px] font-medium tracking-[1px] py-4 rounded-full hover:bg-[#163a51] transition-colors mb-4"
-              >
-                Start my 7-day reset →
-              </button>
-              <div className="flex items-center justify-between text-[10px]" style={{ fontFamily: "'Inter', sans-serif" }}>
-                <p className="text-[#6E767D]">30-day guarantee</p>
-                <p className="text-[#6E767D]">Secure payment</p>
-                <p className="text-[#6E767D]">Instant access</p>
               </div>
             </div>
           </div>
