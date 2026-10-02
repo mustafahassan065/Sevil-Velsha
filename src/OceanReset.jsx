@@ -543,7 +543,7 @@ export default function OceanReset() {
 
         {/* ══════════════ FINAL CTA ══════════════ */}
         <section id="final-cta" className="w-full relative overflow-hidden min-h-[640px] flex flex-col justify-between px-6 lg:px-16 pt-24 pb-10">
-          <img alt="" className="absolute inset-0 w-full h-full object-cover object-right" src="/images/oceanreset/autopilotbg.png" />
+          <img alt="" className="absolute inset-0 w-full h-full object-cover object-right" style={{ transform: 'scaleX(-1)' }} src="/images/oceanreset/autopilotbg.png" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#1E4D6B]/80 via-[#1E4D6B]/35 to-transparent" />
 
           <div className="relative z-10 max-w-[1180px] w-full mx-auto">
