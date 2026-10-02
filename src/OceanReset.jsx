@@ -542,40 +542,61 @@ export default function OceanReset() {
         </section>
 
         {/* ══════════════ FINAL CTA ══════════════ */}
-        <section id="final-cta" className="w-full relative overflow-hidden min-h-[560px] flex flex-col justify-between px-6 lg:px-16 pt-24 pb-10">
-          <img alt="" className="absolute inset-0 w-full h-full object-cover" src="/images/oceanreset/autopilotbg.png" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#1E4D6B]/75 via-[#1E4D6B]/30 to-transparent" />
+        <section id="final-cta" className="w-full relative overflow-hidden min-h-[640px] flex flex-col justify-between px-6 lg:px-16 pt-24 pb-10">
+          <img alt="" className="absolute inset-0 w-full h-full object-cover object-right" src="/images/oceanreset/autopilotbg.png" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#1E4D6B]/80 via-[#1E4D6B]/35 to-transparent" />
 
           <div className="relative z-10 max-w-[1180px] w-full mx-auto">
-            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[11px] tracking-[4px] uppercase mb-4">
-              The Time Is Now
-            </p>
-            <h2 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-white font-medium text-[36px] lg:text-[48px] leading-tight mb-4">
+            <div className="flex items-center gap-4 mb-5">
+              <span className="w-8 h-px bg-white/40" />
+              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white text-[11px] tracking-[4px] uppercase">
+                The Time Is Now
+              </p>
+              <span className="w-8 h-px bg-white/40" />
+            </div>
+            <h2 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-white font-medium text-[40px] lg:text-[52px] leading-[1.1] mb-4">
               Stop Living<br />on Autopilot.
             </h2>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif" }} className="italic text-white/85 text-[18px] mb-3">
+            <p style={{ fontFamily: "'Cormorant Garamond', serif" }} className="italic text-white text-[19px] mb-4">
               The ocean never rushes.
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white/80 text-[14px] leading-relaxed mb-8 max-w-[440px]">
-              Yet it transforms everything it touches. Perhaps it's time for your reset too.
+            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white text-[15px] leading-relaxed mb-8 max-w-[480px]">
+              Yet it transforms everything it touches. Perhaps it's time for <span className="text-[#B8A07A] font-medium">your reset</span> too.
             </p>
             <button
               onClick={() => scrollToSection('free-reset')}
               style={{ fontFamily: "'Inter', sans-serif" }}
-              className="bg-[#B8A07A] text-white text-[13px] font-medium tracking-[1px] px-8 py-4 rounded-full hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 bg-[#B8A07A] text-white text-[13px] font-semibold tracking-[1px] uppercase px-8 py-4 rounded-full hover:opacity-90 transition-opacity"
             >
               Start Your Free Ocean Reset →
             </button>
-            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white/60 text-[11px] mt-3 tracking-[1px]">
+            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white/85 text-[12px] mt-4 flex items-center gap-2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="w-4 h-4"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z" /></svg>
               No credit card required • Takes just 3 minutes
             </p>
           </div>
 
-          <div className="relative z-10 max-w-[1180px] w-full mx-auto mt-16 pt-8 border-t border-white/20 grid grid-cols-2 md:grid-cols-4 gap-6">
-            {['3-Minute Experience', 'Reduce Stress & Mental Noise', 'Reconnect with Yourself', 'Feel Calmer, Clearer, Lighter'].map((t) => (
-              <p key={t} style={{ fontFamily: "'Inter', sans-serif" }} className="text-white text-[12px] font-medium text-center leading-snug">
-                {t}
-              </p>
+          <div className="relative z-10 max-w-[1180px] w-full mx-auto mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { title: '3-Minute Experience', icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+              ) },
+              { title: 'Reduce Stress & Mental Noise', icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><path d="M4 12c2-3 4-3 6 0s4 3 6 0 4-3 4 0" /></svg>
+              ) },
+              { title: 'Reconnect with Yourself', icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><path d="M12 21s-7-4.5-7-10a5 5 0 019-3 5 5 0 019 3c0 5.5-7 10-11 10z" transform="scale(0.7) translate(5,4)" /><path d="M12 5v5l3 2" /></svg>
+              ) },
+              { title: 'Feel Calmer, Clearer, Lighter', icon: (
+                <svg viewBox="0 0 24 24" fill="none" stroke="#B8A07A" strokeWidth="1.6"><path d="M12 21s-7-4.5-7-10a7 7 0 1114 0c0 5.5-7 10-7 10z" /></svg>
+              ) },
+            ].map((t) => (
+              <div key={t.title} className="pt-5 border-t border-white/25 flex items-center gap-2">
+                <span className="w-4 h-4 shrink-0">{t.icon}</span>
+                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-white text-[12px] font-medium leading-snug">
+                  {t.title}
+                </p>
+              </div>
             ))}
           </div>
         </section>
