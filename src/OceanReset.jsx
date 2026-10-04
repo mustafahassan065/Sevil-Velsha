@@ -209,30 +209,52 @@ export default function OceanReset() {
             </div>
 
             <div
-  className="w-full rounded-2xl overflow-hidden relative min-h-[110px] flex items-center px-8"
+  className="w-full rounded-[24px] overflow-hidden relative min-h-[213px] flex items-center px-8 lg:px-[46px] py-9"
   style={{
     backgroundImage: "url('/images/oceanreset/oceanwater.png')",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    backgroundRepeat: "no-repeat"
+    backgroundRepeat: "no-repeat",
   }}
 >
-              <div className="relative z-10 flex items-center justify-between w-full flex-wrap gap-4">
-                <p style={{ fontFamily: "'Fraunces', serif" }} className="italic text-white text-[18px] lg:text-[22px]">
-                  You deserve a reset. You deserve to feel like yourself again.
-                </p>
-                <div className="flex gap-10">
-                  <div className="text-center">
-                    <p style={{ fontFamily: "'Fraunces', serif" }} className="text-[#D9BC8C] text-[28px] font-medium leading-none">3 min</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-#FFFDF9A6 text-[9px] tracking-[1px] uppercase mt-1">is all it takes</p>
-                  </div>
-                  <div className="text-center">
-                    <p style={{ fontFamily: "'Fraunces', serif" }} className="text-[#D9BC8C] text-[28px] font-medium leading-none">92%</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-#FFFDF9A6 text-[9px] tracking-[1px] uppercase mt-1">feel calmer after one reset</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+  <div className="relative z-10 flex flex-col gap-6 max-w-[480px]">
+    {/* Icon + Quote */}
+    <div className="flex items-start gap-5">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0 mt-1">
+        <path d="M2.5 17.5C5 17.5 5 13.75 7.5 13.75C10 13.75 10 17.5 12.5 17.5C15 17.5 15 13.75 17.5 13.75C20 13.75 20 17.5 22.5 17.5C25 17.5 25 13.75 27.5 13.75" stroke="#D9BC8C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M2.5 23.75C5 23.75 5 20 7.5 20C10 20 10 23.75 12.5 23.75C15 23.75 15 20 17.5 20C20 20 20 23.75 22.5 23.75C25 23.75 25 20 27.5 20" stroke="#D9BC8C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+      <p
+        style={{ fontFamily: "'Fraunces', serif" }}
+        className="italic text-[#FFFDF9] text-[19px] lg:text-[21px] leading-snug text-center max-w-[400px]"
+      >
+        You deserve a reset. You deserve to feel like yourself again.
+      </p>
+    </div>
+
+    {/* Stats */}
+    <div className="flex gap-12 lg:gap-14">
+      <div className="text-center">
+        <p style={{ fontFamily: "'Fraunces', serif" }} className="text-[#D9BC8C] text-[30px] font-normal leading-none">3 min</p>
+        <p
+          style={{ fontFamily: "'Inter', sans-serif", color: '#FFFDF9A6' }}
+          className="text-[10px] tracking-[1px] uppercase mt-2"
+        >
+          A day, that's all it takes
+        </p>
+      </div>
+      <div className="text-center">
+        <p style={{ fontFamily: "'Fraunces', serif" }} className="text-[#D9BC8C] text-[30px] font-normal leading-none">92%</p>
+        <p
+          style={{ fontFamily: "'Inter', sans-serif", color: '#FFFDF9A6' }}
+          className="text-[10px] tracking-[1px] uppercase mt-2"
+        >
+          Feel calmer after one reset
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
           </div>
         </section>
 
@@ -415,187 +437,300 @@ export default function OceanReset() {
                 ))}
               </div>
 
-              <div className="bg-white rounded-2xl p-7 max-w-[340px] w-full shadow-2xl">
-                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[10px] tracking-[3px] uppercase mb-2">Ocean Reset</p>
-                <h3 style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-[#1E4D6B] font-medium text-[22px] mb-2">7-Day Experience</h3>
-                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[12px] leading-relaxed mb-5">
-                  A complete guided program to help you reset, recharge, and reconnect.
-                </p>
-                <div className="flex items-end gap-5 mb-5">
-                  <div>
-                    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[9px] tracking-[1px] uppercase mb-1">Regular price</p>
-                    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[14px] line-through">$49</p>
-                  </div>
-                  <div>
-                    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B8A07A] text-[9px] tracking-[1px] uppercase mb-1">Today only</p>
-                    <p style={{ fontFamily: "'Cormorant Garamond', serif" }} className="text-[#1E4D6B] text-[28px] font-medium leading-none">$19</p>
-                  </div>
-                </div>
-                <button
-                  style={{ fontFamily: "'Inter', sans-serif" }}
-                  className="w-full bg-[#1E4D6B] text-white text-[12px] font-medium tracking-[1px] py-3.5 rounded-full hover:bg-[#163a51] transition-colors mb-3"
-                >
-                  Start my 7-day reset →
-                </button>
-                <div className="flex items-center justify-between text-[9px]" style={{ fontFamily: "'Inter', sans-serif" }}>
-                  <p className="text-[#6E767D]">30-day guarantee</p>
-                  <p className="text-[#6E767D]">Secure payment</p>
-                  <p className="text-[#6E767D]">Instant access</p>
-                </div>
-              </div>
+              <div className="w-full max-w-[464px] rounded-[28px] overflow-hidden border-[3px] border-white shadow-2xl bg-white">
+  {/* Navy header */}
+  <div className="bg-[#1E4D6B] px-9 pt-9 pb-8">
+    <div className="flex items-center gap-3 mb-4">
+      <span className="w-4 h-px bg-[#D9BC8C]" />
+      <p
+        style={{ fontFamily: "'Inter', sans-serif" }}
+        className="text-[#D9BC8C] text-[11px] tracking-[2px] uppercase font-semibold"
+      >
+        Ocean Reset
+      </p>
+    </div>
+    <h3
+      style={{ fontFamily: "'Fraunces', serif" }}
+      className="text-white font-medium text-[28px] leading-tight mb-3"
+    >
+      7-Day Experience
+    </h3>
+    <p
+      style={{ fontFamily: "'Inter', sans-serif" }}
+      className="text-white/70 text-[14px] leading-relaxed"
+    >
+      A complete guided program to help you reset, recharge, and reconnect.
+    </p>
+  </div>
+
+  {/* White body */}
+  <div className="px-9 pt-7 pb-7">
+    <div className="flex items-start justify-between pb-6 border-b border-[#6E767D]/20">
+      <div>
+        <p
+          style={{ fontFamily: "'Inter', sans-serif" }}
+          className="text-[#6E767D] text-[12px] tracking-[1px] uppercase mb-1"
+        >
+          Regular price
+        </p>
+        <p
+          style={{ fontFamily: "'Inter', sans-serif" }}
+          className="text-[#6E767D] text-[14px] line-through"
+        >
+          $49
+        </p>
+      </div>
+      <div className="text-right">
+        <p
+          style={{ fontFamily: "'Inter', sans-serif" }}
+          className="text-[#6E767D] text-[12px] tracking-[1px] uppercase mb-1"
+        >
+          Today only
+        </p>
+        <p
+          style={{ fontFamily: "'Fraunces', serif" }}
+          className="text-[#1E4D6B] text-[38px] font-medium leading-none"
+        >
+          $19
+        </p>
+      </div>
+    </div>
+
+    <button
+      style={{ fontFamily: "'Inter', sans-serif" }}
+      className="w-full mt-6 bg-[#1E4D6B] text-white text-[15px] font-semibold py-4 rounded-full hover:bg-[#163a51] transition-colors flex items-center justify-center gap-2"
+    >
+      Start my 7-day reset <span>→</span>
+    </button>
+
+    <div
+      className="flex items-center justify-between mt-5 text-[12px]"
+      style={{ fontFamily: "'Inter', sans-serif" }}
+    >
+      <p className="flex items-center gap-1.5 text-[#6E767D]">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clipPath="url(#clip0_25_787)">
+            <path d="M6.49368 11.9054C6.49368 11.9054 10.8228 9.74079 10.8228 5.95279V2.70594L6.49368 1.08252L2.16455 2.70594V5.95279C2.16455 9.74079 6.49368 11.9054 6.49368 11.9054Z" stroke="#C9A876" strokeWidth="1.08228" />
+          </g>
+          <defs>
+            <clipPath id="clip0_25_787">
+              <rect width="12.9874" height="12.9874" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+        30-day guarantee
+      </p>
+      <p className="flex items-center gap-1.5 text-[#6E767D]">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.2818 5.95264H2.70582C2.10809 5.95264 1.62354 6.43719 1.62354 7.03492V10.2818C1.62354 10.8795 2.10809 11.3641 2.70582 11.3641H10.2818C10.8795 11.3641 11.3641 10.8795 11.3641 10.2818V7.03492C11.3641 6.43719 10.8795 5.95264 10.2818 5.95264Z" stroke="#C9A876" strokeWidth="1.08228" />
+          <path d="M3.78809 5.95279V3.78823C3.78809 3.07063 4.07315 2.38242 4.58057 1.875C5.08799 1.36758 5.7762 1.08252 6.49379 1.08252C7.21139 1.08252 7.8996 1.36758 8.40702 1.875C8.91444 2.38242 9.1995 3.07063 9.1995 3.78823V5.95279" stroke="#C9A876" strokeWidth="1.08228" />
+        </svg>
+        Secure payment
+      </p>
+      <p className="flex items-center gap-1.5 text-[#6E767D]">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6.49381 11.3641C9.18359 11.3641 11.3641 9.18359 11.3641 6.49381C11.3641 3.80403 9.18359 1.62354 6.49381 1.62354C3.80403 1.62354 1.62354 3.80403 1.62354 6.49381C1.62354 9.18359 3.80403 11.3641 6.49381 11.3641Z" stroke="#C9A876" strokeWidth="1.08228" />
+          <path d="M6.49365 3.78809V6.49379L8.11708 8.11722" stroke="#C9A876" strokeWidth="1.08228" />
+        </svg>
+        Instant access
+      </p>
+    </div>
+  </div>
+</div>
             </div>
           </div>
         </section>
 
         {/* ══════════════ CONTINUE YOUR JOURNEY ══════════════ */}
         <section id="continue-journey" className="w-full flex justify-center bg-[#FAF5EC] py-20 px-6">
-          <div className="max-w-[1180px] w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
-              <div className="rounded-2xl overflow-hidden aspect-[4/5] shadow-sm">
-                <img alt="" className="w-full h-full object-cover object-right" src="/images/oceanreset/readybg.png" />
-              </div>
+  <div className="max-w-[1180px] w-full">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+      <div className="rounded-2xl overflow-hidden aspect-[4/5] shadow-xl">
+        <img
+          alt=""
+          className="w-full h-full object-cover object-right"
+          style={{ transform: 'scaleX(-1)' }}
+          src="/images/oceanreset/readybg.png"
+        />
+      </div>
 
+      <div>
+        <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B68A4E] text-[11px] tracking-[4px] uppercase mb-4">
+          Ready For More?
+        </p>
+        <h2 style={{ fontFamily: "'Fraunces', serif" }} className="text-[#16324A] font-medium text-[32px] lg:text-[40px] leading-tight mb-6">
+          Continue Your Journey<br />With the Full Reset.
+        </h2>
+
+        <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E7B82] text-[14px] leading-relaxed mb-10 max-w-[440px]">
+          Go deeper with our 7-day Ocean Reset Program and transform daily stress into lasting calm and clarity.
+        </p>
+
+        <div className="grid grid-cols-2 gap-x-6 gap-y-8">
+          {[
+            { title: 'Daily Ocean Rituals', desc: 'Simple daily practices to reset your mind and recenter your day.', img: '/images/oceanreset/ready1.png' },
+            { title: 'Guided Breathing', desc: 'Easy breathing techniques to calm your nervous system and reduce stress.', img: '/images/oceanreset/ready2.png' },
+            { title: 'Ocean Soundscapes', desc: 'Immersive ocean sounds to relax, restore, and improve focus.', img: '/images/oceanreset/ready3.png' },
+            { title: 'Reflection Exercises', desc: 'Thoughtful prompts to help you gain clarity and deepen self-awareness.', img: '/images/oceanreset/ready4.png' },
+            { title: 'Progress Tracking', desc: 'Track your progress, build consistency, and see real transformation.', img: '/images/oceanreset/ready5.png' },
+            { title: 'Ocean Living Certificate', desc: 'Celebrate your completion and commitment to a calmer, better you.', img: '/images/oceanreset/ready6.png' },
+          ].map((f) => (
+            <div key={f.title} className="flex gap-4 items-start">
+              <span className="w-14 h-14 rounded-full overflow-hidden shrink-0 border border-[#B68A4E]/20 bg-[#FAF5EC]">
+                <img alt="" className="w-full h-full object-cover" src={f.img} />
+              </span>
               <div>
-                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B68A4E] text-[11px] tracking-[4px] uppercase mb-4">
-                  Ready For More?
-                </p>
-                <h2 style={{ fontFamily: "'Fraunces', serif" }} className="text-[#16324A] font-medium text-[32px] lg:text-[38px] leading-tight mb-8">
-                  Continue Your Journey With The Full Reset.
-                </h2>
-
-          
-
-                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E7B82] text-[14px] leading-relaxed mb-10 max-w-[440px]">
-                  Go deeper with our 7-day Ocean Reset Program and transform daily stress into lasting calm and clarity.
-                </p>
-
-                <div className="grid grid-cols-2 gap-x-10 gap-y-8">
-                  {[
-                    { title: 'Daily Ocean Rituals', desc: 'Simple daily practices designed for your mind and body.', img: '/images/oceanreset/ready1.png' },
-                    { title: 'Guided Breathing', desc: 'Calm your nervous system with guided breathing exercises.', img: '/images/oceanreset/ready2.png' },
-                    { title: 'Ocean Soundscapes', desc: 'Immersive ocean sounds to relax, restore, and refocus.', img: '/images/oceanreset/ready3.png' },
-                    { title: 'Reflection Exercises', desc: 'Thoughtful prompts to help you gain clarity and deeper self-awareness.', img: '/images/oceanreset/ready4.png' },
-                    { title: 'Progress Tracking', desc: 'Track your progress and celebrate every small win.', img: '/images/oceanreset/ready5.png' },
-                    { title: 'Ocean Living Certificate', desc: 'Earn your completion certificate at the end of your journey.', img: '/images/oceanreset/ready6.png' },
-                  ].map((f) => (
-                    <div key={f.title} className="flex gap-3">
-                      <span className="w-9 h-9 rounded-full overflow-hidden shrink-0">
-                        <img alt="" className="w-full h-full object-cover" src={f.img} />
-                      </span>
-                      <div>
-                        <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#16324A] text-[13px] font-semibold mb-1">{f.title}</p>
-                        <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E7B82] text-[12px] leading-snug">{f.desc}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#16324A] text-[14px] font-semibold mb-1">{f.title}</p>
+                <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E7B82] text-[12px] leading-snug">{f.desc}</p>
               </div>
             </div>
+          ))}
+        </div>
+      </div>
+    </div>
 
-            {/* Trust badges row */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8 pb-8 border-b border-[#1E4D6B]/10">
-                  {[
-                    { label: '30-Day Guarantee', icon: (
-                      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10.9975 2.74951L17.4127 5.49889V10.9976C17.4127 15.5799 14.48 18.146 10.9975 19.2458C7.51494 18.146 4.58228 15.5799 4.58228 10.9976V5.49889L10.9975 2.74951Z" stroke="#B68A4E" stroke-width="1.46633" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M8.24817 10.9977L10.0811 12.8306L13.7469 8.98145" stroke="#B68A4E" stroke-width="1.46633" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-                    ) },
-                    { label: 'Secure Payment', icon: (
-                      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M15.5798 10.0811H6.41519C5.4029 10.0811 4.58228 10.9017 4.58228 11.914V16.9545C4.58228 17.9668 5.4029 18.7874 6.41519 18.7874H15.5798C16.5921 18.7874 17.4127 17.9668 17.4127 16.9545V11.914C17.4127 10.9017 16.5921 10.0811 15.5798 10.0811Z" stroke="#B68A4E" stroke-width="1.46633" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M7.33179 10.0812V7.33185C7.33179 6.35961 7.71801 5.42719 8.40548 4.73971C9.09296 4.05224 10.0254 3.66602 10.9976 3.66602C11.9699 3.66602 12.9023 4.05224 13.5898 4.73971C14.2772 5.42719 14.6635 6.35961 14.6635 7.33185V10.0812" stroke="#B68A4E" stroke-width="1.46633" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-                    ) },
-                    { label: 'Instant Access', icon: (
-                      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M10.9974 18.7873C15.2997 18.7873 18.7873 15.2997 18.7873 10.9974C18.7873 6.69517 15.2997 3.20752 10.9974 3.20752C6.69517 3.20752 3.20752 6.69517 3.20752 10.9974C3.20752 15.2997 6.69517 18.7873 10.9974 18.7873Z" stroke="#B68A4E" stroke-width="1.46633" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M10.9976 6.87354V10.9976L13.9302 12.8305" stroke="#B68A4E" stroke-width="1.46633" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-                    ) },
-                    { label: 'Backed By Nature', icon: (
-                      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M4.5824 17.4129C3.66595 10.9977 7.33178 4.58247 17.4128 3.66602C18.3293 13.7471 11.9141 17.4129 5.49886 17.4129C4.12418 17.4129 2.74949 17.138 4.5824 15.58V17.4129Z" stroke="#B68A4E" stroke-width="1.46633" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M6.41528 15.5796C10.9976 11.9137 12.8305 8.24791 14.6634 5.49854" stroke="#B68A4E" stroke-width="1.46633" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-
-                    ) },
-                  ].map((b) => (
-                    <div key={b.label} className="flex flex-col items-start gap-2">
-                      <span className="w-6 h-6">{b.icon}</span>
-                      <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#16324A] text-[11px] font-semibold leading-snug">{b.label}</p>
-                    </div>
-                  ))}
-                </div>
+    {/* Trust badges row */}
+    <div className="mt-24 pt-8 border-t border-[#16324A]/10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {[
+        {
+          label: '30-Day Guarantee',
+          desc: 'Love it or get a full refund. No questions asked.',
+          icon: (
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.9975 2.74951L17.4127 5.49889V10.9976C17.4127 15.5799 14.48 18.146 10.9975 19.2458C7.51494 18.146 4.58228 15.5799 4.58228 10.9976V5.49889L10.9975 2.74951Z" stroke="#B68A4E" strokeWidth="1.46633" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M8.24817 10.9977L10.0811 12.8306L13.7469 8.98145" stroke="#B68A4E" strokeWidth="1.46633" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ),
+        },
+        {
+          label: 'Secure Payment',
+          desc: 'Your payment information is 100% secure.',
+          icon: (
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M15.5798 10.0811H6.41519C5.4029 10.0811 4.58228 10.9017 4.58228 11.914V16.9545C4.58228 17.9668 5.4029 18.7874 6.41519 18.7874H15.5798C16.5921 18.7874 17.4127 17.9668 17.4127 16.9545V11.914C17.4127 10.9017 16.5921 10.0811 15.5798 10.0811Z" stroke="#B68A4E" strokeWidth="1.46633" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M7.33179 10.0812V7.33185C7.33179 6.35961 7.71801 5.42719 8.40548 4.73971C9.09296 4.05224 10.0254 3.66602 10.9976 3.66602C11.9699 3.66602 12.9023 4.05224 13.5898 4.73971C14.2772 5.42719 14.6635 6.35961 14.6635 7.33185V10.0812" stroke="#B68A4E" strokeWidth="1.46633" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ),
+        },
+        {
+          label: 'Instant Access',
+          desc: 'Get started immediately from any device.',
+          icon: (
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.9974 18.7873C15.2997 18.7873 18.7873 15.2997 18.7873 10.9974C18.7873 6.69517 15.2997 3.20752 10.9974 3.20752C6.69517 3.20752 3.20752 6.69517 3.20752 10.9974C3.20752 15.2997 6.69517 18.7873 10.9974 18.7873Z" stroke="#B68A4E" strokeWidth="1.46633" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M10.9976 6.87354V10.9976L13.9302 12.8305" stroke="#B68A4E" strokeWidth="1.46633" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ),
+        },
+        {
+          label: 'Backed by Nature',
+          desc: 'Inspired by the ocean. Designed for real life.',
+          icon: (
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4.5824 17.4129C3.66595 10.9977 7.33178 4.58247 17.4128 3.66602C18.3293 13.7471 11.9141 17.4129 5.49886 17.4129C4.12418 17.4129 2.74949 17.138 4.5824 15.58V17.4129Z" stroke="#B68A4E" strokeWidth="1.46633" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M6.41528 15.5796C10.9976 11.9137 12.8305 8.24791 14.6634 5.49854" stroke="#B68A4E" strokeWidth="1.46633" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          ),
+        },
+      ].map((b) => (
+        <div key={b.label} className="flex items-start gap-3">
+          <span className="shrink-0 mt-0.5">{b.icon}</span>
+          <div>
+            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#16324A] text-[14px] font-semibold mb-1">{b.label}</p>
+            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E7B82] text-[12px] leading-snug max-w-[200px]">{b.desc}</p>
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
 
         {/* ══════════════ TESTIMONIALS ══════════════ */}
-        <section id="testimonials" className="w-full flex justify-center bg-[#F3E9DA] py-20 px-6">
-          <div className="max-w-[1080px] w-full flex flex-col items-center text-center">
-            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B68A4E] text-[11px] tracking-[4px] uppercase mb-4">
-              Real Stories, Real Transformation
-            </p>
-            <h2 style={{ fontFamily: "'Fraunces', serif" }} className="text-[#16324A] font-medium text-[32px] lg:text-[40px] mb-5">
-              Loved by Thousands Around the World
-            </h2>
-            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E7B82] text-[14px] leading-relaxed max-w-[520px] mb-14">
-              People just like you are using Ocean Reset to reduce stress, sleep better, think clearer, and feel more connected to life.
-            </p>
+<section id="testimonials" className="w-full flex justify-center bg-[#F3E9DA] py-20 px-6">
+  <div className="max-w-[1080px] w-full flex flex-col items-center text-center">
+    <div className="flex items-center gap-4 mb-4">
+      <span className="w-8 h-px bg-[#B68A4E]/50" />
+      <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#B68A4E] text-[11px] tracking-[3px] uppercase font-semibold">
+        Real Stories. Real Transformation.
+      </p>
+      <span className="w-8 h-px bg-[#B68A4E]/50" />
+    </div>
+    <h2 style={{ fontFamily: "'Fraunces', serif" }} className="text-[#16324A] font-medium text-[32px] lg:text-[40px] mb-5">
+      Loved by Thousands Around the World
+    </h2>
+    <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E7B82] text-[15px] leading-relaxed max-w-[480px] mb-14">
+      People just like you are using Ocean Reset to reduce stress, sleep better, think clearer, and feel more connected to life.
+    </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-16">
-              {[
-                { name: 'Sarah M.', loc: 'California, USA', text: 'The 3-minute Ocean Reset completely changed my mornings. I feel calmer, more focused, and ready for the day.', img: "/images/oceanreset/review1.png" },
-                { name: 'James T.', loc: 'London, UK', text: 'I was skeptical at first, but the guided breathing and ocean sounds made such a difference in just one week.', img: "/images/oceanreset/review2.png" },
-                { name: 'Maya L.', loc: 'Manila, PH', text: 'The 7-day program gave me simple rituals that fit perfectly into my busy life. I feel lighter and more in control.', img: "/images/oceanreset/review3.png" },
-              ].map((t) => (
-                <div key={t.name} className="bg-white rounded-2xl p-7 text-left shadow-sm">
-                  <p style={{ fontFamily: "'Cormorant Garamond', serif" }} className="bold text-[#D9BC8C] text-[22px] leading-none mb-4">“</p>
-                  <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#16324A] text-[13px] leading-relaxed mb-6">{t.text}</p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full overflow-hidden shrink-0">
-                      <img alt="" className="w-full h-full object-cover" src={t.img} />
-                    </div>
-                    <div>
-                      <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#1E4D6B] text-[12px] font-semibold leading-none">{t.name}</p>
-                      <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E767D] text-[11px] mt-1">{t.loc}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-16">
+      {[
+        { name: 'Sarah M.', loc: 'California, USA', text: 'The 3-minute Ocean Reset completely changed my mornings. I feel calmer, more focused, and ready for the day.', img: "/images/oceanreset/review1.png" },
+        { name: 'James T.', loc: 'London, UK', text: 'I was skeptical at first, but the guided breathing and ocean sounds help me reset my mind and sleep so much better.', img: "/images/oceanreset/review2.png" },
+        { name: 'Maya L.', loc: 'Sydney, Australia', text: 'The 7-day program gave me simple rituals that fit perfectly into my busy life. I feel lighter, happier, and more in control.', img: "/images/oceanreset/review3.png" },
+      ].map((t) => (
+        <div key={t.name} className="bg-[#FFFDF9] rounded-2xl p-7 text-left shadow-lg">
+          {/* Quote icon */}
+          <svg width="19" height="13" viewBox="0 0 19 13" fill="none" xmlns="http://www.w3.org/2000/svg" className="mb-5">
+            <path d="M5.95561 0C2.16567 1.08284 0 4.33135 0 8.12128C0 10.8284 1.73254 12.994 4.33135 12.994C6.49702 12.994 8.12128 11.2615 8.12128 9.20412C8.12128 7.14673 6.49702 5.63075 4.54792 5.63075C4.87277 3.46508 6.38874 1.73254 8.6627 0.974554L5.95561 0ZM15.7011 0C11.9112 1.08284 9.74554 4.33135 9.74554 8.12128C9.74554 10.8284 11.4781 12.994 14.0769 12.994C16.2426 12.994 17.8668 11.2615 17.8668 9.20412C17.8668 7.14673 16.2426 5.63075 14.2935 5.63075C14.6183 3.46508 16.1343 1.73254 18.4082 0.974554L15.7011 0Z" fill="#D9BC8C" />
+          </svg>
+
+          <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#16324A] text-[14px] leading-relaxed mb-4">{t.text}</p>
+
+          {/* 5 stars */}
+          <div className="flex gap-1 mb-5">
+            {[0, 1, 2, 3, 4].map((i) => (
+              <svg key={i} width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6.99779 2.04102L8.51398 5.19003L11.9546 5.65655L9.44702 8.04746L10.0302 11.488L6.99779 9.85523L3.96541 11.488L4.54856 8.04746L2.04102 5.65655L5.4816 5.19003L6.99779 2.04102Z" fill="#B68A4E" stroke="#B68A4E" strokeWidth="0.58315" />
+              </svg>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full overflow-hidden shrink-0">
+              <img alt="" className="w-full h-full object-cover" src={t.img} />
             </div>
-
-            <div
-  className="w-full rounded-2xl p-10 lg:p-14 flex flex-col items-center text-center"
-  style={{
-    backgroundImage: "url('/images/oceanreset/oceanwater2.png')",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat"
-  }}
->
-              <h3 style={{ fontFamily: "'Fraunces', serif" }} className="text-[#FFFDF9] font-medium text-[26px] lg:text-[32px] mb-3">
-                Your Reset Starts Now.
-              </h3>
-              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#FFFDF9BF] text-[13px] leading-relaxed mb-8 max-w-[440px]">
-                Take the first step towards a calmer, clearer mind — and give yourself the true gift of stillness.
-              </p>
-              <button
-                onClick={() => scrollToSection('free-reset')}
-                style={{ fontFamily: "'Inter', sans-serif" }}
-                className="bg-[#B68A4E] text-[#0A1A28] text-[13px] font-medium tracking-[1px] px-8 py-4 rounded-full hover:opacity-90 transition-opacity"
-              >
-                Start My Free Ocean Reset →
-              </button>
-              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#FFFDF999] text-[10px] mt-3 tracking-[1px]">
-                No credit card required. Free forever.
-              </p>
+            <div>
+              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#16324A] text-[14px] font-semibold leading-none">{t.name}</p>
+              <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#6E7B82] text-[12px] mt-1">{t.loc}</p>
             </div>
           </div>
-        </section>
+        </div>
+      ))}
+    </div>
+
+    {/* CTA water box */}
+    <div
+      className="w-full rounded-[24px] px-8 lg:px-[50px] py-12 lg:py-[58px] flex flex-col items-start text-left"
+      style={{
+        backgroundImage: "url('/images/oceanreset/oceanwater2.png')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      <h3 style={{ fontFamily: "'Fraunces', serif" }} className="text-[#FFFDF9] font-medium text-[30px] lg:text-[36px] mb-3">
+        Your Reset Starts Now.
+      </h3>
+      <p style={{ fontFamily: "'Inter', sans-serif", color: 'rgba(255,253,249,0.75)' }} className="text-[15px] leading-relaxed mb-8 max-w-[380px]">
+        Take the first step towards a calmer mind, a healthier you, and a life in harmony with the rhythm of the ocean.
+      </p>
+      <button
+        onClick={() => scrollToSection('free-reset')}
+        style={{ fontFamily: "'Inter', sans-serif" }}
+        className="inline-flex items-center gap-3 bg-[#B68A4E] text-[#0A1A28] text-[13px] font-bold tracking-[1px] uppercase px-8 py-4 rounded-full hover:opacity-90 transition-opacity"
+      >
+        Start My Free Ocean Reset <span>→</span>
+      </button>
+      <p style={{ fontFamily: "'Inter', sans-serif", color: 'rgba(255,253,249,0.65)' }} className="text-[12px] mt-4 flex items-center gap-2">
+        <svg width="14" height="14" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M10.9975 2.74951L17.4127 5.49889V10.9976C17.4127 15.5799 14.48 18.146 10.9975 19.2458C7.51494 18.146 4.58228 15.5799 4.58228 10.9976V5.49889L10.9975 2.74951Z" stroke="#D9BC8C" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M8.24817 10.9977L10.0811 12.8306L13.7469 8.98145" stroke="#D9BC8C" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+        No credit card required. Free forever.
+      </p>
+    </div>
+  </div>
+</section>
 
         {/* ══════════════ FINAL CTA ══════════════ */}
         <section id="final-cta" className="w-full relative overflow-hidden min-h-[640px] flex flex-col justify-between px-6 lg:px-16 pt-24 pb-10">
@@ -616,7 +751,7 @@ export default function OceanReset() {
             <p style={{ fontFamily: "'Fraunces', serif" }} className="italic text-[#FFFFFF] text-[19px] mb-4">
               The ocean never rushes.
             </p>
-            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#FFFFF] text-[15px] leading-relaxed mb-8 max-w-[480px]">
+            <p style={{ fontFamily: "'Inter', sans-serif" }} className="text-[#FFFFFFD1] text-[15px] leading-relaxed mb-8 max-w-[480px]">
               Yet it transforms everything it touches. Perhaps it's time for <span className="text-[#DCB988] font-medium">your reset</span> too.
             </p>
             <button
