@@ -1,0 +1,4 @@
+node_modules
+.env
+seaglore-backend/data/
+seaglore-backend/uploads/
