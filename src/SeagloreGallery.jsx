@@ -21,7 +21,7 @@ const MEDIA = {
   lookVideo: 'middle.mp4', // VIDEO  1440 x 960 — walking wali video (shirt + skirt)
   scarfImage: 'duppata.png', // IMAGE  520 x 650 — Mist Silk Scarf
   shortsImage: 'nikr.png', // IMAGE  520 x 650 — Ocean Wave Shorts
-  fabricMedia: 'halfpic.png', // IMAGE  1440 x 976 — fabric close-up (video bhi chalegi)
+  fabricMedia: 'halfface.png', // IMAGE  1440 x 976 — fabric close-up (video bhi chalegi)
   campaignVideo: 'bottom.mp4', // VIDEO  1440 x 728 — Fall 2026 campaign
 };
 
