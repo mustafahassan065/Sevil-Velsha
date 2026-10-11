@@ -37,7 +37,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/ocean-free-confirmed" element={<OceanFreeConfirmed />} />
           <Route path="/collection" element={<SeagloreCollection />} />
           <Route path="/ocean-reset" element={<OceanReset />} />
-          <Route path="/home-gallery" element={<SeagloreGallery />} />
+          <Route path="/collections/seagull-wings" element={<SeagloreGallery />} />
           {appRoutes}
         </Routes>
       </AuthProvider>
