@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 const MEDIA_FOLDER = '/gallery/';
 
 const MEDIA = {
-  heroVideo: 'hero2.mp4', // VIDEO  1440 x 960 — sabse upar wali hero video
+  heroVideo: 'hero3.mp4', // VIDEO  1440 x 960 — sabse upar wali hero video
   shirtImage: 'shirt.png', // IMAGE  520 x 650 — Seagull Wings Shirt
   skirtImage: 'skirt.png', // IMAGE  520 x 650 — Tide Jeans Skirt
   lookVideo: 'middle.mp4', // VIDEO  1440 x 960 — walking wali video (shirt + skirt)
