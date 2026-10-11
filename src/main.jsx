@@ -12,7 +12,7 @@ import UpsellOceanPage from './UpsellOceanPage.jsx'
 import FreeOceanGuide from './FreeOceanGuide';
 import OceanFreeConfirmed from './OceanFreeConfirmed';
 import SeagloreCollection from './SeagloreCollection';
-import OceanReset from './pages/OceanReset.jsx'
+import OceanReset from './OceanReset.jsx'
 import SeagloreGallery from './SeagloreGallery.jsx'
 
 // Seaglore app (auth, dashboard, admin)
