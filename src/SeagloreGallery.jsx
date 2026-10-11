@@ -1,17 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-/* ------------------------------------------------------------------
-   Seaglore — Home / Gallery
-   Single file page. Fonts: Cormorant Garamond + Jost (Google Fonts)
-   Colors: #FFFAF1  #0A1319  #0A1319D9  #FFFFFF  #FFFFFFE5
 
-   IMAGES / VIDEOS:
-   Saari files  public/gallery/  folder mein rakho.
-   Neeche MEDIA mein sirf file ka NAAM likho (jaise 'hero.mp4').
-   Khali ('') chhodoge to dummy placeholder dikhega.
-   .mp4 / .webm / .mov ho to video chalegi, warna image dikhegi,
-   is liye kisi bhi slot mein image ya video dono daal sakte ho.
-------------------------------------------------------------------- */
 const MEDIA_FOLDER = '/gallery/';
 
 const MEDIA = {
@@ -240,9 +229,9 @@ function ShopLinkBar({ items }) {
 function ProductRow({ title, items }) {
   return (
     <>
-      <section className="bg-white px-5 pb-16 pt-[48px] md:h-[940px] md:px-20 md:pb-0 md:pt-[53px]">
+      <section className="bg-white px-5 pb-16 pt-[48px] md:px-20 md:pb-20 md:pt-[53px] xl:h-[940px] xl:pb-0">
         <h2 className={`${eyebrow} m-0 text-[#0A1319D9]`}>{title}</h2>
-        <div className="mt-10 grid grid-cols-1 gap-12 md:mt-[84px] md:grid-cols-2 md:gap-x-10">
+        <div className="mt-10 grid grid-cols-1 gap-12 md:mt-16 md:grid-cols-2 md:gap-x-10 xl:mt-[84px]">
           {items.map((p) => (
             <figure key={p.name} className="m-0">
               <div className="mx-auto aspect-[4/5] w-full max-w-[520px] overflow-hidden bg-white">
