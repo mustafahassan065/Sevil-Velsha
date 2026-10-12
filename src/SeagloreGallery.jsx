@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 
 const MEDIA_FOLDER = '/gallery/';
@@ -41,12 +42,12 @@ const NAV_RIGHT = [
 ];
 
 const PRODUCTS_TOP = [
-  { name: 'SEAGULL WINGS SHIRT', src: 'shirtImage', link: 'Shop the shirt', ul: 138 },
-  { name: 'Tide Jeans Skirt', src: 'skirtImage', link: 'Shop the skirt', ul: 140 },
+  { name: 'SEAGULL WINGS SHIRT', src: 'shirtImage', link: 'Shop the shirt', ul: 138, slug: 'seagull-wings-shirt' },
+  { name: 'Tide Jeans Skirt', src: 'skirtImage', link: 'Shop the skirt', ul: 140, slug: 'tide-jeans-skirt' },
 ];
 const PRODUCTS_BOTTOM = [
-  { name: 'MIST SILK SCARF', src: 'scarfImage', link: 'Shop the scarf', ul: 107 },
-  { name: 'Ocean Wave Shorts', src: 'shortsImage', link: 'Shop the shorts', ul: 134 },
+  { name: 'MIST SILK SCARF', src: 'scarfImage', link: 'Shop the scarf', ul: 107, slug: 'mist-silk-scarf' },
+  { name: 'Ocean Wave Shorts', src: 'shortsImage', link: 'Shop the shorts', ul: 134, slug: 'ocean-wave-shorts' },
 ];
 
 const FOOTER_COLS = [
@@ -213,14 +214,14 @@ function ShopLinkBar({ items }) {
   return (
     <div className="grid grid-cols-2 gap-1 bg-[#FFFAF1]">
       {items.map((p) => (
-        <a key={p.link} href="#" className="group flex h-11 items-start px-[10px] pt-[17px]">
+        <Link key={p.link} to={`/products/${p.slug}`} className="group flex h-11 items-start px-[10px] pt-[17px]">
           <span
             className={`${eyebrow} inline-block border-b border-[#0A1319]/70 pb-[3.4px] text-[#0A1319] transition-opacity group-hover:opacity-60`}
             style={{ width: p.ul, maxWidth: '100%' }}
           >
             {p.link}
           </span>
-        </a>
+        </Link>
       ))}
     </div>
   );
@@ -234,12 +235,14 @@ function ProductRow({ title, items }) {
         <div className="mt-10 grid grid-cols-1 gap-12 md:mt-16 md:grid-cols-2 md:gap-x-10 xl:mt-[84px]">
           {items.map((p) => (
             <figure key={p.name} className="m-0">
-              <div className="mx-auto aspect-[4/5] w-full max-w-[520px] overflow-hidden bg-white">
-                <Media src={MEDIA[p.src]} label="Product image — 520 × 650" alt={p.name} tone="light" />
-              </div>
-              <figcaption className="sg-sans mt-[23px] text-center text-[8px] md:text-[6.75px] font-normal leading-none tracking-[0.13em] text-[#0A1319D9]">
-                {p.name}
-              </figcaption>
+              <Link to={`/products/${p.slug}`} className="block">
+                <div className="mx-auto aspect-[4/5] w-full max-w-[520px] overflow-hidden bg-white">
+                  <Media src={MEDIA[p.src]} label="Product image — 520 × 650" alt={p.name} tone="light" />
+                </div>
+                <figcaption className="sg-sans mt-[23px] text-center text-[8px] md:text-[6.75px] font-normal leading-none tracking-[0.13em] text-[#0A1319D9]">
+                  {p.name}
+                </figcaption>
+              </Link>
             </figure>
           ))}
         </div>

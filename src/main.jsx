@@ -14,7 +14,7 @@ import OceanFreeConfirmed from './OceanFreeConfirmed';
 import SeagloreCollection from './SeagloreCollection';
 import OceanReset from './OceanReset.jsx'
 import SeagloreGallery from './SeagloreGallery.jsx'
-
+import ProductPage from './ProductPage.jsx';
 // Seaglore app (auth, dashboard, admin)
 import { AuthProvider } from './context/AuthContext'
 import PageTracker from './components/PageTracker'
@@ -38,6 +38,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/collection" element={<SeagloreCollection />} />
           <Route path="/ocean-reset" element={<OceanReset />} />
           <Route path="/collections/seagull-wings" element={<SeagloreGallery />} />
+          <Route path="/products/:slug" element={<ProductPage />} />
           {appRoutes}
         </Routes>
       </AuthProvider>
