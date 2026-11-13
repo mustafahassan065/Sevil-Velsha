@@ -59,21 +59,12 @@ export default function UpgradeCard({ className = '' }) {
       <p className="mt-2 text-sm text-[#6E7B82]">
         Unlock the full ritual library, guided audio and a daily reset chosen for you.
       </p>
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-xl border border-[#D9D2C3] p-4">
-          <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#6E7B82]">Monthly</p>
-          <p className="mt-1 font-serif text-3xl text-[#16324A]">$9.99</p>
-          <Button onClick={() => buy('monthly')} disabled={!!busy} className="mt-3 w-full">
-            {busy === 'monthly' ? 'Please wait…' : 'Choose monthly'}
-          </Button>
-        </div>
-        <div className="rounded-xl border-2 border-[#1E4D6B] p-4">
-          <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#1E4D6B]">Yearly · best value</p>
-          <p className="mt-1 font-serif text-3xl text-[#16324A]">$79</p>
-          <Button onClick={() => buy('yearly')} disabled={!!busy} className="mt-3 w-full">
-            {busy === 'yearly' ? 'Please wait…' : 'Choose yearly'}
-          </Button>
-        </div>
+      <div className="mt-5 rounded-xl border-2 border-[#1E4D6B] p-4">
+        <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#1E4D6B]">Ocean Reset Premium</p>
+        <p className="mt-1 font-serif text-3xl text-[#16324A]">$19</p>
+        <Button onClick={() => buy('monthly')} disabled={!!busy} className="mt-3 w-full">
+          {busy === 'monthly' ? 'Please wait…' : 'Start my 7-day reset'}
+        </Button>
       </div>
       <div className="mt-4">
         <Notice type="error">{error}</Notice>
