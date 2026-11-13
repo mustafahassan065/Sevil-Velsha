@@ -1,38 +1,58 @@
-import { Resend } from 'resend';
+import nodemailer from 'nodemailer';
 import { config } from './config.js';
 import db from './db.js';
 
-// Provider: BREVO_API_KEY .env mein ho to Brevo, warna RESEND_API_KEY (Resend).
-const brevoKey = (process.env.BREVO_API_KEY || '').trim();
-const resend = !brevoKey && config.resendKey ? new Resend(config.resendKey) : null;
+const SMTP_HOST = (process.env.SMTP_HOST || '').trim();
+const SMTP_PORT = Number(process.env.SMTP_PORT || 587);
+const SMTP_USER = (process.env.SMTP_USER || '').trim();
+const SMTP_PASS = (process.env.SMTP_PASS || '').trim();
+// 465 par secure=true, 587 par STARTTLS (secure=false)
+const SMTP_SECURE = process.env.SMTP_SECURE
+  ? process.env.SMTP_SECURE === 'true'
+  : SMTP_PORT === 465;
+
+const transport =
+  SMTP_HOST && SMTP_USER && SMTP_PASS
+    ? nodemailer.createTransport({
+        host: SMTP_HOST,
+        port: SMTP_PORT,
+        secure: SMTP_SECURE,
+        auth: { user: SMTP_USER, pass: SMTP_PASS },
+        pool: true,          // roz ki bulk emails ke liye connection reuse
+        maxConnections: 3,
+        maxMessages: 100,
+        connectionTimeout: 15000,
+        greetingTimeout: 15000,
+        socketTimeout: 20000,
+      })
+    : null;
+
+if (transport) {
+  transport
+    .verify()
+    .then(() => console.log(`[email] SMTP ready (${SMTP_HOST}:${SMTP_PORT})`))
+    .catch((err) => console.error('[email] SMTP verify failed:', err.message));
+} else {
+  console.log('[email] SMTP not configured (SMTP_HOST / SMTP_USER / SMTP_PASS missing)');
+}
 
 const logEmail = db.prepare(
   `INSERT INTO email_log (user_id, to_email, template, subject, status, provider_id, error)
    VALUES (?, ?, ?, ?, ?, ?, ?)`
 );
 
-// 'Seagloré <info@seaglore.com>' -> { name, email }
-function parseFrom(from) {
-  const m = String(from).match(/^\s*"?([^"<]*?)"?\s*<([^>]+)>\s*$/);
-  return m ? { name: m[1].trim() || undefined, email: m[2].trim() } : { email: String(from).trim() };
-}
-
-async function sendViaBrevo({ to, subject, html, headers }) {
-  const res = await fetch('https://api.brevo.com/v3/smtp/email', {
-    method: 'POST',
-    headers: { 'api-key': brevoKey, 'content-type': 'application/json', accept: 'application/json' },
-    body: JSON.stringify({
-      sender: parseFrom(config.emailFrom),
-      to: [{ email: to }],
-      subject,
-      htmlContent: html,
-      ...(headers ? { headers } : {}),
-    }),
-    signal: AbortSignal.timeout(15000),
-  });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.message || `Brevo HTTP ${res.status}`);
-  return data.messageId || null;
+// HTML se simple plain-text version (spam score behtar hota hai)
+function htmlToText(html) {
+  return String(html)
+    .replace(/<style[\s\S]*?<\/style>/gi, '')
+    .replace(/<a [^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/gi, '$2 ($1)')
+    .replace(/<br\s*\/?>/gi, '\n')
+    .replace(/<\/(p|div|h[1-6]|li|tr)>/gi, '\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&amp;/g, '&')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
 }
 
 /**
@@ -41,28 +61,23 @@ async function sendViaBrevo({ to, subject, html, headers }) {
  * headers: optional (List-Unsubscribe wagera).
  */
 export async function sendEmail({ userId = null, to, template, subject, html, headers }) {
-  if (!brevoKey && !resend) {
+  if (!transport) {
     const link = (html.match(/href="([^"]+)"/) || [])[1] || '';
     console.log(`[email:skipped] ${template} -> ${to}${link ? `\n  link: ${link}` : ''}`);
-    logEmail.run(userId, to, template, subject, 'skipped', null, 'No BREVO_API_KEY / RESEND_API_KEY set');
+    logEmail.run(userId, to, template, subject, 'skipped', null, 'SMTP not configured');
     return { ok: false, skipped: true };
   }
 
   try {
-    let id = null;
-    if (brevoKey) {
-      id = await sendViaBrevo({ to, subject, html, headers });
-    } else {
-      const { data, error } = await resend.emails.send({
-        from: config.emailFrom,
-        to,
-        subject,
-        html,
-        ...(headers ? { headers } : {}),
-      });
-      if (error) throw new Error(error.message);
-      id = data?.id || null;
-    }
+    const info = await transport.sendMail({
+      from: config.emailFrom, // 'Seagloré <info@seaglore.com>'
+      to,
+      subject,
+      html,
+      text: htmlToText(html),
+      ...(headers ? { headers } : {}),
+    });
+    const id = info.messageId || null;
     logEmail.run(userId, to, template, subject, 'sent', id, null);
     return { ok: true, id };
   } catch (err) {
