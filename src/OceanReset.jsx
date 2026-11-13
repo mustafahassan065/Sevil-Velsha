@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import './index.css';
 
+// ── BACKEND ROUTES (apne server ke hisaab se set karo) ──
+// Stripe checkout session banane wala route, response mein { url } aana chahiye
+const CHECKOUT_ENDPOINT = '/api/CHECKOUT_ROUTE_YAHAN';
+// Free reset ke liye email save karne wala route (khali chhoda to sirf console.log hoga)
+const LEAD_ENDPOINT = '';
+
 
 export default function OceanReset() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [emailSubmitted, setEmailSubmitted] = useState(false);
+  const [checkoutLoading, setCheckoutLoading] = useState(false);
 
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
@@ -14,14 +21,47 @@ export default function OceanReset() {
     }
   };
 
-  const handleEmailSubmit = (e) => {
+  const handleEmailSubmit = async (e) => {
     e.preventDefault();
     if (!email.trim()) return;
-    // TODO: wire to Resend / lead-capture backend endpoint
-    console.log('Lead captured:', email);
+    if (LEAD_ENDPOINT) {
+      try {
+        const res = await fetch(LEAD_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ email: email.trim() }),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      } catch (err) {
+        console.error('Lead capture failed:', err);
+        alert('Something went wrong. Please try again.');
+        return;
+      }
+    } else {
+      console.log('Lead captured:', email);
+    }
     setEmailSubmitted(true);
     setEmail('');
     setTimeout(() => setEmailSubmitted(false), 3000);
+  };
+
+  const handleCheckout = async () => {
+    setCheckoutLoading(true);
+    try {
+      const res = await fetch(CHECKOUT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.url) throw new Error(data.error || `HTTP ${res.status}`);
+      window.location.href = data.url; // Stripe checkout page
+    } catch (err) {
+      console.error('Checkout failed:', err);
+      alert('Could not start checkout. Please try again.');
+      setCheckoutLoading(false);
+    }
   };
 
   return (
@@ -342,7 +382,15 @@ export default function OceanReset() {
             {!emailSubmitted ? (
               <form onSubmit={handleEmailSubmit} className="flex flex-col items-center gap-3">
                 <div className="flex flex-col sm:flex-row gap-3">
-
+                  <input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                    className="px-5 py-4 rounded-full border border-[#D9C6A5] bg-white text-[14px] text-[#16324A] w-full sm:w-[300px] outline-none focus:border-[#1E4D6B]"
+                  />
                   <button
                     type="submit"
                     style={{ fontFamily: "'Inter', sans-serif" }}
@@ -496,10 +544,12 @@ export default function OceanReset() {
                   </div>
 
                   <button
+                    onClick={handleCheckout}
+                    disabled={checkoutLoading}
                     style={{ fontFamily: "'Inter', sans-serif" }}
-                    className="w-full mt-6 bg-[#1E4D6B] text-white text-[15px] font-semibold py-4 rounded-full hover:bg-[#163a51] transition-colors flex items-center justify-center gap-2"
+                    className="w-full mt-6 bg-[#1E4D6B] text-white text-[15px] font-semibold py-4 rounded-full hover:bg-[#163a51] transition-colors flex items-center justify-center gap-2 disabled:opacity-60"
                   >
-                    Start my 7-day reset <span>→</span>
+                    {checkoutLoading ? 'Redirecting…' : <>Start my 7-day reset <span>→</span></>}
                   </button>
 
                   <div
